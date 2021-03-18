@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:include="fragment/common :: titleBar (title='Thank You for your interest')"/>
+
+<!-- content starts
+================================================== -->
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p> We are sorry, but you may have followed a link that is not valid.  If you received a link to join our study, please go back and use the full link provided in order to get started.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- footer
+================================================== -->
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer" />
+
+
+<!-- copyright starts
+================================================== -->
+<footer id="copyright" class="clearfix" th:include="fragment/common :: copyright" />
+
+<!--Javascript
+================================================== -->
+<div th:include="fragment/common :: scripts" />
+
+</body>
+</html>

@@ -43,15 +43,15 @@ public class SessionReview extends LinkedQuestionnaireData {
         Map<Integer, String> tmpScale = new TreeMap<>();
         if (group.equals("group1")) {
             tmpScale.put(1, "Totally disagree");
-            tmpScale.put(2, "");
-            tmpScale.put(3, "");
-            tmpScale.put(4, "");
+            tmpScale.put(2, "empty");
+            tmpScale.put(3, "empty");
+            tmpScale.put(4, "empty");
             tmpScale.put(5, "Totally agree");
         } else {
             tmpScale.put(1, "Not distracted at all");
-            tmpScale.put(2, "");
-            tmpScale.put(3, "");
-            tmpScale.put(4, "");
+            tmpScale.put(2, "empty");
+            tmpScale.put(3, "empty");
+            tmpScale.put(4, "empty");
             tmpScale.put(5, "Very distracted");
         }
         return Collections.unmodifiableMap(tmpScale);

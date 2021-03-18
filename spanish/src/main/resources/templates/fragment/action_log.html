@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en">
+<!--<![endif]-->
+
+<body>
+
+<!-- Specialized Scripts for Action logging. Should ONLY be included on NON-DEMOGRAPHIC Questionaires.
+    DO NOT put on pages with sensitive info!!! -->
+<div id="scripts-action-log" th:fragment="scripts-action-log">
+    <script type="text/javascript"  th:inline="javascript">
+        /*<![CDATA[*/
+
+
+        $(document).ready(function () {
+            
+            // Post every time the user performs an action within the task (questionnaire)
+            var startTime = Date.now();
+            var latency = -1;
+            var delayTimer;
+            var action_url = /*[[@{/action}]]*/ 'action';
+            var action_err_url = /*[[@{/action/error}]]*/ 'action/error';
+
+
+            $("input:not('#clearSlider'), select").on('change', function () {
+
+                latency = Date.now() - startTime;
+                let data = JSON.stringify({
+                                'name': $(this).attr('name'),
+                                'latency': latency
+                        }),
+
+                delayTimer = window.setTimeout(function() {
+                    $.ajax({
+                        type: "POST",
+                        url: action_url,
+                        contentType: "application/json; charset=UTF-8",
+                        dataType: 'json',
+                        data: data,
+                        success: console.log("posted action"), // TODO: Add success function - Anna
+                        error: function(xhr, err) {
+                            $.ajax({
+                                type: "POST",
+                                url: action_err_url,
+                                contentType: "application/json; charset=UTF-8",
+                                dataType: 'json',
+                                data: JSON.stringify({
+                                    'error': err
+                                }),
+                                success: console.log("posted error")
+                            });
+                        }
+                    });
+                }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+                startTime = Date.now();
+            });
+        });
+        /*]]>*/
+
+    </script>
+</div>
+
+</body>
+</html>

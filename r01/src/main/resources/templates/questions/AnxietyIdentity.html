@@ -11,7 +11,7 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='Anxiety and Me')"/>
+<section th:replace="fragment/common :: titleBar (title=#{anxietyidentity.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate5"/>
 
 <section id="content" class="clearfix">
@@ -27,7 +27,7 @@
                          style="padding: 15px; border-radius: 15px; border: 1px solid #bbb; background-color: #fff; margin-top: 40px; margin-bottom: 20px;">
 
                         <div class="row header">
-                            <div class="col-md-8 statement"><h4><b>To what extent is your anxiety a central part of who you
+                            <div class="col-md-8 statement"><h4><b th:text="#{anxietyidentity.extent}">To what extent is your anxiety a central part of who you
                                 are currently?</b></h4></div>
                         </div>
                         <br></br>
@@ -43,13 +43,13 @@
                                                     <g id="anxiety" transform="translate(10,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#c28eff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="10" y="75">My Anxiety</text>
+                                                        <text x="10" y="75" th:text="#{anxietyidentity.my_anxiety}">My Anxiety</text>
                                                     </g>
 
                                                     <g id="me" transform="translate(130,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#07d7f8;fill-opacity:0.54509807;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="50" y="60">Me</text>
+                                                        <text x="50" y="60" th:text="#{anxietyidentity.me}">Me</text>
                                                     </g>
                                                 </svg>
                                             </div>
@@ -64,13 +64,13 @@
                                                     <g id="anxiety" transform="translate(25,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#c28eff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="10" y="75">My Anxiety</text>
+                                                        <text x="10" y="75" th:text="#{anxietyidentity.my_anxiety}">My Anxiety</text>
                                                     </g>
 
                                                     <g id="me" transform="translate(115,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#07d7f8;fill-opacity:0.54509807;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="50" y="60">Me</text>
+                                                        <text x="50" y="60" th:text="#{anxietyidentity.me}">Me</text>
                                                     </g>
                                                 </svg>
                                             </div>
@@ -85,13 +85,13 @@
                                                     <g id="anxiety" transform="translate(40,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#c28eff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="10" y="75">My Anxiety</text>
+                                                        <text x="10" y="75" th:text="#{anxietyidentity.my_anxiety}">My Anxiety</text>
                                                     </g>
 
                                                     <g id="me" transform="translate(100,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#07d7f8;fill-opacity:0.54509807;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="50" y="60">Me</text>
+                                                        <text x="50" y="60" th:text="#{anxietyidentity.me}">Me</text>
                                                     </g>
                                                 </svg>
                                             </div>
@@ -107,13 +107,13 @@
                                                     <g id="anxiety" transform="translate(55,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#c28eff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="10" y="75">My Anxiety</text>
+                                                        <text x="10" y="75" th:text="#{anxietyidentity.my_anxiety}">My Anxiety</text>
                                                     </g>
 
                                                     <g id="me" transform="translate(85,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#07d7f8;fill-opacity:0.54509807;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="50" y="60">Me</text>
+                                                        <text x="50" y="60" th:text="#{anxietyidentity.me}">Me</text>
                                                     </g>
                                                 </svg>
                                             </div>
@@ -128,13 +128,13 @@
                                                     <g id="anxiety" transform="translate(70,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#c28eff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="10" y="75">My Anxiety</text>
+                                                        <text x="10" y="75" th:text="#{anxietyidentity.my_anxiety}">My Anxiety</text>
                                                     </g>
 
                                                     <g id="me" transform="translate(70,10)">
                                                         <circle r="60" cx="60" cy="60"
                                                                 style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#07d7f8;fill-opacity:0.54509807;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"/>
-                                                        <text x="50" y="60">Me</text>
+                                                        <text x="50" y="60" th:text="#{anxietyidentity.me}">Me</text>
                                                     </g>
                                                 </svg>
                                             </div>
@@ -146,8 +146,8 @@
                             <br/>
                             <br/>
                             <div class="anxiety-identity-radio">
-                                <label class="question"><input type="radio" name="anxietyIdentity" value="555"/>
-                                    &nbsp;&nbsp;Prefer not to answer </label>
+                                <label class="question"><input type="radio" name="anxietyIdentity" value="555" th:text="#{anxietyidentity.prefer_not_to_answer}">
+                                    &nbsp;&nbsp;Prefer not to answer </input></label>
                             </div>
                             <br/>
                             <br/>
@@ -157,7 +157,7 @@
                     </div>
 
                     <div style="text-align:center">
-                        <button type="submit"> Continue</button>
+                        <button type="submit" th:text="#{continue}"> Continue</button>
                     </div>
 
                 </form>

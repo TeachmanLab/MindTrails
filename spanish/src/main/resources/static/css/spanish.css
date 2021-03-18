@@ -1,0 +1,18 @@
+/* Placeholder for any kaiser specific css */
+
+label.radioListNoAnswer {
+    position: absolute;
+    height: 75%;
+    width: 20%;
+    right:0;
+    font-size: 85%;
+    display: block;
+    padding: 15px;
+    border-left: 1px solid #BBB;
+    text-align: center;
+}
+
+
+
+
+

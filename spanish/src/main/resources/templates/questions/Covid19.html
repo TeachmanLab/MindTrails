@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title=#{covid19.title})"/>
+<textArea th:replace="fragment/common :: questionTemplate"/>
+<textArea th:replace="fragment/common :: questionTemplate5"/>
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p th:text="#{covid19.instructions}">The following questions ask about the current coronavirus (COVID-19) outbreak.
+                    For each set of questions, select the answer that best describes your experience.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content1" class="clearfix">
+    <form th:action="@{/questions/Covid19}" method="POST" th:object="${model}">
+        <!-- Don't add timer, it's added in one of the form fragments.-->
+        <div class="container">
+            <div class="container section compactQuestion">
+                <h3 th:text="#{covid19.affected}"><b>COVID-19 is affecting people in many different ways. <i>Thinking about the past 2 weeks</i>,
+                    please indicate in what ways the following areas of your life have been affected as a result of COVID-19:</b></h3><br/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><label class="question">Work (employment or school)<br/>
+                            <select required="true" th:field="*{work}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Income/finances<br/>
+                            <select required="true" th:field="*{finances}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Having enough food to eat<br/>
+                            <select required="true" th:field="*{food}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Childcare<br/>
+                            <select required="true" th:field="*{childcare}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Emotional well-being (e.g., anxiety, sadness, stress, worry)<br/>
+                            <select required="true" th:field="*{wellbeing}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Physical health<br/>
+                            <select required="true" th:field="*{physical}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Getting the medication and other healthcare you need<br/>
+                            <select required="true" th:field="*{healthcare}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Productivity<br/>
+                            <select required="true" th:field="*{productivity}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><label class="question">Ability to focus<br/>
+                            <select required="true" th:field="*{focus}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Exercise<br/>
+                            <select required="true" th:field="*{exercise}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Relationships with family<br/>
+                            <select required="true" th:field="*{family}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Relationships with romantic partners<br/>
+                            <select required="true" th:field="*{partners}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Relationships with friends<br/>
+                            <select required="true" th:field="*{friends}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Sleep<br/>
+                            <select required="true" th:field="*{sleep}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                        <p><label class="question">Loss of planned events (e.g., graduation, parties, travel)<br/>
+                            <select required="true" th:field="*{events}">
+                                <option value="" hidden="hidden"></option>
+                                <option th:text="#{extreme_positive_change}" value="1">Extreme positive change</option>
+                                <option th:text="#{moderate_positive_change}" value="2">Moderate positive change</option>
+                                <option th:text="#{minimal_positive_change}" value="3">Minimal positive change</option>
+                                <option th:text="#{no_change}" value="4">No change</option>
+                                <option th:text="#{minimal_negative_change}" value="5">Minimal negative change</option>
+                                <option th:text="#{moderate_negative_change}" value="6">Moderate negative change</option>
+                                <option th:text="#{extreme_negative_change}" value="7">Extreme negative change</option>
+                                <option th:text="#{not_applicable}" value="0">Not applicable</option>
+                                <option th:text="#{prefer_not_to_answer}" value="555">Prefer not to answer</option>
+                            </select> </label></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section th:replace="fragment/forms :: radioOptions(${model})"/>
+
+        <!-- Not in MT Spanish -->
+        <!--
+        <div class="container section compactQuestion">
+            <h3><b>On an average day over the past 2 weeks, how much time per day (in minutes) did you spend reading news stories about COVID-19?</b></h3>
+            <h3><textarea name="news" rows="1" cols="4" maxlength="4" style="resize: none; font-size: 30px; text-align:center;" required="required"/> &nbsp;minutes per day</h3>
+            <br/>
+            <h3><b>On an average day over the past 2 weeks, how much time per day (in minutes) did you spend reading social media about COVID-19?</b></h3>
+            <h3><textarea name="socialMedia" rows="1" cols="4" maxlength="4" style="resize: none; font-size: 30px; text-align:center;" required="required"/> &nbsp;minutes per day</h3>
+        </div>-->
+
+        <div class="container section">
+            <div class="row header">
+                <div class="col-md-12 statement">
+                    <h3 th:text="#{covid19.highRisk1}"><b>Based on criteria from the Center for Disease Control, are you at high risk for serious
+                        illness following infection of COVID-19?</b></h3>
+                    <p th:text="#{covid19.highRisk2}">The Center for Disease Control suggests that people over 65, those struggling with heart
+                        and lung disease, those who are immunocompromised (suppressed immune system), those who are obese, and those with diabetes are at
+                        high risk for serious illness.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.yes}" type="radio" name="highRisk" value="1" required="true"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.no}" type="radio" name="highRisk" value="0" required="true"/></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio"><br/>
+                        <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="highRisk" value="555"/></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Note: The following set of items were added in August 2020. -->
+        <!-- Question 8 -->
+
+        <div class="container section">
+            <div class="row header">
+                <div class="col-md-12 statement">
+                    <p th:text="#{covid19.diagnosis}"><b>Have you been diagnosed with COVID-19?</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.yes}" type="radio" name="diagnosis" value="1" required="true"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.no}" type="radio" name="diagnosis" value="0" required="true"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.unsure}" type="radio" name="diagnosis" value="2" required="true"/></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio"><br/>
+                        <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="diagnosis" value="555"/></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 9 -->
+
+        <div class="container section">
+            <div class="row header">
+                <div class="col-md-12 statement">
+                    <p th:text="#{covid19.testCovid}"><b>Have you gotten a test for COVID-19?</b></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{covid19.yes}" type="radio" name="testCovid" value="1" required="true" id="testCovidYes"
+                                                       onchange="testCovidCheck('testCovidYes')"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{covid19.no}" type="radio" name="testCovid" value="0" required="true"
+                                                       onchange="testCovidCheck('testCovidYes')"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{covid19.unsure}" type="radio" name="testCovid" value="2" required="true"
+                                                       onchange="testCovidCheck('testCovidYes')"/></label>
+                    </div>
+                </div>
+
+                <div class="col-md-4"><br/>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="testCovid" value="555"
+                                                       onchange="testCovidCheck('testCovidYes')"/></label>
+                    </div>
+                </div>
+
+            <div class="col-md-12 statement" id="testCovidPositive" style="display: none">
+                <p th:text="#{covid19.testCovidResult}"><b>Did you ever have a positive result?</b></p>
+
+                <div class="row">
+                <div class="col-md-8 side-border">
+                        <div class="radio">
+                            <label class="question"><input th:text="#{covid19.yes}" type="radio" name="testCovidResult" value="1" required="true" id="testCovidResultYes"
+                                                           onchange="testCovidResultCheck('testCovidResultYes')"/></label>
+                        </div>
+                        <div class="radio">
+                            <label class="question"><input th:text="#{covid19.no}" type="radio" name="testCovidResult" value="0" required="true" id="testCovidResultNo"
+                                                           onchange="testCovidResultCheck('testCovidResultNo')"/></label>
+                        </div>
+                        <div class="radio">
+                            <label class="question"><input th:text="#{covid19.unsure}" type="radio" name="testCovidResult" value="2" required="true"
+                                                           onchange="testCovidResultCheck('testCovidResultYes')"/></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="radio"><br/>
+                            <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="testCovidResult" value="555"
+                                                           onchange="testCovidResultCheck('testCovidResultYes')"/></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="testCovidDateDiv" style="display: none">
+                    <div class="row">
+                        <div class="col-md-12 statement" >
+                            <p th:text="#{covid19.testCovidDate}"><b>Please give the approximate date when you received your result.</b></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 side-border">
+                            <div class="input-group date">
+                                <input id='datepicker' type="text" name="testCovidDate" class="form-control" required="required" />
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="radio">
+                                <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="checkbox" name="testCovidDateNoAnswer" value="555" id="resultDateNoAnswer"
+                                                               onclick="toggle('resultDateNoAnswer', 'datepicker')"/></label>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+        <!-- Question 10 -->
+
+        <div class="container section">
+            <div class="row header">
+                <div class="col-md-12 statement">
+                    <p th:text="#{covid19.testAntibody}"><b>Have you gotten an antibody test for COVID-19?</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.yes}" type="radio" name="testAntibody" value="1" required="true" id="testAntibodyYes"
+                                                       onchange="testAntibodyCheck('testAntibodyYes')"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.no}" type="radio" name="testAntibody" value="0" required="true"
+                                                       onchange="testAntibodyCheck('testAntibodyYes')"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.unsure}" type="radio" name="testAntibody" value="2" required="true"
+                                                       onchange="testAntibodyCheck('testAntibodyYes')"/></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio"><br/>
+                        <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="testAntibody" value="555"
+                                                       onchange="testAntibodyCheck('testAntibodyYes')"/></label>
+                    </div>
+                </div>
+                <div class="col-md-12 statement" id="testAntibodyPositiveDiv" style="display: none">
+                    <p th:text="#{covid19.testAntibodyResult}"><b>Did you ever have a positive result?</b></p>
+                    <div class="row">
+                        <div class="col-md-8 side-border">
+                            <div class="radio">
+                                <label class="question"><input th:text="#{covid19.yes}" type="radio" name="testAntibodyResult" value="1" required="true" id="testAntibodyResultYes"
+                                                               onchange="testAntibodyResultCheck('testAntibodyResultYes')"/></label>
+                            </div>
+                            <div class="radio">
+                                <label class="question"><input th:text="#{covid19.no}" type="radio" name="testAntibodyResult" value="0" required="true" id="testAntibodyResultNo"
+                                                               onchange="testAntibodyResultCheck('testAntibodyResultNo')" /></label>
+                            </div>
+                            <div class="radio">
+                                <label class="question"><input th:text="#{covid19.unsure}" type="radio" name="testAntibodyResult" value="2" required="true"
+                                                               onchange="testAntibodyResultCheck('testAntibodyResultYes')" /></label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="radio"><br/>
+                                <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="testAntibodyResult" value="555"
+                                                               onchange="testAntibodyResultCheck('testAntibodyResultYes')" /></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="testAntibodyDateDiv" style="display: none">
+                        <div class="row">
+                            <div class="col-md-12 statement" >
+                                <p th:text="#{covid19.testAntibodyDate}"><b>Please give the approximate date when you received your result.</b></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 side-border">
+                                <div class="input-group date">
+                                    <input id='datepickerAntibody' type="text" name="testAntibodyDate" class="form-control" required="required"/>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                    <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="checkbox" name="testAntibodyDateNoAnswer" value="555" id="pnaTestAntibodyDate"
+                                    onclick="toggle('pnaTestAntibodyDate', 'datepickerAntibody')"/></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 11 -->
+
+        <div class="container section">
+            <div class="row header">
+                <div class="col-md-12 statement">
+                    <p th:text="#{covid19.covidKnow}"><b>Do you know of a family member or close friend who has or had COVID-19?</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.yes}" type="radio" name="covidKnow" value="1" required="true"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.no}" type="radio" name="covidKnow" value="0" required="true"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.unsure}" type="radio" name="covidKnow" value="2" required="true"/></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="covidKnow" value="555"/></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 12 -->
+
+        <div class="container section">
+            <div class="row header">
+                <div class="col-md-12 statement">
+                    <p th:text="#{covid19.symptoms}"><b>Have you had symptoms consistent with COVID-19?</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.yes}" type="radio" name="symptoms" value="1" id="symptomsYes" required="true"
+                                                       onchange="symptomsCheck('symptomsYes')"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.no}" type="radio" name="symptoms" value="0" required="true"
+                                                       onchange="symptomsCheck('symptomsYes')"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{covid19.unsure}" type="radio" name="symptoms" value="2" required="true"
+                                                       onchange="symptomsCheck('symptomsYes')"/></label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="radio"><br/>
+                        <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="radio" name="symptoms" value="555" required="true"
+                                                       onchange="symptomsCheck('symptomsYes')"/></label>
+                    </div>
+                </div>
+            </div>
+            <div id="symptomsDateDiv" style="display: none">
+                <div class="row">
+                    <div class="col-md-12 statement" >
+                        <p th:text="#{covid19.symptomsDate}"><b>Please give the approximate date when you last had symptoms.</b></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 side-border">
+                        <div class="input-group date">
+                            <input id='datepickerSymptoms' type="text" name="symptomsDate" class="form-control" required="required" />
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="radio">
+                            <label class="question"><input th:text="#{covid19.prefer_not_to_answer}" type="checkbox" name="symptomsDateNoAnswer" value="555" id="symptomsDateNoAnswer"
+                                                           onclick="toggle('symptomsDateNoAnswer', 'datepickerSymptoms')"/></label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12" style="text-align:center">
+            <!-- Add timer -->
+            <button type="submit" th:text="#{next}">Next</button>
+        </div>
+
+    </form>
+</section>
+
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+
+<link rel="stylesheet" media="screen"
+      th:href="@{/bower/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.css}"/>
+<script type="text/javascript" th:src="@{/bower/bootstrap-datepicker/dist/js/bootstrap-datepicker.js}"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.input-group.date').datepicker({});
+        console.log("Set up datepicker.")
+
+        /* $('#form').on('submit', function(e) {
+             if($('#datepicker').val()) {
+                var date = new Date($("#datepicker").val() + ' ' + $("#timepicker").val());
+                console.log(date.toISOString());
+                $('#returnDate').val(date.toISOString());
+            }
+        }) */
+    });
+
+    function testCovidCheck(id) {
+        if (document.getElementById(id).checked) {
+            $("#testCovidPositive").show();
+        } else {
+            $("#testCovidPositive").hide();
+        }
+    }
+
+    function testCovidResultCheck(id) {
+        if (document.getElementById(id).checked) {
+            $("#testCovidDateDiv").show();
+        } else {
+            $("#testCovidDateDiv").hide();
+        }
+    }
+
+    function testAntibodyCheck(id) {
+        if (document.getElementById(id).checked) {
+            $("#testAntibodyPositiveDiv").show();
+        } else {
+            $("#testAntibodyPositiveDiv").hide();
+        }
+    }
+
+    function testAntibodyResultCheck(id) {
+        if (document.getElementById(id).checked) {
+            $("#testAntibodyDateDiv").show();
+        } else {
+            $("#testAntibodyDateDiv").hide();
+        }
+    }
+
+    function symptomsCheck(id) {
+        if (document.getElementById(id).checked) {
+            $("#symptomsDateDiv").show();
+        } else {
+            $("#symptomsDateDiv").hide();
+        }
+    }
+
+    function toggle(toggle, subject) {
+        t = document.getElementById(toggle);
+        s = document.getElementById(subject);
+
+        if (t.checked) {
+            console.log("Is Checked");
+            s.required = false;
+            s.disabled = true;
+            s.value = null;
+        } else {
+            console.log("Not Checked");
+            s.required = true;
+            s.disabled = false;
+        }
+    }
+
+</script>
+
+</body>
+</html>

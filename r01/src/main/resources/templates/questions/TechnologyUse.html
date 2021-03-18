@@ -12,13 +12,13 @@
 
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='Technology Use')"/>
+<section th:replace="fragment/common :: titleBar (title=#{technologyuse.title})"/>
 
 <form th:action="@{/questions/TechnologyUse}" th:object="${model}" method="POST" id="EVALFORM">
     <div class="container">
         <section th:replace="fragment/forms :: radioOptions(${model})"/>
         <div style="text-align:center">
-            <button type="submit"> Continue</button>
+            <button type="submit" th:text="#{continue}"> Continue</button>
         </div>
     </div>
 </form>

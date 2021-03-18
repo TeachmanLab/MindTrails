@@ -11,7 +11,7 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='Session Review')"/>
+<section th:replace="fragment/common :: titleBar (title=#{sessionreview.title})"/>
 
 <form th:action="@{/questions/SessionReview}" th:object="${model}" method="POST">
     <div class="container">
@@ -19,7 +19,7 @@
         <!-- Question 1 -->
         <div class="container section">
             <div class="row header">
-                <div class="col-md-8 statement"><p><b>What location were you in when you completed today’s session?</b>
+                <div class="col-md-8 statement"><p><b th:text="#{sessionreview.where_completed}">What location were you in when you completed today’s session?</b>
                 </p></div>
             </div>
 
@@ -28,33 +28,33 @@
 
                     <div class="radio">
                         <label class="question"> <input type="radio" name="location" value="1" required="true"
-                                                        onchange="otherLocation()"/> Home </label>
+                                                        onchange="otherLocation()" th:text="#{sessionreview.home}"> Home </input></label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input type="radio" name="location" value="2" required="true"
-                                                        onchange="otherLocation()"/> Work </label>
+                                                        onchange="otherLocation()" th:text="#{sessionreview.work}"> Work </input></label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input type="radio" name="location" value="3" required="true"
-                                                        onchange="otherLocation()"/> School </label>
+                                                        onchange="otherLocation()" th:text="#{sessionreview.school}"> School </input></label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input type="radio" name="location" value="4" required="true"
-                                                        onchange="otherLocation()"/> Coffee shop/restaurant
+                                                        onchange="otherLocation()" th:text="#{sessionreview.coffee_restaurant}"> Coffee shop/restaurant </input>
                         </label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input type="radio" name="location" value="5" required="true"
-                                                        onchange="otherLocation()"/> Vehicle </label>
+                                                        onchange="otherLocation()" th:text="#{sessionreview.vehicle}"> Vehicle </input></label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input type="radio" name="location" value="6" required="true"
-                                                        onchange="otherLocation()"/> Friend's house
+                                                        onchange="otherLocation()" th:text="#{sessionreview.friend_house}"> Friend's house </input>
                         </label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input type="radio" name="location" value="7" required="true"
-                                                        onchange="otherLocation()" id="locationOther"/> Other (please specify):&nbsp;
+                                                        onchange="otherLocation()" id="locationOther" th:text="#{sessionreview.other_location}"> Other (please specify):&nbsp; </input>
                             <input type="text" name="otherLocationDesc" required="true" id="locationOtherText"
                                    style="display: none"/>
                         </label>
@@ -65,7 +65,7 @@
                     <br/>
                     <div class="radio">
                         <label class="question"><input type="radio" name="location" value="555"
-                                                       onchange="otherLocation()"/> Prefer not to answer
+                                                       onchange="otherLocation()" th:text="#{prefer_not_to_answer}"> Prefer not to answer </input>
                         </label>
                     </div>
                     <br/>
@@ -80,7 +80,7 @@
         <div class="container section">
             <div class="row">
                 <div class="col-md-10">
-                    <p><b>What distracted you during the session? Check all that apply.</b></p>
+                    <p><b th:text="#{sessionreview.distracted}">What distracted you during the session? Check all that apply.</b></p>
                 </div>
             </div>
             <div class="row">
@@ -88,31 +88,30 @@
                     <div class="radio">
                         <label class="question"> <input
                                 type="checkbox"
-                                name="distractions" value="activitiesAroundMe" required="true"/> &nbsp;&nbsp;Activities happening around me </label>
+                                name="distractions" value="activitiesAroundMe" required="true" th:text="#{sessionreview.activities}"> &nbsp;&nbsp;Activities happening around me </input></label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input
                                 type="checkbox"
-                                name="distractions" value="thoughts" required="true"/> &nbsp;&nbsp;Thoughts, emotions, and/or sensations </label>
+                                name="distractions" value="thoughts" required="true" th:text="#{sessionreview.thoughts}"> &nbsp;&nbsp;Thoughts, emotions, and/or sensations </input></label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input
                                 type="checkbox"
-                                name="distractions" value="techIssues" required="true"/> &nbsp;&nbsp;Technical issues with website </label>
+                                name="distractions" value="techIssues" required="true" th:text="#{sessionreview.bugs}"> &nbsp;&nbsp;Technical issues with website </input></label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input
                                 type="checkbox"
-                                name="distractions" value="techInterruptions" required="true"/> &nbsp;&nbsp;Technology interruptions (e.g., battery,
-                            other
-                            apps, pop-ups, texts, calls, etc.)
+                                name="distractions" value="techInterruptions" required="true" th:text="#{sessionreview.tech_interruptions}"> &nbsp;&nbsp;Technology interruptions (e.g., battery,
+                            other apps, pop-ups, texts, calls, etc.) </input>
                         </label>
                     </div>
                     <div class="radio">
                         <label class="question"> <input id="distractions_other"
                                                         onchange="sub('distractions_other');spec('distractions_other');"
                                                         type="checkbox" name="distractions"
-                                                        value="Other" required="true"/> &nbsp;&nbsp;Other (please specify):&nbsp;&nbsp;<input
+                                                        value="Other" required="true" th:text="#{sessionreview.distract_other}"> &nbsp;&nbsp;Other (please specify):&nbsp;&nbsp; </input><input
                                 id="distractions_other_spec" type="text" name="otherDistraction" value="N/A"/> </label>
                     </div>
                 </div>
@@ -121,15 +120,15 @@
                     <br/>
                     <div class="radio">
                         <label class="question"><input type="checkbox" name="distractions" required="true" value="distractions_none"
-                                                       onchange="disableSection(this)"/> &nbsp;&nbsp;Nothing distracted me during
-                            the session
+                                                       onchange="disableSection(this)" th:text="#{sessionreview.distract_none}"> &nbsp;&nbsp;Nothing distracted me during
+                            the session </input>
                         </label>
                     </div>
                     <br/>
                     <br/>
                     <div class="radio">
                         <label class="question"> <input type="checkbox" name="distractions" required="true" value="555"
-                                                        onChange="disableSection(this)"/> &nbsp;&nbsp;Prefer not to answer
+                                                        onChange="disableSection(this)" th:text="#{prefer_not_to_answer}"> &nbsp;&nbsp;Prefer not to answer </input>
                         </label>
                     </div>
 
@@ -139,7 +138,7 @@
         </div>
 
         <div style="text-align:center">
-            <button type="submit"> Continue</button>
+            <button type="submit" th:text="#{continue}"> Continue</button>
         </div>
     </div>
 </form>

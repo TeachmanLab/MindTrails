@@ -11,14 +11,14 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='Anxiety Triggers')"/>
+<section th:replace="fragment/common :: titleBar (title=#{anxietytriggers.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate"/>
 
 <section id="content1" class="clearfix">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p>
+                <p th:text="#{anxietytriggers.instructions}">
                     People become anxious for lots of different reasons. To what extent do you routinely experience
                     moderate-to-severe anxiety in the following situations? For each situation, select the number that best describes your experience.
                 </p>
@@ -32,7 +32,7 @@
     <form th:action="@{/questions/AnxietyTriggers}" method="POST" th:object="${model}">
             <section th:replace="fragment/forms :: radioOptions(${model})"/>
         <div class="col-md-12" style="text-align:center">
-            <button type="submit">Next</button>
+            <button type="submit" th:text="#{next}">Next</button>
         </div>
     </form>
 </section>

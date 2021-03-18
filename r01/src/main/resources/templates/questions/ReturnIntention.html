@@ -11,7 +11,7 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:include="fragment/common :: titleBar (title='Returning to the Program')"/>
+<section th:include="fragment/common :: titleBar (title=#{returnintention.title})"/>
 
 <style>
     div.nextSession {
@@ -28,7 +28,7 @@
         <input id="timeOnPage" name="timeOnPage" type="hidden"/>
         <div class="container section compactQuestion">
 
-            <h4>Let us know when you intend to return for your next session.  We recommend you come back to complete
+            <h4 th:text="#{returnintention.instructions}">Let us know when you intend to return for your next session.  We recommend you come back to complete
             your next session in 5 to 7 days.  We will send you an email shortly that will allow you to add this
             date and time to your calendar as a reminder.</h4>
 
@@ -45,7 +45,7 @@
                 </div>
 
                 <br></br>
-                <h4>Please select your timezone, if different from indicated:</h4>
+                <h4 th:text="returnintention.select_timezone">Please select your timezone, if different from indicated:</h4>
                 <script th:src="@{/js/jstz.min.js}"></script>
                 <select id="timezone" name="timezone" style="width: 400px">
                 </select>
@@ -69,10 +69,10 @@
                 </script>
                 <br/>
                 <br/>
-                <label ><input type="checkbox" name="notReturning" onclick="returning(this)"/>&nbsp;&nbsp;Not planning to come back.</label>
+                <label ><input type="checkbox" name="notReturning" onclick="returning(this)" th:text="#{returnintention.not_returning}">&nbsp;&nbsp;Not planning to come back.</input></label>
                 <div id="reason" style="display: none">
                     <br/>
-                    <h4>Please let us know why you do not plan to continue:</h4>
+                    <h4 th:text="#{returnintention.why_not_returning}">Please let us know why you do not plan to continue:</h4>
                     <label><textarea id="notReturnReason" name="notReturnReason" type="text" placeholder="" style = "width: 400px; height: 120px;"/></label>
                 </div>
         </div>
@@ -121,7 +121,7 @@
             </script>
 
             <div class="col-md-12" style="text-align:center">
-                <button type="submit"> Next</button>
+                <button type="submit" th:text="#{next}"> Next</button>
             </div>
 
     </form>

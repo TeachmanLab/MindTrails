@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title=#{evaluation.title})"/>
+<textArea th:replace="fragment/forms :: questionTemplate"/>
+<textArea th:replace="fragment/common :: questionTemplate5"/>
+
+<form th:action="@{/questions/Evaluation}" th:object="${model}" method="POST" id="EVALFORM">
+    <!-- Add timer -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+
+                <p th:text="#{evaluation.instructions}"> Thank you for taking the time to go through MindTrails!
+                    We are interested in your feedback and reactions to the training programs, assessments, and
+                    other aspects of the website.
+                    Please answer the following questions openly and honestly. Your feedback will help us improve
+                    MindTrails. </p>
+            </div>
+        </div>
+
+        <div class="container section">
+            <div class="row">
+                <div class="col-md-10">
+                    <p th:text="#{Evaluation.devices}"><b>What device(s) did you use to complete the program? Check all that apply.</b></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.smartphone}"
+                                type="checkbox"
+                                name="devices" value="smartphone"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.computer}"
+                                type="checkbox"
+                                name="devices" value="computer"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.tablet}"
+                                type="checkbox"
+                                name="devices" value="tablet"/></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section th:replace="fragment/forms :: radioOptions(${model})"/>
+
+        <div class="container section">
+            <div class="row header">
+                <div class="col-md-8 statement"><p th:text="#{Evaluation.internet}"><b>How much did Internet or computer/phone problems affect your use of Calm Thinking?</b></p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 side-border">
+
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.not_at_all}" type="radio" name="problems" value="1" required="true"
+                                                        onchange="techProblems()"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.slightly}" type="radio" name="problems" value="2" required="true"
+                                                        onchange="techProblems()"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.somewhat}" type="radio" name="problems" value="3" required="true"
+                                                        id="problem3"
+                                                        onchange="techProblems()"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.mostly}" type="radio" name="problems" value="4" required="true"
+                                                        id="problem4" onchange="techProblems()"/></label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.very}" type="radio" name="problems" value="5" required="true"
+                                                        id="problem5" onchange="techProblems()"/></label>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <br/>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{prefer_not_to_answer}" type="radio" name="problems" value="555"
+                                                       onchange="techProblems()"/>
+                        </label>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <div id="describeProblems" style="display: none" >
+                <br/>
+                <label class="question" th:text="#{Evaluation.problemsDesc}"> Please describe the Internet or computer/phone problems that affected your use
+                    of MindTrails:
+                    <input type="text" th:field="*{problemsDesc}" required="true"/> </label>
+            </div>
+        </div>
+
+        <div class="container section">
+            <div id="section0"></div>
+            <script th:inline="javascript">
+                var data = {
+                    "options": [
+                        {"value": 1, "title": [[#{evaluation.way_too_short}]], "opt_desc":"Way too short"},
+                        {"value": 2, "title": [[#{evaluation.somewhat_too_short}]], "opt_desc":"Somewhat too short"},
+                        {"value": 3, "title": [[#{evaluation.right_length}]], "opt_desc":"The right length"},
+                        {"value": 4, "title": [[#{evaluation.somewhat_too_long}]], "opt_desc":"Somewhat too long"},
+                        {"value": 5, "title": [[#{evaluation.way_too_long}]], "opt_desc": "Way too long"}
+                    ],
+                    "questions": [
+                        {
+                            "name": "sessionDurations",
+                            "desc": [[#{Evaluation.sessionDuration}]], "opt_desc": "I found the training sessions to be:"
+                        }
+                    ]
+                }
+                $('#section0').html(Mustache.render($('#template5').val(), data));
+            </script>
+        </div>
+
+        <div class="container section">
+            <label class="question" th:text="#{Evaluation.idealSessions}"> The MindTrails program had two training sessions. How many sessions do you think would have
+                been ideal?<br/><br/>
+                <input type="number" min="1" th:field="*{idealSessions}" required="true"/> </label>
+        </div>
+
+        <div class="container section">
+            <div id="section1"></div>
+            <script th:inline="javascript">
+                var data = {
+                    "options": [
+                        {"value": 0, "title": [[#{evaluation.no_definitely_not}]], "opt_desc":"No, definitely not"},
+                        {"value": 1, "title": [[#{evaluation.no_probably_not}]], "opt_desc":"No, probably not"},
+                        {"value": 2, "title": [[#{evaluation.not_sure}]], "opt_desc":"Not sure"},
+                        {"value": 3, "title": [[#{evaluation.yes_probably_would}]], "opt_desc":"Yes, I probably would"},
+                        {"value": 4, "title": [[#{evaluation.yes_definitely_would}]], "opt_desc":"Yes, I definitely would"}
+                    ],
+                    "questions": [
+                        {
+                            "name": "similarProgram",
+                            "desc": [[#{Evaluation.similarProgram}]], "opt_desc":"If you were to seek help for your anxiety again, would you seek a similar program?"
+                        }
+                    ]
+                }
+                $('#section1').html(Mustache.render($('#template5').val(), data));
+            </script>
+        </div>
+
+        <div class="container section">
+            <div id="section2"></div>
+            <script th:inline="javascript">
+                var data = {
+                    "options": [
+                        {"value": 0, "title": [[#{evaluation.much_more_likely}]], "opt_desc":"Much more likely"},
+                        {"value": 1, "title": [[#{evaluation.a_little_more_likely}]], "opt_desc":"A little more likely"},
+                        {"value": 2, "title": [[#{evaluation.not_sure}]], "opt_desc":"Not sure"},
+                        {"value": 3, "title": [[#{evaluation.a_little_less_likely}]], "opt_desc":"A little less likely"},
+                        {"value": 4, "title": [[#{evaluation.much_less_likely}]], "opt_desc":"Much less likely"},
+                        {"value": 5, "title": [[#{evaluation.not_applicable}]], "opt_desc":"Not applicable (e.g., I'm currently undergoing another form of treatment)"
+                        }
+                    ],
+                    "questions": [
+                        {
+                            "name": "otherTreatment",
+                            "desc": [[#{Evaluation.otherTreatment}]], "opt_desc":"Does this program make you more or less likely to consider other forms of therapy (e.g., medications, therapy)?"
+                        }
+                    ]
+                }
+                $('#section2').html(Mustache.render($('#template5').val(), data));
+            </script>
+        </div>
+
+        <div class="container section">
+            <div class="row">
+                <div class="col-md-10">
+                    <p th:text="#{Evaluation.places}"><b>Where did you complete the training sessions? Check all that apply.</b></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.home}"
+                                type="checkbox"
+                                name="places" value="home"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.work}"
+                                type="checkbox"
+                                name="places" value="work"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.publicPlace}"
+                                type="checkbox"
+                                name="places" value="publicPlace"/> &nbsp;&nbsp; </label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.commute}"
+                                type="checkbox"
+                                name="places" value="commute"/> &nbsp;&nbsp;
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.vacation}"
+                                type="checkbox"
+                                name="places" value="vacation"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input id="places_other"
+                                                        onchange="sub('places_other');spec('places_other');"
+                                                        type="checkbox" name="places"
+                                                        value="other" /> &nbsp;&nbsp;&nbsp; <input
+                                th:text="#{other_specify}" id="places_other_spec" type="text" name="otherPlace" value="N/A"/> </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <br/>
+                    <br/>
+                    <div class="radio">
+                        <label class="question"><input type="checkbox" name="places" value="555" th:text="#{prefer_not_to_answer}"
+                                                       onchange="disableSection(this)"/> &nbsp;&nbsp;
+                        </label>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section">
+            <div class="row">
+                <div class="col-md-10">
+                    <p th:text="#{Evaluation.preferredPlatform}"><b>What is your preferred technology platform for delivery of health interventions (such as MindTrails)? Check all that apply.</b></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.computerBrowser}"
+                                type="checkbox"
+                                name="preferredPlatform" value="computerBrowser"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.smartphoneBrowser}"
+                                type="checkbox"
+                                name="preferredPlatform" value="smartphoneBrowser"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.app}"
+                                type="checkbox"
+                                name="preferredPlatform" value="app"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.call}"
+                                type="checkbox"
+                                name="preferredPlatform" value="call"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.video}"
+                                type="checkbox"
+                                name="preferredPlatform" value="video"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.email}"
+                                type="checkbox"
+                                name="preferredPlatform" value="email"/> &nbsp;&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <br/>
+                    <br/>
+                    <div class="radio">
+                            <label class="question"><input th:text="#{evaluation.none}" type="checkbox" name="preferredPlatform" value="none"
+                                                           onchange="disableSection(this)"/> &nbsp;&nbsp;
+                            </label>
+                        <br/>
+                        <br/>
+                        <label class="question"><input th:text="#{prefer_not_to_answer}" type="checkbox" name="preferredPlatform" value="555"
+                                                       onchange="disableSection(this)"/> &nbsp;&nbsp;
+                        </label>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section">
+            <div class="row">
+                <div class="col-md-10">
+                    <p th:text="#{Evaluation.pronouns}"><b>What is your preferred formality of subject pronouns for a site like MindTrails?</b></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.tu}"
+                                type="radio"
+                                name="pronouns" value="tu"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.usted}"
+                                type="radio"
+                                name="pronouns" value="usted"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.other}"
+                                type="radio"
+                                name="pronouns" value="other"/> &nbsp;&nbsp;</label>
+                    </div>
+            </div>
+                </div>
+        </div>
+
+        <div class="container section compactQuestion">
+            <div class="row">
+                    <div class="col-md-10">
+                        <h4 th:text="#{Evaluation.topics}"><b>What are other topics for stories that would have been helpful?</b></h4>
+                        <textarea style="resize: none;" rows="2" cols="70"  name="topics"></textarea>
+                    </div>
+            </div>
+        </div>
+
+        <div class="container section">
+            <div class="row">
+                <div class="col-md-10">
+                    <p th:text="#{Evaluation.fit}"><b>How well does MindTrails fit with the other care you are pursuing (e.g., medication, talk therapy)?</b></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 side-border">
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.very_well}"
+                                type="radio"
+                                name="fit" value="4"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.mostly_well}"
+                                type="radio"
+                                name="fit" value="3"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.somewhat_well}"
+                                type="radio"
+                                name="fit" value="2"/> &nbsp;&nbsp;</label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.slightly_well}"
+                                type="radio"
+                                name="fit" value="1"/> &nbsp;&nbsp;
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="question"> <input th:text="#{evaluation.not_at_all_well}"
+                                type="radio"
+                                name="fit" value="0"/> &nbsp;&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <br/>
+                    <br/>
+                    <div class="radio">
+                        <label class="question"><input th:text="#{prefer_not_to_answer}" type="radio" name="fit" value="555"
+                                                       onchange="disableSection(this)"/> &nbsp;&nbsp;
+                        </label>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section compactQuestion">
+            <div class="row">
+                    <div class="col-md-10">
+                        <h4 th:text="#{Evaluation.goal}"><b>What were you hoping to get out of completing the MindTrails study?</b></h4>
+                        <textarea style="resize: none;" rows="2" cols="70" name="goal"></textarea>
+                    </div>
+            </div>
+        </div>
+
+<div style="text-align:center">
+    <button type="submit" th:text="#{next}"> Next</button>
+</div>
+
+</div>
+</form>
+
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+<div th:include="fragment/action_log :: scripts-action-log"/>
+
+<script type="text/javascript">
+
+function techProblems() {
+if (document.getElementById('problem3').checked || document.getElementById('problem4').checked || document.getElementById('problem5').checked) {
+    $("#describeProblems").show();
+} else {
+    $("#describeProblems").hide();
+}
+}
+
+// sub(id) and spec(id) are used to conditionally display the text "N/A" in the "Other" response text boxes.
+function sub(id) {
+if (document.getElementById(id).checked) {
+    $("div#" + id + "-1").show();
+    $("div#" + id + "-1 select").prop('required', true);
+}
+else {
+    $("div#" + id + "-1").hide();
+}
+}
+
+function spec(id) {
+if (document.getElementById(id).checked) {
+    document.getElementById(id + "_spec").required = true;
+    if (document.getElementById(id + "_spec").value == "N/A") {
+        document.getElementById(id + "_spec").value = "";
+    }
+
+
+}
+else {
+    document.getElementById(id + "_spec").value = "N/A";
+    document.getElementById(id + "_spec").required = false;
+}
+}
+
+/**
+* Disables all other input boxes in the same section as the input
+* selected.
+* @param input
+*/
+function disableSection(input) {
+if (input.checked) {
+    $(input).closest('.section').find("input").not(input).prop('checked', false);
+    $(input).closest('.section').find("option").prop('selected', false);
+    $(input).closest('.section').find("select").prop('required', false);
+    $(input).closest('.section').find("input").attr("disabled", true);
+    $(input).removeAttr("disabled");
+} else {
+    $(input).closest('.section').find("input").removeAttr("disabled");
+}
+}
+
+// This ensures the user chooses some answer for the "choose all that apply" questions.
+$(document).ready(function () {
+$('#EVALFORM').validate({
+    rules: {
+        'devices': {required: true, minlength: 1},
+        'places': {required: true, minlength: 1},
+    }
+});
+});
+
+</script>
+
+</body>
+</html>
+

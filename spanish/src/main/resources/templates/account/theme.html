@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment"/>
+<body>
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment"/>
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <form action="#" th:action="@{/account/updateTheme}" th:object="${participant}" method="post">
+                    <section  th:include="fragment/account :: themeSelection"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer"/>
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright"/>
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

@@ -11,7 +11,7 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='What I Believe')"/>
+<section th:replace="fragment/common :: titleBar (title=#{wellness.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate"/>
 
 <section id="content1" class="clearfix">
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-8">
 
-                <p>Below, a number of statements related to thoughts and feelings are presented. For each
+                <p th:text="#{wellness.instructions}">Below, a number of statements related to thoughts and feelings are presented. For each
                     statement, select the number for the answer that best describes your own perspective.</p>
             </div>
         </div>
@@ -33,27 +33,27 @@
                     <!-- Add timer -->
 
 
-                    <div class="container section"><label class="question">All things considered, how satisfied are you with your life as a whole?<br/><br/>
+                    <div class="container section"><label class="question" th:text="#{wellness.how_satisfied}">All things considered, how satisfied are you with your life as a whole?</label><br/><br/>
                     <select required="true" th:field="*{satisfaction}">
-                        <option value="" hidden="hidden">Please select one</option>
-                        <option value="0">0 (Completely dissatisfied)</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5 (Neither satisfied nor dissatisfied)</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10 (Completely satisfied)</option>
-                        <option value="555">Prefer not to answer</option>
-                    </select> </label>
+                        <option value="" hidden="hidden" th:text="#{please_select_one}">Please select one</option>
+                        <option value="0" th:text="#{wellness.how_satisfied_0}">0 (Completely dissatisfied)</option>
+                        <option value="1" th:text="#{wellness.how_satisfied_1}">1</option>
+                        <option value="2" th:text="#{wellness.how_satisfied_2}">2</option>
+                        <option value="3" th:text="#{wellness.how_satisfied_3}">3</option>
+                        <option value="4" th:text="#{wellness.how_satisfied_4}">4</option>
+                        <option value="5" th:text="#{wellness.how_satisfied_5}">5 (Neither satisfied nor dissatisfied)</option>
+                        <option value="6" th:text="#{wellness.how_satisfied_6}">6</option>
+                        <option value="7" th:text="#{wellness.how_satisfied_7}">7</option>
+                        <option value="8" th:text="#{wellness.how_satisfied_8}">8</option>
+                        <option value="9" th:text="#{wellness.how_satisfied_9}">9</option>
+                        <option value="10" th:text="#{wellness.how_satisfied_10}">10 (Completely satisfied)</option>
+                        <option value="555" th:text="#{wellness.how_satisfied_prefer_not_to_answer}">Prefer not to answer</option>
+                    </select>
                     </div>
 
                     <section th:replace="fragment/forms :: radioOptions(${model})"/>
                     <div style="text-align:center">
-                        <button type="submit"> Continue</button>
+                        <button type="submit" th:text="#{continue}"> Continue</button>
                     </div>
                 </form>
 

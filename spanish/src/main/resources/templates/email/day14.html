@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:include="fragment/email :: headerFragment"/>
+
+<body style="font-family: 'Source Sans Pro', sans-serif; font-size:20px; box-sizing:border-box; background-color: #FFF">
+
+<div style="padding:15px" border="5px solid #767676">
+
+    <table cellpadding="0" cellspacing="0" width="600" align="center" th:include="fragment/email :: logoFragment"/>
+
+    <table cellpadding="0" cellspacing="0" width="600" align="center" style="margin-top:20px">
+        <tr>
+            <td width="400">
+                <p th:text="#{reminder.p1}" th:text="'Hi ' +  ${participant.fullName} + ','" style="margin-top:0; margin-bottom:10px">
+                    Hi Fred,
+                </p>
+                <p th:text="#{reminder3.p2}" style="margin-top:5px">Thanks for completing your earlier training session(s)! We haven't heard from you for almost 2 weeks.</p>
+                <div style="border-radius: 15px; background: #fff; text-align:center; border: 1px solid #666; margin: 20px;">
+                    <div style="border-top-right-radius: 15px; border-top-left-radius: 15px; width:100%; height:20px; background: #F77D38"> </div>
+                    <div th:text="#{reminder.p3}" style="padding:20px; font-weight:700">JUST A REMINDER</div>
+                    <p th:text="#{reminder3.p4}" style="margin:5px 20px; text-align: left">Your next session should be completed as soon as possible.  You can still catch up.
+                        Simply click "Start" below.</p>
+                    <a href="/session" th:href="${url} + '/session'" style="color: #637580ff; text-decoration: none; font-weight: bold"><button style="border-radius: 5px; background:#F77D38; border-top:#F99A65; border-left:#F99A65; border-bottom:#B36B42; border-right:#B36B42;text-decoration: none; font-size:20px; margin:10px 0px; padding: 15px; font-weight: 700; color: #fff">Start</button></a>
+                </div>
+
+                <p th:text="#{reminder3.p5}" style="margin-top:5px">If we don't hear from you in the next few days, we will assume you
+                    are no longer interested in participating in the study and will close
+                    your account, but we very much hope you will continue completing
+                    the program.</p>
+
+                <p th:text="#{reminder.contact}" style="margin-top:5px">Please let us know if you have any concerns about your
+                    participation that we can address. You can contact the study team
+                    at studyteam@mindtrails.org.</p>
+
+                <p th:text="#{reminder.thanks}" style="margin-top:5px">Thank you for your participation in the study and we hope you're
+                    having a good week.</p>
+
+                <div id="footer" th:include="fragment/email :: footerFragment"/>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

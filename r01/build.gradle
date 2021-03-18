@@ -38,7 +38,7 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-math3', version: '3.0'
 
     // Deployment
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    compile("org.springframework.boot:spring-boot-starter-tomcat")
 
     // Tests
     testCompile('com.jayway.jsonpath:json-path:0.9.1')

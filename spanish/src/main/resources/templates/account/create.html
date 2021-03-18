@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment"/>
+<body>
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment"/>
+<section th:include="fragment/common :: titleBar (title='Create Your Account')"/>
+
+<section id="content" class="clearfix">
+    <div class="container">
+
+        <div style="text-align:right">
+        <a href="#" onclick="window.print();return false;">Print This Page</a></div>
+
+        <div class="row">
+            <div class="col-md-8">
+
+                <p><b><h3>What is the MindTrails Study?</h3></b></p>
+
+                <p> The purpose of this study is to investigate a new, experimental anxiety reduction program called
+                    MindTrails. The program consists of the following parts:</p>
+
+                <ul style="padding-right: 10px">
+                    <li>&nbsp;&nbsp;Initial assessment (15-20 min.)</li>
+                    <li>&nbsp;&nbsp;Training Session 1 (15-20 min.) + assessment (2 min.)</li>
+                    <li>&nbsp;&nbsp;Training Session 2 (15-20 min.) + assessment (2 min.)</li>
+                    <li>&nbsp;&nbsp;Training Session 3 (15-20 min.) + assessment (15-20 min.)</li>
+                    <li>&nbsp;&nbsp;Training Session 4 (15-20 min.) + assessment (2 min.)</li>
+                    <li>&nbsp;&nbsp;Training Session 5 (15-20 min.) + assessment (15-20 min.)</li>
+                    <li>&nbsp;&nbsp;2-month follow-up assessment (15-20 min.)</li>
+                </ul>
+
+                <p> The program runs over the course of five weeks (one training session per week) with a two-month
+                    follow-up assessment.</p>
+                <br></br>
+
+                <p><b><h3>What will I be asked to do?</h3></b></p>
+
+                <p> The <b>assessments</b> consist of a number of questionnaires about your thoughts and mood, your
+                    background, and personal mental health history.</p>
+
+                <p> In the <b>training sessions</b>, you will be presented with one of a few different training programs
+                    designed to shift how you think about situations. You will be asked to read brief stories and complete word fragments,
+                    by filling in one or more missing letters in a word.</p>
+
+                <p> At the end of the study, you will receive more details about the study's rationale and design. You
+                    will also receive feedback about the progress you made during the program.</p>
+                <br></br>
+
+                <p><b><h3>Are there any benefits or risks to participating?</h3></b></p>
+
+                <p> The training program may help reduce symptoms of anxiety but there may be no direct benefits to you.</p>
+
+                <p> There is no financial cost to you to take part in this study.</p>
+
+                <p> For some participants, being asked to complete assessments about their thoughts and mood can be temporarily
+                    distressing; however, most people experience minimal-to-no distress or do not feel distressed for extended
+                    periods of time.</p>
+
+                <!-- START: NO_INCENTIVE, CAN_COACH, TESTIMONIALS, BONUS_5, BONUS_1O, BONUS_20 -->
+
+                <p> Please note that MindTrails does not provide specific diagnostic or medical advice on our website, and
+                    we are limited in how we can respond to your personal requests.
+                    <div th:if="${#strings.equals(session.condition,'NO_INCENTIVE')} or ${#strings.equals(session.condition,'CAN_COACH')}
+                            or ${#strings.equals(session.condition,'TESTIMONIALS')}">There is no compensation for participating
+                    in this study.</div></p>
+
+                <p> Any time information is collected, there is a potential risk for loss of confidentiality. While this is a
+                    possible risk for this study, we will take careful, appropriate precautions to make sure that your information
+                    is not shared with anyone else.</p>
+
+                <p> MindTrails is not able to offer financial compensation or to absorb the costs of treatment should you feel you
+                    have been injured as a result of participating in the MindTrails research study.</p>
+                <br></br>
+
+                <div th:if="${#strings.equals(session.condition,'CAN_COACH')}">
+                    <p><b><h3>Who can help me during the program?</h3></b></p>
+
+                    <p> You have the option of having a personal support coach via phone, email, and/or texts, to discuss
+                        your progress in the study. Your contact with the coach will be brief (typically just a few
+                        minutes each week). The coach will not be providing therapy, but can address questions, support
+                        your work, and help troubleshoot any issues that come up when doing the online training
+                        program.</p>
+                    <br></br>
+                </div>
+
+                <div th:if="${#strings.contains(session.condition, 'BONUS')}">
+                    <p><b><h3>Is there a bonus for signing up and starting training?</h3></b></p>
+
+                    <p th:switch="${session.condition}">After completing the first training session, you will receive a
+                        <span th:case="'BONUS_5'">$5</span> <span th:case="'BONUS_10'">$10</span> <span th:case="'BONUS_20'">$20</span>
+                        electronic gift card. The gift card will be sent via email within 2 business days of being
+                        awarded. The cards are submitted through Tango Card, an e-gift cards service through which you
+                        can choose from top name-brands like Amazon, Starbucks, iTunes, Target, and many more options;
+                        or you can donate the value to a charity.</p>
+                    <br></br>
+                </div>
+
+                <!-- END: NO_INCENTIVE, CAN_COACH, TESTIMONIALS, BONUS_5, BONUS_1O, BONUS_20 -->
+
+                <p><b><h3>Can I stop at any time?</h3></b></p>
+
+                <p> While we hope that you will complete the entire study, remember that participation in this study is voluntary, and
+                    you may end your individual session participation at any time by closing the study window. Further, your participation
+                    in this study has no bearing on your standing with other ongoing therapy or employers. Contact the team
+                    <a href="mailto:studyteam@mindtrails.org">here</a> if you have any questions about the study or to withdraw
+                    completely from the study.</p>
+                <br></br>
+
+                <p><b><h3>Will my information and responses be kept confidential?</h3></b></p>
+
+                <p> Your responses will be confidential. We ask you to provide your email address, phone number, name
+                    and date of birth.</p>
+
+                <p> Data collected through the MindTrails website are treated as confidential and are only accessible by
+                    the research team. The only exceptions to this guideline are if we learn of possible child abuse or
+                    neglect, or danger to self or others. In these instances, confidentiality would be limited given
+                    mandated reporting requirements (e.g., to report the information to the police, or to child protective
+                    services).</p>
+
+                <p> Your identity will not be revealed in any publication or release of study results. However, your personal
+                    information may be disclosed if required by law; e.g., to the following entities:</p>
+
+                <ul style="padding-right: 10px">
+                    <li>Government agencies; The U.S. Food and Drug Administration (FDA); the Department of Health and Human
+                        Services (DHHS); or other governmental regulatory agencies involved in keeping research safe for people;</li>
+                    <li>Kaiser Permanente Colorado Institutional Review Board (a formal committee that reviews research studies
+                        to protect the rights and welfare of participants); or the IRB that reviewed this research;</li>
+                    <li>Representatives of Kaiser Permanente;</li>
+                    <li>Representatives of University of Virginia;</li>
+                    <li>Kaiser Foundation Research Institute and others at Kaiser Permanente responsible for monitoring research.</li>
+                </ul>
+                <br></br>
+
+                <p><b><h3>What is the MindTrails Privacy Policy?</h3></b></p>
+
+                <p> MindTrails uses the same secure hypertext transfer protocol (HTTPS) that banks and other commercial
+                    websites use to transfer credit card information in an encrypted format. This provides strong
+                    security for data transfer to and from our website, though privacy is necessarily limited by the security
+                    of the technology that is being used. To view the entire privacy policy in a separate page,
+                    please <a th:href="@{/public/privacy}" target="_blank">click here</a>.</p>
+
+                <p> Please note that completing the study in a public place where others might view your screen, and use
+                    of open networks or free Wi-Fi can increase the chance for loss of privacy.</p>
+                <br></br>
+
+                <p><u>Google Analytics</u></p>
+
+                <p> MindTrails uses Google Analytics, a web analytics service by Google that tracks and reports website
+                    traffic. MindTrails uses this service to track device usage, navigation patterns, and referrals.
+                    While MindTrails can connect this data to other information you provide, we will not share any of
+                    your personal information with Google. The information that Google collects is anonymous in nature,
+                    and will not be personally identifiable. By participating in the MindTrails study, you consent to
+                    this information being collected by Google Analytics.</p>
+                <br></br>
+
+                <p><u>Data Sharing</u></p>
+
+                <p> We wish to share de-identified data from this protocol online. Many funding agencies and journal outlets
+                    encourage researchers to make data available to other researchers online. This is becoming a common practice
+                    in research endeavors around the world and data sharing helps ensure that best practices in data analysis
+                    are being upheld. The publication of data online involves preparing a data file for other researchers
+                    that removes any personally identifying data from participants before making it available over the Internet.
+                    Participants' names and other personally identifying information in this protocol will never be published
+                    online. Importantly, open data sharing practices pose no threat to participants, as participants' names
+                    and identifying information are never connected to the data they provide.</p>
+                <br></br>
+
+                <h2 style="text-align:center"><b>Authorization to Use and Disclose <br></br>Protected Health Information</b></h2>
+                <br></br>
+
+                <p><b>Why is this authorization required?</b></p>
+
+                <p> The Privacy Rule is a federal law designed to safeguard your Protected Health Information (PHI). Your
+                    PHI is individually identifiable information about you, including your physical or mental health, the
+                    receipt of health care, or payment for that care. The Privacy Rule requires that researchers obtain
+                    your authorization to participate in this study.</p>
+
+                <p> By providing your consent, you will permit Kaiser Permanente of Colorado (KPCO) and University of Virginia (UVA)
+                    researchers to use and disclose your PHI for the purpose of this research study. Your PHI will only be used
+                    and disclosed as described in this authorization, except as otherwise required by law.</p>
+
+                <p> In order to participate in this research study, you must agree to the uses and disclosures of your PHI
+                    as described in this authorization.</p>
+                <br></br>
+
+                <p><b>Who will use or disclose my PHI?</b></p>
+
+                <p> KPCO researchers and the research team from the UVA will use your protected health information (PHI),
+                    including survey responses, for the purposes of this study. No PHI will be disclosed to UVA without
+                    the patient consent and HIPAA authorization you provide on this form.</p>
+                <br></br>
+
+                <p><b>What is the purpose of the use or disclosure of my PHI?</b></p>
+
+                <p> KPCO and UVA researchers will use your PHI, including survey responses, to conduct the study, monitor
+                    your level of anxiety, measure the effect of the MindTrails program and determine research results.</p>
+
+                <p> Information from your research record used and disclosed for the study may include, for example, your
+                    contact information (e.g. name, phone, email, address), scores on instruments that measure levels of
+                    anxiety, your responses to questionnaires, and research observations relating to your participation
+                    in the study. Researchers at KPCO and UVA will use extracts of electronic mental health records to
+                    confirm your history of anxiety symptoms.</p>
+
+                <p> This authorization to use and disclose your PHI will expire on August 30, 2027.</p>
+                <br></br>
+
+                <p><b>Can I withdraw this authorization?</b></p>
+
+                <p> Yes, at any time during this study you may decide that you no longer want to have your PHI used or
+                    disclosed as part of this study. If so, you must write a letter stating that you withdraw your
+                    authorization and send it to:</p>
+
+                <p style="margin-left:50px">Dr. Bethany Teachman, Principal Investigator, MindTrails Study<br></br>
+                    Department of Psychology, Millmont Building<br></br>
+                    1023 Millmont St, Rm 234<br></br>
+                    University of Virginia, Charlottesville, VA 22903</p>
+
+                <p> If you withdraw your authorization, you will be required to end your participation in the study. KPCO
+                    and UVA researchers and the study sponsor, National Institute of Health, may continue to use your PHI
+                    that was obtained before you withdrew your authorization. KPCO and UVA researchers will not disclose
+                    your PHI after they receive your written request except as required by law. For example, even if you
+                    withdraw your authorization, KPCO and UVA researchers may be required by law to record and report
+                    anything that relates to your safety or the safety of others.</p>
+                <br></br>
+
+                <p><b>What will happen to my PHI after it is disclosed?</b></p>
+
+                <p> The KPCO and UVA research team will use and disclose your PHI only as described in this authorization.
+                    However, if someone receives your PHI from KPCO or UVA and then discloses it again to someone else,
+                    it may no longer be protected by the Privacy Rule.</p>
+                <br></br>
+
+                <p><b>Can I see the information collected about me in this study?</b></p>
+
+                <p> You may not be allowed to review the information collected about you for this research until
+                    the study is over.</p>
+                <br></br>
+
+                <p><b>Will anything about this study go in my medical record?</b></p>
+
+                <p> Once you have signed this consent the following statement will be entered into your medical record:
+                    <i>"Participating in experimental anxiety reduction program called MindTrails. If you have questions,
+                    please contact Jennifer Boggs at 303-636-2464 or jennifer.m.boggs@kp.org.</i>" When your involvement
+                    with the study ends, the following will be entered into your medical record: <i>"Participation in the
+                    MindTrails study terminated as of (mm/dd/yyyy)"</i>.</p>
+
+                <p> Your invitation to participate in this study and any subsequent communications regarding your willingness
+                    to participate will be contained within your medical record. Your session information and assessments
+                    will be NOT included in your medical record.</p>
+                <br></br>
+
+                <p><b>Will I get a copy of this consent form?</b></p>
+
+                <p> Yes, we will email you a copy of this consent form.</p>
+
+                <br></br>
+                <p><b>Am I required to be in this study?</b></p>
+
+                <p> Participation in this study is completely voluntary. You are free to refuse to participate in this study.
+                    Your decision whether or not to participate in the study will not affect your medical care. If you
+                    decide to participate, you are free to change your mind and discontinue participation at any time
+                    without any effect on your medical care or eligibility for future care or membership in Kaiser
+                    Foundation Health Plan.</p>
+                <br></br>
+
+                <p><b>What if I have any questions or problems?</b></p>
+
+                <p> In case of study-related questions, problems or injuries, you can call the investigator responsible for
+                    the study within the University of Virginia or Kaiser Permanente: Dr Bethany Teachman at the University
+                    of Virginia by phone (434-924-0676) or by email (<a href="mailto:bteachman@virginia.edu">bteachman@virginia.edu</a>);
+                    or Dr Jennifer Boggs at Kaiser Permanente Colorado by phone (303-636-2464) or by email
+                    (<a href="mailto:jennifer.m.boggs@kp.org">jennifer.m.boggs@kp.org</a>).</p>
+
+                <p><b>To obtain more information about the study, ask questions about the research procedures,
+                    express concerns about your participation, or report illness, injury or other problems, please
+                    contact:</b></p>
+
+                <p style="margin-left:50px">Tonya Moon, Chair, Institutional Review Board for the Social and Behavioral
+                    Sciences, One Morton Dr. Suite 500, University of Virginia, P.O. Box 800392, Charlottesville, VA 22908-0392.
+                    Telephone: (434) 924-5999; Email: <a href="mailto:irbsbshelp@virginia.edu">irbsbshelp@virginia.edu</a>;
+                    Website: <a target="_new" href="www.virginia.edu/vprgs/irb">www.virginia.edu/vprgs/irb</a>.</p>
+
+                <p style="margin-left:50px"> IRB-SBS Protocol #: 2949</p>
+                <br></br>
+
+                <h2 style="text-align:center"><b>Kaiser Permanente Medical Care Program Research Participants' Bill of Rights</b></h2>
+                <br></br>
+
+                <p> The following rights and privileges are guaranteed to all participants in medical research, investigation,
+                    or experimentation conducted within the Kaiser Permanente Medical Care Program. If you have questions
+                    about these rights, please call the Kaiser Permanente of Colorado Institutional Review Board at
+                    303-636-2964.</p>
+                <br></br>
+
+                <p><i>Persons who participate in medical research are entitled to certain rights which include, but are not
+                      necessarily limited to, the right to be:</i></p>
+                <ol>
+                    <li>Informed of the nature and purpose of the study, investigation, or experiment in which they are
+                        being asked to participate.</li>
+                    <li>Given an explanation of the procedures to be followed in the medical study, investigation, or
+                        experiment and a description of any drug or device to be used.</li>
+                    <li>Informed of any related discomforts and risks that can reasonably be expected from participation
+                        in the study.</li>
+                    <li>Told of any benefits that can reasonably be expected from study participation.</li>
+                    <li>Advised of any appropriate alternative procedures, drugs, or devices that might be advantageous
+                        to the study participant and the relative risks and benefits of these alternatives.</li>
+                    <li>Informed of the availability of medical treatment after the experiment, should complications arise.</li>
+                    <li>Given an opportunity to ask any questions concerning the study, investigation, or experiment,
+                        or about the procedures involved.</li>
+                    <li>Instructed that consent to participate in the medical study, investigation, or experiment may be
+                        withdrawn at any time with no effect on the participant’s health care benefits or medical care
+                        provided by Kaiser Permanente.</li>
+                    <li>Given a copy of the written consent to participate in the research study, which has been signed
+                        and dated by the participant and investigator.</li>
+                    <li>Allowed to decide to consent or not to consent to participate in a medical study, investigation,
+                        or experiment without the intervention of any element of force, fraud, deceit, duress, coercion,
+                        or undue influence upon the participant’s decision.</li>
+                </ol>
+                <br></br>
+                <p>Please use the form below to create your new account.</p>
+                <br></br>
+
+                <form th:replace="fragment/account :: create"/>
+
+            </div>
+    </div>
+    </div>
+
+</section>
+
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer"/>
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright"/>
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

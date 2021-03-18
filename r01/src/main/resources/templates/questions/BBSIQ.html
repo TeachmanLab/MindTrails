@@ -11,7 +11,7 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='Why Things Happen')"/>
+<section th:replace="fragment/common :: titleBar (title=#{bbsiq.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate"/>
 
 <section id="content1" class="clearfix">
@@ -20,10 +20,10 @@
             <div class="col-md-8">
 
 
-                <p> In this section, 14 situations are presented in which it is not quite clear what is happening.
+                <p><span th:text="#{bbsiq.instructions1}">In this section, 14 situations are presented in which it is not quite clear what is happening.
                     Please rate the extent to which you think each of the three explanations for a situation would be
-                    likely to be true <i>if you found yourself</i> in that situation. Use the scale below for your
-                    ratings. </p>
+                    likely to be true</span> <i th:text="#{bbsiq.instructions2}">if you found yourself</i> <span th:text="#{bbsiq.instructions3}">in that situation. Use the scale below for your
+                    ratings.</span></p>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <!-- Add timer -->
         <section th:replace="fragment/forms :: radioOptions(${model})"/>
         <div class="col-md-12" style="text-align:center">
-            <button type="submit">Next</button>
+            <button type="submit" th:text="#{next}">Next</button>
         </div>
     </form>
 </section>

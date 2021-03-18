@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment" />
+<body>
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment" />
+<section th:include="fragment/common :: titleBar (title=#{team.title})"/>
+
+<!-- content starts
+================================================== -->
+<section id="content" class="clearfix">
+    <div class="container">
+        <br></br>
+        <div class="row">
+            <div class="col-xs-14 col-sm-5">
+
+                <table>
+                    <tr>
+                        <td align="center" style="margin: 0 auto; width: 400px"><img th:src="@{/images/MeetTheTeam/Bethany.jpg}" style="text-align: center;" height="220"/></td>
+                    </tr>
+                    <tr>
+                        <td align="justify"><br></br><b>Bethany Teachman</b><span th:text="#{team.bethany1}">, is the Director of MindTrails. Bethany is a licensed
+                            clinical psychologist and Professor of Psychology at the University of Virginia. Her
+                            research focuses on biased thought patterns associated with anxiety and other forms
+                            of mental illness (see</span> <a th:text="#{team.link1}" href="http://projectimplicit.net/bethany/">teachman.org</a><span th:text="#{team.bethany2}">).
+                            She also directs</span> <a th:text="#{team.link2}" href="https://implicit.harvard.edu/implicit/user/pimh/index.jsp">Project Implicit Health</a><span th:text="#{team.bethany3}">,
+                            a website where visitors can learn about their automatic associations toward different
+                            mental health topics.</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xs-14 col-sm-5">
+                <table>
+                    <tr>
+                        <td align="center" style="margin: 0 auto; width: 400px"><img th:src='@{/images/MeetTheTeam/Dan.jpg}' height="220"/></td>
+                    </tr>
+                    <tr>
+                        <td align="justify"><br></br><b>Dan Funk</b> <span th:text="#{team.dan1}"> is the lead software developer for MindTrails. Dan runs a software development
+                            company out of Staunton, Virginia called</span> <a th:text="#{team.link3}" href="http://sartography.com/">Sartography</a><span th:text="#{team.dan2}">. Sartography's mission is to partner with
+                            scientists and innovators to create engaging software that improves the health and well
+                            being of our communities. Some of Dan's favorite projects are at the
+                            University of Virginia, working with leading experts to make the world a better place to live.</span></td>
+                    </tr>
+                </table>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
+            <div class="col-xs-14 col-sm-5">
+                <table>
+                    <tr>
+                        <td align="center" style="margin: 0 auto; width: 400px"><img th:src='@{/images/MeetTheTeam/Laura.jpg}' height="220"/></td>
+                    </tr>
+                    <tr>
+                        <td align="justify"><br></br><b>Laura Barnes</b><span th:text="#{team.laura}">, is an associate professor in the School of Engineering and Applied Science Engineering,
+                            the Data Science Institute, and the Link Lab at the University of Virginia.
+                            She directs the Sensing Systems for Health Lab. Her research focuses on the design of
+                            intelligent systems for understanding the dynamics and personalization of health and
+                            well-being.</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-xs-14 col-sm-5">
+                <table>
+                    <tr>
+                        <td align="center" style="margin: 0 auto; width: 400px"><img th:src='@{/images/MeetTheTeam/Hongning.jpg}' height="220"/></td>
+                    </tr>
+                    <tr>
+                        <td align="justify"><br></br><b>Hongning Wang</b><span th:text="#{team.hongning}">, is an assistant professor in the Department of Computer Science
+                            at the University of Virginia. His research interest includes data mining, machine learning,
+                            and information retrieval, with a special emphasis on computational user behavior modeling.
+                            He obtained his Ph.D. degree from the University of Illinois at Urbana-Champaign in May 2014.</span></td>
+                    </tr>
+                </table>
+                <br></br>
+                <br></br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-14 col-sm-5">
+                <table class="table">
+                    <tr class="info">
+                        <td th:text="#{team.heading1}"><b>Project Coordinators</b></td>
+                    </tr>
+                    <tr>
+                        <td><p><b>Henry Behan</b>, M.Sc.</p>
+                            <p><b>Claudia Calicho-Mamani</b>, B.A.</p></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xs-14 col-sm-5">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-14 col-sm-5">
+        <table class="table">
+            <tr class="info">
+                <td th:text="#{team.heading2}"><b>Graduate Students and Research Scientists</b></td>
+            </tr>
+            <tr>
+                <td><p><b>Anna Baglione</b>, M.S.</p>
+                    <p><b>Sonia Baee</b>, M.S.</p>
+                    <p><b>Mehdi Boukhechba</b>, Ph.D.</p>
+                    <p><b>Jeremy Eberle</b>, M.A.</p>
+                    <p><b>María Larrazabal</b>, M.S.</p>
+                    <p><b>Alexandra Silverman</b>, B.A.</p>
+                    <p><b>Alexandra Werntz Czywczynski</b>, Ph.D.</p></td>
+            </tr>
+        </table>
+            </div>
+            <div class="col-xs-14 col-sm-5">
+                        <table class="table">
+                            <tr class="info">
+                                <td th:text="#{team.heading3}"><b>Consultants</b></td>
+                            </tr>
+                            <tr>
+                                <td><p><b>Sam Hubley</b>, Ph.D.</p>
+                                    <p><b>David Mohr</b>, Ph.D.</p>
+                                    <p><b>Lee Ritterband</b>, Ph.D.</p>
+                                    <p><b>Bonnie Spring</b>, Ph.D.</p>
+                                    <p><b>Kimberly Wilson</b>, Ph.D.</p></td>
+                            </tr>
+                </table>
+            </div>
+            </div>
+            <div class="row">
+
+            <div class="col-xs-14 col-sm-5">
+                <table class="table">
+                    <tr class="info">
+                        <td th:text="#{team.heading4}"><b>Collaborators</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><b>Miranda Beltzer</b>, M.A.</p>
+                            <p><b>Katie Daniel</b>, M.A.</p>
+                            <p><b>Ilana Ladis</b>, B.A.</p>
+                            <p><b>Nauder Namaky</b>, M.A.</p></td>
+                    </tr>
+                </table>
+            </div>
+                <div class="col-xs-14 col-sm-5">
+                    <table class="table">
+                        <tr class="info">
+                            <td th:text="#{team.heading5}"><b>Our Alumni</b></td>
+                        </tr>
+                        <tr>
+                            <td><p><b>Nicola Hohensee</b>, M.Sc.</p>
+                                <p><b>Julie Ji</b>, Ph.D.</p>
+                                <p><b>Sam Portnow</b>, Ph.D.</p>
+                                <p><b>Diheng Zhang</b>, M.A.</p></td>
+                        </tr>
+                    </table>
+                    <br></br>
+                </div>
+        </div>
+        <p th:text="#{team.thanks}" align="center"><b>Thank you to Gibson Design Associates.</b></p>
+        <br></br>
+        </div>
+</section>
+
+
+<!-- footer starts
+================================================== -->
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer" />
+
+<!-- copyright starts
+================================================== -->
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright" />
+
+<!--Javascript
+================================================== -->
+<div th:include="fragment/common :: scripts" />
+
+</body>
+</html>

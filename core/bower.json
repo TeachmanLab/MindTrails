@@ -9,22 +9,24 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-          "PIPlayer":"v0.3.15",
-          "requirejs": "~2.1.14",
-          "bootstrap":"v3.3.7",
-          "jquery":"3.1.1",
-          "jqueryui":"v1.11",
-          "jquery-validate":"1.16.0",
-          "jquery-flot": "0.8.3",
-          "jquery-csv": "0.8.2",
-          "jspsych": "https://github.com/jodeleeuw/jsPsych.git",
-          "papaparse":"v4.1.1",
-          "seiyria-bootstrap-slider":"v9.8.1",
-          "timeme.js":"2.0.0",
-          "d3":"4.11.0",
-          "bootstrap-datepicker":"1.8.0",
-          "bootstrap-timepicker":"0.5.0",
-          "intl-tel-input":"16.0.2"
+    "PIPlayer": "v0.3.15",
+    "requirejs": "~2.1.14",
+    "bootstrap": "v3.3.7",
+    "jquery": "3.1.1",
+    "jqueryui": "v1.11",
+    "jquery-validate": "1.16.0",
+    "jquery-flot": "0.8.3",
+    "jquery-csv": "0.8.2",
+    "jspsych": "https://github.com/jodeleeuw/jsPsych.git",
+    "papaparse": "v4.1.1",
+    "seiyria-bootstrap-slider": "v9.8.1",
+    "timeme.js": "2.0.0",
+    "d3": "4.11.0",
+    "bootstrap-datepicker": "1.8.0",
+    "bootstrap-timepicker": "0.5.0",
+    "intl-tel-input": "16.0.2"
+  },
+  "resolutions": {
+    "bootstrap": "~3.0"
   }
-
 }

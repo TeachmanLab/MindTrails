@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title=#{faq.title})"/>
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <p><b><h3 th:text="#{faq.heading1}">GENERAL QUESTIONS</h3></b></p>
+
+                <p><b><h3 th:text="#{faq.q1}">1. I’ve completed a few sessions and am still feeling anxious. Is the program not working for
+                    me?</h3></b></p>
+
+                <p th:text="#{faq.a1}">Don’t give up! Even people assigned to the training condition may not notice changes right away.
+                    People in the other conditions may also not notice any changes, though this varies by person.
+                    It can take time to learn how to use what you are learning in the sessions in your own life.
+                    It is important to keep completing the sessions as assigned and to honestly and accurately
+                    report your feelings throughout the program. You are helping us learn what works. </p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q2}">2. What if I miss a session? Can I do two the following week?</h3></b></p>
+
+                <p th:text="#{faq.a2}">Try to complete one session each week. We will send you email reminders to help you remember when
+                    you should complete your next session. If you miss a session, complete it as soon as you have
+                    time (though we ask you to always leave at least one day between sessions).</p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q3}">3. Where and when can I do the sessions?</h3></b></p>
+                <p th:text="#{faq.a3}">You can complete this program wherever and whenever you would like, as long as you have access
+                    to an Internet connection (through a smartphone, tablet, or computer). We strongly recommend that you complete the
+                    tasks when you are in a reasonably quiet place and able to pay full attention to them.</p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q4}">4. I have limited computer or smartphone skills. Can I still use this program?</h3></b></p>
+                <p th:text="#{faq.a4}">Yes. Anyone with access to the Internet and an email address is welcome to use this site.
+                    If you can access your email and use an Internet browser, you have the skills needed to
+                    complete the study. No special skills are required. You will be asked to either click on
+                    your responses or type letters into boxes. Throughout the study, we will send you emails to
+                    update you on your progress and to remind you of upcoming tasks. You can also email us if you
+                    have any questions: <a href="mailto:studyteam@mindtrails.org">studyteam@mindtrails.org</a>.</p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q5}">5. Who created this program?</h3></b></p>
+                <p th:text="#{faq.a5}">Researchers from the University of Virginia created these programs, but they were adapted from
+                    computer tasks that have usually been tested in research laboratories (see Hallion &amp; Ruscio, 2011).
+                    As clinical scientists, we are interested in studying how well the programs work in the real
+                    world. In the long run, we want to create a cost-effective and accessible mental health treatment.</p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q6}">6. Is this really going to work for my anxiety?</h3></b></p>
+                <p th:text="#{faq.a6}">This is an experimental program so it is still in the testing phase, but prior research indicates
+                    it may be able to reduce feelings of anxiety. Even if you are not assigned to the training task
+                    condition, you will be given the opportunity to complete it.</p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q7}">7. I’m already receiving treatment for my anxiety (e.g., taking prescriptions or seeing a therapist). Can I still use this program?</h3></b></p>
+                <p th:text="#{faq.a7}">Yes, anyone that qualifies from the questionnaire is welcome to use this program. Before you begin,
+                    you will be asked a series of questions about your mental health – please let us know if you
+                    are already receiving treatment.</p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q8}">8. What devices can I use to complete the program? Can I switch devices depending on where I am?</h3></b></p>
+                <p th:text="#{faq.a8}">This study is available on computer, smartphone, and tablet. Currently supported Internet
+                    browsers are: Chrome, Firefox, Internet Explorer, and Safari. You are welcome to
+                    switch between devices over the course of the study (for example, if you start the
+                    study on your computer but go on vacation during one of the study weeks, you can do the
+                    study from your smartphone). Just make sure to know your login information (including your password).</p>
+                <br></br>
+
+                <p><b><h3 th:text="#{faq.heading2}">SPECIFIC QUESTIONS ABOUT YOUR EXPERIENCE WITH THE PROGRAM</h3></b></p>
+                <p><b><h3 th:text="#{faq.q9}">1. When answering questions (following each of the brief stories), the program keeps telling me that my answer
+                    is incorrect.</h3></b></p>
+                <p th:text="#{faq.a9}">Please answer the questions based on information given to you in the stories. Remember that it is
+                    essential that you fully involve yourself as if the events described are really happening to you,
+                    so your answers should reflect that.</p>
+                <br></br>
+                <p><b><h3 th:text="#{faq.q10}">2. When trying to complete word fragments at the end of the brief stories, the program keeps telling me my answer is incorrect.</h3></b></p>
+                <p th:text="#{faq.a10}">Please complete the word fragments based only on information given to you in the brief stories.</p>
+                <br></br>
+                <p><b><h4 th:text="#{faq.ref}">REFERENCE</h4></b></p>
+                <p>Hallion, L. S., &amp; Ruscio, A. M. (2011). A meta-analysis of the effect of cognitive bias modification
+                    on anxiety and depression. <i>Psychological Bulletin, 137</i>(6), 940–958.</p>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

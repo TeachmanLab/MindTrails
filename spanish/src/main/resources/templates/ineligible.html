@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:include="fragment/common :: titleBar (title='Thank You for Completing Our Assessment')"/>
+
+<!-- content starts
+================================================== -->
+<section id="content" class="clearfix">
+    <div class="container">
+
+          <div class="row">
+              <div class="col-md-8">
+			<p>Unfortunately, you do not currently qualify for the MindTrails study, but we appreciate your interest. We want to be sure we are offering the program to people we think are most likely to find it helpful.</p>
+			<p>If you wish to participate in other research, we encourage you to visit <a href="https://implicit.harvard.edu/implicit/research">Project Implicit</a>, where there are other studies that you can try today,
+                or complete another study at <a href="https://implicit.harvard.edu/implicit/user/pimh/index.jsp">Project Implicit Mental Health</a>.
+                To access information about mental health and mental health treatment, please see the <a th:href="@{/public/resources}">Mental Health Resources</a> page on this website.</p>
+			<p>Thank you for your interest!</p>
+            <p><b>Please note:</b> You are welcome to complete the eligibility questionnaire at a later time to determine if your eligibility changes (e.g., based on symptom changes or new study criteria). You will be eligible to complete the questionnaire again in one week.</p>
+            <img th:src="@{/public/track/templeton_not_pass.gif}" alt=" "/>
+        </div>
+        <!--sidebar ends-->
+      </div>
+    </div>
+</section>
+
+
+<!-- footer
+================================================== -->
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer" />
+
+
+<!-- copyright starts
+================================================== -->
+<footer id="copyright" class="clearfix" th:include="fragment/common :: copyright" />
+
+<!--Javascript
+================================================== -->
+<div th:include="fragment/common :: scripts" />
+
+</body>
+</html>

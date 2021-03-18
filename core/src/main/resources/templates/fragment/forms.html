@@ -14,30 +14,31 @@
     <div th:each="group: ${model.groups}" class="container section compactQuestion">
         <div class="row title">
             <div class="col-md-12">
-                <h4><b th:text="${group.desc}"></b></h4>
+                <h3><b th:if="${group.desc} != ''" th:text="#{${model.class.simpleName} + '.' + ${group.name}}"></b></h3>
+                <h4><b th:if="${group.desc} != ''" th:text="#{${group.desc}}"></b></h4>
             </div>
         </div>
 
         <div class="row header">
             <div class="col-md-6"><p class="tableOptions"></p></div>
-            <div th:each="scale: ${group.scale}" class="col-md-1"><p class="tableOptions" th:text="${scale.value}"></p></div>
-            <div th:style="${group.prefNotAns}" class="col-md-1"><p class="tableOptions">Prefer not to answer</p></div>
+            <div th:each="scale: ${group.scale}" class="col-md-1"><p th:if="${scale.value} != ''" class="tableOptions" th:text="#{${scale.value}}"></p></div>
+            <div th:style="${group.prefNotAns}" class="col-md-1"><p th:text="#{prefer_not_to_answer}" class="tableOptions">Prefer not to answer</p></div>
         </div>
 
         <div class="row" th:each="measure: ${group.measures}">
             <div class="col-md-6 statement">
-                <span th:text="${measure.desc}"></span>
+                <span th:text="#{${model.class.simpleName} + '.' + ${measure.name}}"></span>
                 <span class="error" th:if="${measure.error}">*</span>
             </div>
             <div class="col-md-1" th:each="scale: ${group.scale}">
                 <label class="radio-inline option">
                     <input type="radio" th:name="${measure.name}" th:value="${scale.key}" th:field="*{__${measure.name}__}" required="required"/>
-                    <span class="shortDesc" th:text="${scale.key}"></span> <span class="fullDesc" th:text="${scale.value}"></span></label>
+                    <span  class="shortDesc" th:text="${scale.key}"></span> <span th:if="${scale.value} != ''" class="fullDesc" th:text="#{${scale.value}}"></span></label>
             </div>
             <div th:style="${group.prefNotAns}" class="col-md-1">
                 <label class="radio-inline option preferNotToAnswer">
                     <input type="radio" th:name="${measure.name}" value="555" required="true"/>
-                    <span class="shortDesc">&nbsp;&nbsp;</span> <span class="fullDesc">Prefer not to answer</span></label>
+                    <span class="shortDesc">&nbsp;&nbsp;</span> <span class="fullDesc" th:text="#{'prefer_not_to_answer'}">Prefer not to answer</span></label>
             </div>
 
 

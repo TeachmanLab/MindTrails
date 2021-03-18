@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title='Thank You for Participating')"/>
+
+<section th:if="${isExiting==true}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                    <p>You have now exited the study. It would help us a great deal to
+                        learn why you chose not to complete the study. Please click on Exit
+                        Survey button below to provide your valuable feedback.</p>
+
+                    <a th:href="@{/questions/ReasonsForEnding}">
+                    <button>Exit Survey</button>
+                    </a>
+                <br></br>
+                <br></br>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contentTest" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <span class="pull-right"><button onclick="window.print();">Print</button></span>
+                <br></br>
+                <h2><b>Debriefing</b></h2>
+                <h3><b>Effectiveness of interpretation training to reduce anxiety: Evaluating technology-based delivery
+                    models and methods to reduce attrition</b></h3>
+
+                <p>We are currently investigating experimental approaches to reduce anxiety. The experimental
+                    approaches used in the study are based on models of anxiety, which have shown that anxious people
+                    tend to interpret ambiguous situations as threatening. It has been proposed that the tendency to
+                    interpret things in a threatening way plays a role in the onset of, and recovery from, anxiety
+                    problems.
+                </p>
+
+                <div th:if="${participant.study.conditioning == 'TRAINING' or participant.study.conditioning == 'CONTROL' or participant.study.conditioning == 'LR_TRAINING' or participant.study.conditioning == 'HR_COACH' or participant.study.conditioning == 'HR_NO_COACH'}">
+
+                    <p>In the current study, we are evaluating if it is possible to change interpretation patterns over the
+                        Internet, and whether changing these interpretation patterns will reduce anxiety symptoms. We are
+                        also testing whether we can identify people at risk of dropping out of the study and provide them
+                        a personal coach to encourage them to stay in the study. Finally, we are examining whether
+                        participants obtain different results by completing the intervention on their mobile phone, tablet,
+                        or personal computer. </p>
+
+                <p>Depending on your condition, you may have been asked to read and imagine yourself in a series of
+                    brief stories. In this active condition, the last word (or word fragment) gave almost all of the
+                    brief stories a positive meaning. We expect this will encourage a more flexible and less negative
+                    thinking style. In an alternative condition, which we do not expect to be as effective as the
+                    active condition, you simply read about characteristics of anxiety.</p>
+
+                <p>For some participants, if your early activity on the site suggested you might be at risk of dropping
+                    out of the study, you may have been connected with a personal coach to support your participation
+                    in the study. We expect that participants who had the opportunity to work with a coach will have
+                    better outcomes than participants at risk for dropping out who did not work with a coach.</p>
+                </div>
+
+                <div th:if="${participant.study.conditioning == 'TRAINING_ORIG' or participant.study.conditioning == 'TRAINING_30' or participant.study.conditioning == 'TRAINING_ED' or participant.study.conditioning == 'TRAINING_CREATE'}">
+
+                <p>In the current study, we are evaluating if it is possible to change interpretation patterns over the Internet, and whether changing these interpretation patterns will reduce anxiety symptoms.
+                    Additionally, we are examining whether participants obtain different results by completing the intervention on their mobile phone, tablet,
+                    or personal computer. </p>
+
+                    <p>Depending on your condition, you may have been asked to read and imagine yourself in a series of
+                        brief stories. In this active condition, the last word (or word fragment) gave almost all of the
+                        brief stories a positive meaning. We expect this will encourage a more flexible and less negative
+                        thinking style. In an alternative condition, which we do not expect to be as effective as the
+                        active condition, you simply read about characteristics of anxiety.</p>
+
+                <p>In the active condition, we are also testing four conditions of the training program to see which one is most effective. Depending on the assigned condition, you may also have been asked to complete an additional task, such as writing your own brief story or reading educational information about anxiety problems and their treatment.
+                    In the training stories, the last word (or word fragment) gave almost all of the brief stories a positive meaning. We expect this will encourage a more flexible and less negative thinking style.</p>
+                </div>
+
+                <p>If you are interested in learning more about modifying thinking patterns, see the following
+                    websites:
+                    <ul>
+                        <li><a target="new" href="http://www.apa.org/monitor/2011/11/behavior-change.aspx">"Behavior change in 15-minute sessions?"
+                        </a></li>
+                        <li><a target="new" href="http://www.economist.com/node/18276234">"Therapist-free therapy"</a></li>
+                    </ul>
+                </p>
+
+                <br></br>
+                <p><b>To obtain more information about the study, ask questions about the research procedures,
+                    express concerns about your participation, or report illness, injury or other problems, please contact:</b></p>
+                <p style="margin-left:50px">Tonya Moon, Chair, Institutional Review Board for the Social and Behavioral Sciences, One Morton Dr.
+                    Suite 500, University of Virginia, P.O. Box 800392, Charlottesville, VA 22908-0392. Telephone: (434)
+                    924-5999; Email: <a href="mailto:irbsbshelp@virginia.edu">irbsbshelp@virginia.edu</a>; Website:
+                    <a target="_new" href="www.virginia.edu/vprgs/irb">www.virginia.edu/vprgs/irb</a>.</p>
+
+                <p><b>You can also contact the Principal Investigator and the MindTrails team with any questions about this study:</b></p>
+                <p style="margin-left:50px;">Prof. Bethany Teachman, Department of Psychology, Millmont Building,
+                    1023 Millmont St, University of Virginia, Charlottesville, VA 22903. Telephone: (434) 924-0676; Email:
+                    <a href="mailto:studyteam@mindtrails.org">studyteam@mindtrails.org</a>.</p>
+
+                <br></br>
+                <p><b>For those seeking additional mental health help or advice:</b></p>
+                <ul>
+                    <li>Do you need immediate help? If you are thinking about harming yourself or someone else,
+                        please tell someone who can help immediately:
+                        <ul style="list-style-type:disc;">
+                            <li>Call 911 for emergency services (in the United States)</li>
+                            <li>Go to a hospital emergency room</li>
+                            <li>Call the toll-free 24-hour hotline of National Suicide Prevention Lifeline at 1-800-273-TALK
+                                (1-800-273-8255) to be connected to a trained counselor at a crisis center near you</li>
+                        </ul>
+                    </li>
+                    <li>If you do not need immediate help, but would like to talk to someone about the problems you
+                        might be having, please go to the <a th:href="@{/public/resources}">Mental Health Resources</a> page on this site. Additionally, if you have any
+                        questions concerning mental health issues in general or feel especially concerned about your own
+                        thoughts or mood, please visit this page.</li>
+                </ul>
+                <br></br>
+                <section th:if="${isExiting==true}">
+                <p>To provide your valuable feedback, please click on Exit Survey button below:</p>
+
+                <a th:href="@{/questions/ReasonsForEnding}">
+                    <button>Exit Survey</button></a>
+                </section>
+                <br></br>
+                <br></br>
+                <p align="center"><b>Thank you again for your participation.</b></p>
+
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

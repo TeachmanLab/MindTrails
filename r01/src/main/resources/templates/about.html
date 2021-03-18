@@ -8,7 +8,7 @@
 <head th:include="fragment/common :: headerFragment" />
 <body>
 <section id="header" class="clearfix" th:include="fragment/common :: topFragment" />
-<section th:include="fragment/common :: titleBar (title='About')"/>
+<section th:include="fragment/common :: titleBar (title=#{about.title})"/>
 
 <!-- content starts
 ================================================== -->
@@ -17,15 +17,15 @@
         <div class="row">
             <div class="col-md-10">
 
-                <h3><b>What Is the MindTrails Project?</b></h3>
+                <h3><b th:text="#{about.heading}">What Is the MindTrails Project?</b></h3>
 
-                <p>The MindTrails Project is a web-based, public research site that offers free interpretation bias
+                <p><span th:text="#{about.what.p1}">The MindTrails Project is a web-based, public research site that offers free interpretation bias
                 training programs to promote healthier thinking patterns for people with anxiety and other emotional
                 difficulties. Research shows that people prone to anxiety tend to think about situations negatively.
                 MindTrails programs give you practice thinking about situations in new ways. This encourages more
-                flexible thinking styles in your everyday life. Learn more <a href="https://mindtrails.virginia.edu/calm/public/researchSupport">about the science</a>.</p>
+                flexible thinking styles in your everyday life. Learn more </span> <a th:text="#{about.what.link}" href="https://mindtrails.virginia.edu/calm/public/researchSupport"> about the science</a></p>
 
-                    <p>Developed by an interdisciplinary team of clinical psychologists, computer scientists, and
+                    <p th:text="#{about.what.p2}">Developed by an interdisciplinary team of clinical psychologists, computer scientists, and
                 engineers at the University of Virginia, MindTrails aims to efficiently test which training
                 programs work best for different people and problem areas. We strive to continually improve these
                 programs for the next generation. Our team is excited to learn whether these programs can help address

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment"/>
+<body>
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment"/>
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+
+        <h1><font color="#00ACE4"><b>Alter Study Settings for <span th:text="${participant.getFullName()}"/></b></font></h1>
+
+        <form action="#" th:action="@{'/admin/study/'+${participant.id}}"
+              th:object="${studyForm}" method="post">
+            <table>
+                <tr>
+                    <td>Current Session:</td>
+                    <td>
+                        <select name="session" th:field="*{session}">
+                            <option th:each="elem: ${T(edu.virginia.psyc.spanish.domain.SpanishStudy.SESSION).values()}"
+                                    th:value="${elem.name()}" th:text="${elem.name()}" value="BAZ">BAZ
+                            </option>
+                        </select>
+                    </td>
+                    <td th:if="${#fields.hasErrors('conditioning')}" th:errors="*{admin}">Admin Error</td>
+                </tr>
+                <tr>
+                    <td>CDM Condition:</td>
+                    <td>
+                        <select name="conditioning" th:field="*{conditioning}">
+                            <option th:each="elem: ${T(edu.virginia.psyc.spanish.domain.SpanishStudy.CONDITION).values()}"
+                                    th:value="${elem.name()}" th:text="${elem.name()}" value="BAZ">BAZ
+                            </option>
+                        </select>
+                    </td>
+                    <td th:if="${#fields.hasErrors('conditioning')}" th:errors="*{admin}">Admin Error</td>
+                </tr>
+                <tr>
+                    <td>X Days Ago:</td>
+                    <td >
+                        <input type="text" size="2" th:field="*{subtractDays}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><i>Last session date will be set to today, but you can set it to x days in the past if
+                        you want the participant to be able to progress immediately on a session with a mandatory wait period.</i></td>
+                </tr>
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+            </div>
+        </div>
+    </section>
+
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer" />
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright" />
+<div th:include="fragment/common :: scripts" />
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment" />
+<body>
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment" />
+<section th:include="fragment/common :: titleBar (title='You Are Eligible to Participate!')"/>
+
+<!-- content starts
+================================================== -->
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                <p>You reported experiencing some anxiety. As a result, you are eligible to participate in the
+                    MindTrails study, a new Internet-based program designed to reduce anxious thinking.</p>
+
+                <p>This is an experimental program, so it is still in the testing phase, but there are
+                    many good reasons for you to participate. </p>
+
+               <b>Reasons to participate:</b>
+                <ul>
+                    <li>Prior research says it may reduce anxious thinking as effectively as therapy for some people.</li>
+                    <li>It's FREE.</li>
+                    <li>It will not require a lot of your time.</li>
+                    <li>It can be completed anywhere — all you need is a computer, tablet, or smartphone with Internet access.</li>
+                    <li>At the end of the study, we’ll give you feedback about how your anxiety symptoms have changed.</li>
+                    <li>You can access a fun and interesting psychology demonstration after each session.</li>
+                <!--    <li>You will receive up to 5 small payments for completing the assessments.</li> -->
+
+                </ul>
+
+                <p>If you would like to participate, click the “Learn More” button below. If you do not wish to
+                    participate, consider reviewing these alternate
+                    <a th:href="@{/public/resources}">Mental Health Resources</a> for dealing with your anxiety.</p>
+                <p><a th:href="@{/account/create}"><button>Learn More</button></a></p>
+                <img th:src="@{/public/track/templeton_pass.gif}" alt=" "/>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- footer starts
+================================================== -->
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer" />
+
+<!-- copyright starts
+================================================== -->
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright" />
+
+<!--Javascript
+================================================== -->
+<div th:include="fragment/common :: scripts" />
+
+</body>
+</html>

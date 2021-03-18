@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[i  f IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title=#{resources.title})"/>
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <br/>
+                <p th:text="#{resources.intro1}">MindTrails is a public research website that offers free training programs to promote healthier thinking
+                patterns for people with anxiety and other emotional difficulties. If you have other concerns about your
+                mental health throughout participating in this study, we encourage you to speak with a licensed treatment provider.</p>
+
+                <p th:text="#{resources.intro2}">MindTrails does not endorse or recommend any third party commercial products or services. Information
+                    on the website may not be used by private parties for advertising or product endorsement purposes.</p>
+
+                <p th:text="#{resources.intro3}">MindTrails is not responsible for, and disclaims all liability for damages of any kind arising out
+                    of use, reference to, or reliance on any information contained within the site.</p>
+
+                <p th:text="#{resources.intro4}">If you are seeking additional help for your (or a loved one’s) mental health, the following is a
+                    list of resources for you to look through and consider. We have provided links to information
+                    about specific mental illnesses, treatment resources, and general mental health information.</p>
+
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading0}">Information Links</h3></b></p>
+                <ul><li><u><a th:text="#{resources.heading1}" href="#item1">Accessing High-Quality Treatment</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading2}" href="#item2">Treatment Referrals</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading3}" href="#item3">Help for Suicidal Thoughts and Urges</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading4}" href="#item4">Information About Specific Mental Health Disorders</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading5}" href="#item5">General Information</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading6}" href="#item6">Professional Organizations</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading7}" href="#item7">Other Online Programs</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading8}" href="#item8">Self-Help Books</a></u></li></ul>
+                <ul><li><u><a th:text="#{resources.heading9}" href="#item9">Medication Information</a></u></li></ul>
+
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading1}" id="item1">Accessing High-Quality Treatment</h3></b></p>
+                <p th:text="#{resources.p1a}">Please note that when looking for appropriate treatment options, you may want to consider the following:</p>
+
+                <ul><li th:text="#{resources.p1b}">Look for a psychological or psychiatric treatment with research studies scientific research supporting its effectiveness.</li>
+                <li th:text="#{resources.p1c}">Find a treatment provider with whom you feel comfortable. This means it is absolutely within your
+                    rights to ask questions before committing to any specific type of treatment, whether it be psychotherapy or medication.</li></ul>
+
+                <p th:text="#{resources.p1d}">Remember that everyone struggles with feelings of sadness or worry or not liking how they look, etc.
+                It is normal to experience these feelings at times, and having a few symptoms does not mean that you meet
+                criteria for a diagnosis of a mental disorder. However, we recommend that you consider seeking a professional
+                evaluation if you are experiencing these symptoms more strongly than is typical for you (or for most other people you know),
+                for an extended period of time (e.g., extremely sad mood for more than a couple weeks), or if the symptoms start to interfere
+                with your ability to live your life in the way you want.</p>
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading2}" id="item2">Treatment Referrals</h3></b></p>
+
+                <span><b><a th:text="#{resources.link2a}" href="http://www.apa.org/">American Psychological Association (APA)</a></b></span>
+
+                <p th:text="#{resources.p2a}">APA provides educational information, links for information about disorders and treatment, and
+                    referral assistance for those seeking psychological therapy.</p>
+
+                <span><b><a th:text="#{resources.link2b}" href="http://mentalhealth.samhsa.gov/databases/default.asp/">
+                    Substance Abuse and Mental Health Services Administration (SAMHSA)</a></b></span>
+
+                <p th:text="#{resources.p2b}">This site provides local psychological treatment resources in your area.</p>
+
+                <span><b><a th:text="#{resources.link2c}" href="http://www.abct.org/">Association for Behavioral and Cognitive Therapies (ABCT)</a></b></span>
+
+                <p th:text="#{resources.p2c}">ABCT provides referrals for those seeking psychological therapy, as well as educational opportunities
+                    and articles about cognitive and behavioral therapies.</p>
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading3}" id="item3">Help for Suicidal Thoughts and Urges</h3></b></p>
+                <br></br>
+
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="content" class="clearfix">
+                <div class="container">
+                    <div class="row">
+
+                <div class="col-md-2">
+
+                    <table>
+                        <tr>
+                            <td th:text="#{resources.p3a}"><b>Emergency Services</b></td>
+                        </tr>
+                    </table>
+
+                </div>
+            <div class="col-md-2">
+                <table>
+                    <tr>
+                        <td>911</td>
+                    </tr>
+                </table>
+            </div>
+                    <div class="col-md-4">
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3b}">Dial 911 or visit the emergency department of your local hospital.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                    <br></br>
+                    <div class="row">
+                    <div class="col-md-2">
+
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3c}"><b>National Suicide Prevention Lifeline</b></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="col-md-2">
+                        <table>
+                            <tr>
+                                <td>1-800-273-TALK (8255)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3d}">Calls are automatically directed to the nearest local Crisis
+                                    Center in the National Suicide Prevention Lifeline network and answered
+                                    by trained crisis counselors. Available 24 hours a day, 7 days a week.</td>
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
+                    <br></br>
+                    <p><b><u th:text="#{resources.p3e}">Text Hotlines</u></b></p>
+                    <div class="row">
+                    <div class="col-md-2">
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3f}"><b>Crisis Text Line</b></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="col-md-2">
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3g}">Text HOME to 741741</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3h}">Have a text conversation with a volunteer crisis counselor. Free, 24/7 support in the US. More info at <a href="http://www.crisistextline.org/">
+                                    Crisis Text Line</a>.</td>
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
+                <br></br>
+                    <p><b><u th:text="#{resources.p3i}">Teen Hotlines</u></b></p>
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3j}"><b>Girls and Boys Town National Hotline</b></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="col-md-2">
+                        <table>
+                            <tr>
+                                <td>1-800-448-3000</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table>
+                            <tr>
+                                <td th:text="#{resources.p3k}">Staffed by trained counselors and provides support for parents and children. Available 24 hours a day, 7 days a week.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-md-2">
+
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3l}"><b>The Samaritans ('Samariteens') Hotline</b></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="col-md-2">
+                            <table>
+                                <tr>
+                                    <td>1-800-252-TEEN (8336)</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3m}">A peer service staffed by volunteers ages 15-18; hours: 3 p.m. to 9 p.m. EST
+                                        (weekdays); 9 a.m. to 9 p.m. (weekends)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br></br>
+
+                    <div class="row">
+                        <div class="col-md-2">
+
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3n}"><b>The Trevor Project Hotline</b></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="col-md-2">
+                            <table>
+                                <tr>
+                                    <td>1-866-488-7386</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3o}">Staffed by trained counselors and provides support to LBGTQ+ teens. Available 24 hours a day, 7 days a week.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br></br>
+                    <p><b><u th:text="#{resources.p3p}">Hotlines for Speech-Impaired and Deaf Callers</u></b></p>
+                    <div class="row">
+                        <div class="col-md-2">
+
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3q}"><b>National Suicide Prevention Lifeline (TTY)</b></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="col-md-2">
+                            <table>
+                                <tr>
+                                    <td>1-800-799-4TTY (4889)</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3r}">Available 24 hours a day, 7 days a week.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-md-2">
+
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3s}"><b>Girls and Boys Town National Hotline (TTY)</b></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="col-md-2">
+                            <table>
+                                <tr>
+                                    <td>1-800-448-1833</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <td th:text="#{resources.p3t}">Available 24 hours a day, 7 days a week.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<br></br>
+
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                            <p><b><u th:text="#{resources.p3u}">Suicide Prevention Websites</u></b></p>
+
+                            <span><b><a th:text="#{resources.link3a}" href="http://www.suicidepreventionlifeline.org/">National Suicide Prevention Lifeline</a></b></span><span th:text="#{resources.p3v}">:
+                            Provides a search for the nearest crisis center in the Lifeline Network and information for Veterans and their families.</span><br/>
+
+                            <span><b><a th:text="#{resources.link3b}" href="http://www.suicide.org/index.html">Suicide.org</a></b></span><span th:text="#{resources.p3w}">: Provides resources for
+                            helping a loved one who is suicidal and a list of suicide hotlines outside of the U.S.</span><br/>
+
+                            <span><b><a th:text="#{resources.link3c}" href="http://www.suicidehotlines.com/">SuicideHotlines.com</a></b></span><span th:text="#{resources.p3x}">: Provides information on what to expect when
+                                calling a hotline and a directory of local hotlines by state.</span><br/>
+
+                            <br></br>
+                <p><b><h3 th:text="#{resources.heading4}" id="item4">Information About Specific Mental Health Disorders</h3></b></p>
+
+                <span><b><a th:text="#{resources.link4a}" href="http://www.adaa.org/">Anxiety and Depression Association of America</a></b></span><span th:text="#{resources.p4a}">: This site offers
+                    information on a range of anxiety problems, such as panic disorder and social phobia, as well as on depression.
+                    It includes information about multiple ways to seek help, including in-person treatments, support groups,
+                    online options, and self-help publications, among others.</span><br/>
+                <span><b><a th:text="#{resources.link4b}" href="https://iocdf.org/">International OCD Foundation</a></b></span><span th:text="#{resources.p4b}">: This is a not-for-profit
+                    organization comprised of people with obsessive compulsive disorder (OCD) and related disorders,
+                    their families, friends, professionals and other concerned individuals.</span><br/>
+                <span><b><a th:text="#{resources.link4c}" href="https://www.nationaleatingdisorders.org/">National Eating Disorders Association</a></b></span><span th:text="#{resources.p4c}">: Provides information
+                    and treatment referrals to those suffering from anorexia, bulimia and binge eating disorder, and
+                    those concerned with body image and weight issues.</span><br/>
+                <span><b><a th:text="#{resources.link4d}" href="http://www.samhsa.gov/">Substance Abuse &amp; Mental Health Services Administration</a></b></span><span th:text="#{resources.p4d}">:
+                Provides information about research and treatment for substance abuse for those struggling with addiction.</span><br/>
+
+
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading5}" id="item5">General Information</h3></b></p>
+
+                <span><b><a th:text="#{resources.link5a}" href="http://www.nimh.nih.gov/">National Institute of Mental Health</a></b></span><span th:text="#{resources.p5a}">: This site provides
+                    information from the Federal agency that conducts and supports research on mental illnesses.</span><br/>
+                <span><b><a th:text="#{resources.link5b}" href="http://www.nami.org/">National Alliance on Mental Illness</a></b></span><span th:text="#{resources.p5b}">: NAMI is the nation’s largest
+                    grassroots mental health organization dedicated to improving the lives of persons living with
+                    serious mental illness and their families.</span><br/>
+                <span><b><a th:text="#{resources.link5c}" href="http://www.nmha.org/index.cfm">Mental Health America</a></b></span><span th:text="#{resources.p5c}">: Mental Health America declares
+                as its mission: "promoting mental health, preventing mental disorders and achieving victory over mental illness
+                through advocacy, education, research and services.”</span><br/>
+                <span><b><a th:text="#{resources.link5d}" href="http://psychcentral.com">PsychCentral</a></b></span><span th:text="#{resources.p5d}">: This site functions as a mental health social
+                network, created and run by mental health professionals to provide reliable information and support to consumers.</span><br/>
+                <span><b><a th:text="#{resources.link5e}" href="http://www.webmd.com">WebMD</a></b></span><span th:text="#{resources.p5e}">: WebMD provides health information, a supportive community,
+                and educational services by blending expertise in health issues with community services,
+                expert commentary, and medical review.</span><br/>
+                <span><b><a th:text="#{resources.link5f}" href="https://cpa.ca/psychologyfactsheets/">Canadian Psychological Association's "Psychology Works Fact Sheets"</a></b></span><span th:text="#{resources.p5f}">:
+                This site provides information about the signs and symptoms of common mental illnesses as well as information about their effective treatments.</span><br/>
+                <span><b><a th:text="#{resources.link5g}" href="https://kspope.com/">K.S. Pope</a></b></span><span th:text="#{resources.p5g}">: This site provides free access to full-text
+                    articles and other resources on assessment, therapy, forensics, ethics in psychology, etc.</span><br/>
+
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading6}" id="item6">Professional Organizations</h3></b></p>
+                <span><b><a th:text="#{resources.link6a}" href="http://www.apa.org">American Psychological Association</a></b></span><span th:text="#{resources.p6a}">: APA provides educational
+                    information, links for information about disorders and treatment, and referral assistance for those seeking psychological therapy.</span><br/>
+                <span><b><a th:text="#{resources.link6b}" href="http://www.psych.org">American Psychiatric Association</a></b></span><span th:text="#{resources.p6b}">: APA provides educational
+                information about the field of psychiatry and current issues in the news, etc., as well as links for
+                information about medication therapy, and a variety of research and clinical issues.</span><br/>
+                <span><b><a th:text="#{resources.link6c}" href="http://www.abct.org">Association for Behavioral and Cognitive Therapies</a></b></span><span th:text="#{resources.p6c}">: ABCT provides
+                    educational opportunities, access to journals reporting research about issues related to behavioral
+                    therapy and cognitive-behavioral therapy, and referrals for those seeking psychological therapy.</span><br/>
+                <span><b><a th:text="#{resources.link6d}" href="http://www.nida.nih.gov/">National Institute on Drug Abuse</a></b></span><span th:text="#{resources.p6d}">: Provides current information and
+                    findings for researchers to improve prevention, treatment, and policy for drug abuse and addiction.</span><br/>
+
+                <br></br>
+                    <p><b><h3 th:text="#{resources.heading7}" id="item7">Other Online Programs</h3></b></p>
+                            <p><b><u th:text="#{resources.p7a}">Review Websites</u></b></p>
+
+                <span><b><a th:text="#{resources.link7a}" href="https://psyberguide.org/">PsyberGuide</a></b></span><span th:text="#{resources.p7b}">: This site offers reviews of popular mental health
+                apps and websites so readers can evaluate: a) which of the many available digital mental health options is
+                backed by scientific research;  b) which tend to be easy to use and are well designed; and c) which provide clear
+                information about their privacy and data protection policies.</span><br/>
+
+                <span th:text="#{resources.p7c}">In addition, the Anxiety and Depression Association of America provides ratings of mobile applications
+                based on their ease of use, likely effectiveness, and research evidence: </span>
+                <a th:text="#{resources.link7b}" href="http://www.adaa.org/finding-help/mobile-apps/">ADAA Reviewed Mental Health Apps</a>.<br/>
+
+                                <br></br>
+                            <p><b><u th:text="#{resources.p7d}">Online Programs</u></b></p>
+
+                <span><b><a th:text="#{resources.link7c}" href="https://moodgym.anu.edu.au/welcome">MoodGYM</a></b></span><span th:text="#{resources.p7e}">: Online programs for depression and anxiety
+                based on cognitive behavior therapy principles. (Free and has been translated into several languages.)</span><br/>
+
+                <span><b><a th:text="#{resources.link7d}" href="https://thiswayup.org.au/">This Way Up</a></b></span><span th:text="#{resources.p7f}">: Online programs for depression and anxiety
+                    based on cognitive behavior therapy principles. (Some cost and clinician involvement.)</span><br/>
+
+                <br></br>
+                <p><b><u th:text="#{resources.p7g}">Mobile Apps</u></b></p>
+
+                <span><b><a th:text="#{resources.link7e}" href="https://www.headspace.com/">Headspace</a></b></span><span th:text="#{resources.p7h}">: An app for Mindfulness meditation, which may
+                    help to improve concentration and mood, reduce anxiety, and increase productivity.
+                    Although this is a paid app, users can start with a free trial.</span><br/>
+
+                <span><b><a th:text="#{resources.link7f}" href="http://moodmission.com/">MoodMission</a></b></span><span th:text="#{resources.p7i}">: An app for dealing with stress, anxiety,
+                    and low mood, that includes behavioral, cognitive, physical-based, and emotion-based activities.</span><br/>
+
+                <span><b><a th:text="#{resources.link7g}" href="https://www.happify.com/">Happify</a></b></span><span th:text="#{resources.p7j}">: An app focusing on positive psychology, cognitive
+                    behavioral therapy, and mindfulness to improve general well-being. It encourages users to spend a
+                    few minutes a day on activities related to their core happiness skills of savor, thankful, aspire, give, or empathize.</span><br/>
+
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading8}" id="item8">Self-Help Books</h3></b></p>
+
+                <span th:text="#{resources.p8a}">The Association for Behavioral and Cognitive Therapies provides lists of self-help books that they
+                    endorse for numerous problem areas, categorized by title, author, or topic:</span>
+                    <a th:text="#{resources.link8a}" href="http://www.abct.org/SHBooks/">ABCT Self-Help Book Recommendations</a><br/>
+
+                <span th:text="#{resources.p8b}">The Anxiety and Depression Association of America provides lists of books and additional self-help
+                    materials (e.g., DVDs) that have been authored by members of the association: </span>
+                    <a th:text="#{resources.link8b}" href="http://www.adaa.org/finding-help/self-help-publications/">ADAA Books</a><br/>
+
+                            <span th:text="#{resources.p8c}">Popular self-help books for managing depression, anxiety and other disorders of emotion include:</span>
+                <ul><li><i>Face Your Fears: A Proven Plan to Beat Anxiety, Panic, Phobias, and Obsessions</i> (Tolin, 2012)</li>
+                    <li><i>Feeling Good: The New Mood Therapy</i> (Burns, 2008)</li>
+                    <li><i>Mind Over Mood</i> (Greenberger &amp; Padesky, 1995)</li>
+                    <li><i>The Shyness &amp; Social Anxiety Workbook</i> (Antony, 2000)</li>
+                    <li><i>Stop Obsessing</i> (Foa &amp; Wilson, 2001)</li></ul>
+
+                <span th:text="#{resources.p8d}">Note: These books are generally based on treatment principles that have strong research support,
+                    but there is variability in whether or not the specific books' effectiveness as a form of bibliotherapy has been tested.</span>
+                <br></br>
+                <br></br>
+                <p><b><h3 th:text="#{resources.heading9}" id="item9">Medication Information</h3></b></p>
+
+                            <span th:text="#{resources.p9}">To learn more about medication options for treating anxiety and depression, and related disorders, see:</span>
+                            <ul><li><a th:text="#{resources.link9a}" href="https://www.mayoclinic.org/diseases-conditions/generalized-anxiety-disorder/diagnosis-treatment/drc-20361045">
+                                Mayo Clinic: Generalized anxiety disorder > Diagnosis &amp; treatment</a></li>
+                                <li><a th:text="#{resources.link9b}" href="https://www.mayoclinic.org/diseases-conditions/generalized-anxiety-disorder/diagnosis-treatment/drc-20361045">
+                                    Mayo Clinic: Generalized anxiety disorder > Diagnosis &amp; treatment</a></li>
+                                <li><a th:text="#{resources.link9c}" href="https://www.mayoclinic.org/diseases-conditions/depression/diagnosis-treatment/drc-20356013">
+                                    Mayo Clinic: Depression > Diagnosis &amp; treatment</a></li></ul>
+
+                        </div>
+                    </div>
+                </div>
+</section>
+
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

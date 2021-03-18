@@ -11,20 +11,8 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title=#{oa.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate5"/>
-
-
-<section id="header-btm" class="clearfix">
-    <div class="container">
-        <div class="row">
-            <h2 class="page-title heading-icon clearfix" style="padding-left: 15px"> <img th:src="@{/images/map-arrow-orange.png}" alt="icon" class="icon-small-bg" />
-                <br/>
-                <span th:text="${eligibility}? 'Eligibility Questionnaire, Part 1' : 'Mood Assessment'" />
-            </h2>
-
-        </div>
-    </div>
-</section>
 
 <section id="content1" class="clearfix">
     <div class="container">
@@ -53,19 +41,19 @@
         <div class="container">
             <div class="section">
             <div id="section1"></div>
-            <script>
+            <script th:inline="javascript">
                 var data = {
                     "options": [
-                        {"value": 0, "title": "No anxiety ",         "opt_desc":"in the past week."},
-                        {"value": 1, "title": "Infrequent anxiety ", "opt_desc":"Felt anxious a few times."},
-                        {"value": 2, "title": "Occasional anxiety ", "opt_desc":"Felt anxious as much of hte time as not. It was hard to relax."},
-                        {"value": 3, "title": "Frequent anxiety ",   "opt_desc":"Felt anxious most of the time. It was very difficult to relax."},
-                        {"value": 4, "title": "Constant anxiety",   "opt_desc":"Felt anxious all of the time and never really relaxed."}
+                        {"value": 0, "title": /*[[#{oa.no_anxiety}]]*/"No anxiety",  "opt_desc":"in the past week."},
+                        {"value": 1, "title": /*[[#{oa.infrequent_anxiety}]]*/"Infrequent anxiety ", "opt_desc":"Felt anxious a few times."},
+                        {"value": 2, "title": /*[[#{oa.occasional_anxiety}]]*/"Occasional anxiety ", "opt_desc":"Felt anxious as much of hte time as not. It was hard to relax."},
+                        {"value": 3, "title": /*[[#{oa.frequent_anxiety}]]*/"Frequent anxiety ",   "opt_desc":"Felt anxious most of the time. It was very difficult to relax."},
+                        {"value": 4, "title": /*[[#{oa.constant_anxiety}]]*/"Constant anxiety",   "opt_desc":"Felt anxious all of the time and never really relaxed."}
                     ],
                     "questions": [
                         {
                             "name": "anxious_freq",
-                            "desc": "In the past week, how often have you felt anxious?"
+                            "desc": /*[[#{oa.anxiety_frequency}]]*/"In the past week, how often have you felt anxious?"
                         }
 
 
@@ -77,19 +65,19 @@
 
             <div class="section">
                 <div id="section2"></div>
-                <script>
+                <script th:inline="javascript">
                     var data = {
                         "options": [
-                            {"value": 0, "title": "Little or None", "opt_desc": "Anxiety was absent or barely noticeable."},
-                            {"value": 1, "title": "Mild ",          "opt_desc": "Anxiety was at a low level. It was possible to relax when I tried. Physical symptoms were only slightly uncomfortable."},
-                            {"value": 2, "title": "Moderate ",      "opt_desc": "Anxiety was distressing at times. It was hard to relax or concentrate, but I could do it if I tried."},
-                            {"value": 3, "title": "Severe ",        "opt_desc": "Anxiety was intense much of the time. It was very difficult to relax or focus on anything else. Physical symptoms were extremely uncomfortable."},
-                            {"value": 4, "title": "Extreme ",       "opt_desc": "Anxiety was overwhelming. It was impossible to relax at all. Physical symptoms were unbearable."}
+                            {"value": 0, "title": /*[[#{oa.little_or_none}]]*/"Little or None", "opt_desc": "Anxiety was absent or barely noticeable."},
+                            {"value": 1, "title": /*[[#{oa.mild}]]*/"Mild ",          "opt_desc": "Anxiety was at a low level. It was possible to relax when I tried. Physical symptoms were only slightly uncomfortable."},
+                            {"value": 2, "title": /*[[#{oa.moderate}]]*/"Moderate ",      "opt_desc": "Anxiety was distressing at times. It was hard to relax or concentrate, but I could do it if I tried."},
+                            {"value": 3, "title": /*[[#{oa.severe}]]*/"Severe ",        "opt_desc": "Anxiety was intense much of the time. It was very difficult to relax or focus on anything else. Physical symptoms were extremely uncomfortable."},
+                            {"value": 4, "title": /*[[#{oa.extreme}]]*/"Extreme ",       "opt_desc": "Anxiety was overwhelming. It was impossible to relax at all. Physical symptoms were unbearable."}
                         ],
                         "questions": [
                             {
                                 "name": "anxious_sev",
-                                "desc": "In the past week, when you have felt anxious, how intense or severe was your anxiety?"
+                                "desc": /*[[#{oa.anxiety_intensity}]]*/"In the past week, when you have felt anxious, how intense or severe was your anxiety?"
                             }
 
 
@@ -103,19 +91,19 @@
 
             <div class="section">
                 <div id="section3"></div>
-                <script>
+                <script th:inline="javascript">
                     var data = {
                         "options": [
-                            {"value": 0, "title": "Never",           "opt_desc": "I do not avoid places, situations, activities, or things because of fear."},
-                            {"value": 1, "title": "Infrequently ",     "opt_desc": "I avoid something once in a while, but will usually face the situation or confront the object. My lifestyle is not affected."},
-                            {"value": 2, "title": "Occasionally ",     "opt_desc": "I have some fear of certain situations, places, or objects, but it is still manageable. My lifestyle has only changed in minor ways. I always or almost always avoid the things I fear when I’m alone, but can handle them if someone comes with me."},
-                            {"value": 3, "title": "Frequently ",        "opt_desc": "I have considerable fear and really try to avoid the things that frighten me. I have made significant changes in my lifestyle to avoid the object, situation, activity, or place."},
-                            {"value": 4, "title": "All the time ",     "opt_desc": "Avoiding objects, situations, activities, or places has taken over my life. My lifestyle has been extensively affected and I no longer do things that I used to enjoy."}
+                            {"value": 0, "title": /*[[#{oa.never}]]*/"Never",           "opt_desc": "I do not avoid places, situations, activities, or things because of fear."},
+                            {"value": 1, "title": /*[[#{oa.infrequently}]]*/"Infrequently ",     "opt_desc": "I avoid something once in a while, but will usually face the situation or confront the object. My lifestyle is not affected."},
+                            {"value": 2, "title": /*[[#{oa.occasionally}]]*/"Occasionally ",     "opt_desc": "I have some fear of certain situations, places, or objects, but it is still manageable. My lifestyle has only changed in minor ways. I always or almost always avoid the things I fear when I’m alone, but can handle them if someone comes with me."},
+                            {"value": 3, "title": /*[[#{oa.frequently}]]*/"Frequently ",        "opt_desc": "I have considerable fear and really try to avoid the things that frighten me. I have made significant changes in my lifestyle to avoid the object, situation, activity, or place."},
+                            {"value": 4, "title": /*[[#{oa.all_the_time}]]*/"All the time ",     "opt_desc": "Avoiding objects, situations, activities, or places has taken over my life. My lifestyle has been extensively affected and I no longer do things that I used to enjoy."}
                         ],
                         "questions": [
                             {
                                 "name": "avoid",
-                                "desc": "In the past week, how often did you avoid situations, places, objects, or activities because of anxiety or fear?"
+                                "desc": /*[[#{oa.avoid}]]*/"In the past week, how often did you avoid situations, places, objects, or activities because of anxiety or fear?"
                             }
 
 
@@ -128,19 +116,19 @@
 
             <div class="section">
                 <div id="section4"></div>
-                <script>
+                <script th:inline="javascript">
                     var data = {
                         "options": [
-                            {"value": 0, "title": "Not at all",           "opt_desc": "No interference at work/home/school from anxiety"},
-                            {"value": 1, "title": "Mildly ",     "opt_desc": "My anxiety has caused some interference at work/home/school. Things are more difficult, but everything that needs to be done is still getting done."},
-                            {"value": 2, "title": "Moderately ",     "opt_desc": "My anxiety definitely interferes with tasks. Most things are still getting done, but few things are being done as well as in the past."},
-                            {"value": 3, "title": "Severely ",        "opt_desc": "My anxiety has really changed my ability to get things done. Some tasks are still being done, but many things are not. My performance has definitely suffered."},
-                            {"value": 4, "title": "Extremely ",     "opt_desc": "My anxiety has become incapacitating. I am unable to complete tasks and have had to leave school, have quit or been fired from my job, or have been unable to complete tasks at home and have faced consequences like bill collectors, eviction, etc."}
+                            {"value": 0, "title": /*[[#{oa.not_at_all}]]*/"Not at all",           "opt_desc": "No interference at work/home/school from anxiety"},
+                            {"value": 1, "title": /*[[#{oa.mildly}]]*/"Mildly ",     "opt_desc": "My anxiety has caused some interference at work/home/school. Things are more difficult, but everything that needs to be done is still getting done."},
+                            {"value": 2, "title": /*[[#{oa.moderately}]]*/"Moderately ",     "opt_desc": "My anxiety definitely interferes with tasks. Most things are still getting done, but few things are being done as well as in the past."},
+                            {"value": 3, "title": /*[[#{oa.severely}]]*/"Severely ",        "opt_desc": "My anxiety has really changed my ability to get things done. Some tasks are still being done, but many things are not. My performance has definitely suffered."},
+                            {"value": 4, "title": /*[[#{oa.extremely}]]*/"Extremely ",     "opt_desc": "My anxiety has become incapacitating. I am unable to complete tasks and have had to leave school, have quit or been fired from my job, or have been unable to complete tasks at home and have faced consequences like bill collectors, eviction, etc."}
                         ],
                         "questions": [
                             {
                                 "name": "interfere",
-                                "desc": "In the past week, how much did your anxiety interfere with your ability to do the things you needed to do at work, at school, or at home?"
+                                "desc": /*[[#{oa.interfere_work}]]*/"In the past week, how much did your anxiety interfere with your ability to do the things you needed to do at work, at school, or at home?"
                             }
 
 
@@ -153,19 +141,19 @@
 
             <div class="section">
                 <div id="section5"></div>
-                <script>
+                <script th:inline="javascript">
                     var data = {
                         "options": [
-                            {"value": 0, "title": "Not at all ",           "opt_desc": "My anxiety doesn’t affect my relationships."},
-                            {"value": 1, "title": "Mildly ",     "opt_desc": "My anxiety slightly interferes with my relationships. Some of my friendships and other relationships have suffered, but, overall, my social life is still fulfilling."},
-                            {"value": 2, "title": "Moderately ",     "opt_desc": "I have experienced some interference with my social life, but I still have a few close relationships. I don’t spend as much time with others as in the past, but I still socialize sometimes."},
-                            {"value": 3, "title": "Severely ",        "opt_desc": " My friendships and other relationships have suffered a lot because of anxiety. I do not enjoy social activities. I socialize very little."},
-                            {"value": 4, "title": "Extremely ",     "opt_desc": "My anxiety has completely disrupted my social activities. All of my relationships have suffered or ended. My family life is extremely strained."}
+                            {"value": 0, "title": /*[[#{oa.not_at_all}]]*/"Not at all ",           "opt_desc": "My anxiety doesn’t affect my relationships."},
+                            {"value": 1, "title": /*[[#{oa.mildly}]]*/"Mildly ",     "opt_desc": "My anxiety slightly interferes with my relationships. Some of my friendships and other relationships have suffered, but, overall, my social life is still fulfilling."},
+                            {"value": 2, "title": /*[[#{oa.moderately}]]*/"Moderately ",     "opt_desc": "I have experienced some interference with my social life, but I still have a few close relationships. I don’t spend as much time with others as in the past, but I still socialize sometimes."},
+                            {"value": 3, "title": /*[[#{oa.severely}]]*/"Severely ",        "opt_desc": " My friendships and other relationships have suffered a lot because of anxiety. I do not enjoy social activities. I socialize very little."},
+                            {"value": 4, "title": /*[[#{oa.extremely}]]*/"Extremely ",     "opt_desc": "My anxiety has completely disrupted my social activities. All of my relationships have suffered or ended. My family life is extremely strained."}
                         ],
                         "questions": [
                             {
                                 "name": "interfere_social",
-                                "desc": "In the past week, how much has anxiety interfered with your social life and relationships?"
+                                "desc": /*[[#{oa.interfere_social}]]*/"In the past week, how much has anxiety interfered with your social life and relationships?"
                             }
 
 
@@ -179,7 +167,7 @@
 
 
         <div class="col-md-12" style="text-align:center">
-            <button type="submit">Next</button>
+            <button type="submit" th:text="#{next}">Next</button>
         </div>
 
     </form>

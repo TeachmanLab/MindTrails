@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title=#{demographics.title})"/>
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p th:text="#{demographics.intro}">We would like to start with a few questions to get to know you
+                    better. Answers to
+                    these personal questions are kept confidential, but they help us improve
+                    MindTrails by figuring out for whom it works well.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <form id="form" th:action="@{/questions/Demographics}" method="POST" th:object="${model}">
+                    <!-- Add timer -->
+                    <input id="timeOnPage" name="timeOnPage" type="hidden"/>
+
+                    <div class="section">
+                        <div><label class="question" th:text="#{demographics.gender}">What is your gender
+                            identity?</label><br/><br/>
+                            <select required="true" th:field="*{gender}">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                                <option value="Female" th:text="#{demographics.female}">Female</option>
+                                <option value="Male" th:text="#{demographics.male}">Male</option>
+                                <option value="Transgender Female" th:text="#{demographics.trans_female}">Transgender
+                                    Female
+                                </option>
+                                <option value="Transgender Male" th:text="#{demographics.trans_male}">Transgender Male
+                                </option>
+                                <option value="Other" th:text="#{other}">Other</option>
+                                <option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                            </select>
+                        </div>
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.birth_year}">What is your birth
+                            year?</label><br/><br/>
+                            <select id="birthYear" required="true" th:field="*{BirthYear}">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                            </select>
+                            <script th:inline="javascript">
+                                /*<![CDATA[*/
+                                $(document).ready(function () {
+                                    var maxYear = new Date().getFullYear() - 18;
+                                    for (i = 0; i < 100; i++) {
+                                        $('#birthYear').append('<option>' + (maxYear - i) + '</option>');
+                                    }
+                                    $('#birthYear').append('<option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>');
+                                });
+                                /*]]>*/
+                            </script>
+                        </div>
+                        <br/>
+
+                        <div class="section" style="margin: 0; border: none; padding: 0;">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div><label class="question" th:text="#{demographics.race}">What is your race?
+                                        Please select all that apply.</label></div>
+                                    <div class="radio">
+                                        <label> <input type="checkbox" th:field="*{race}"
+                                                       value="American Indian/Alaska Native"
+                                                       th:text="#{demographics.american_indian}">&nbsp;&nbsp;American
+                                            Indian/Alaska Native</input></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="checkbox" th:field="*{race}" value="East Asian"
+                                                       th:text="#{demographics.east_asian}"> &nbsp;&nbsp;East
+                                            Asian</input></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="checkbox" th:field="*{race}" value="South Asian"
+                                                       th:text="#{demographics.south_asian}"> &nbsp;&nbsp;South
+                                            Asian</input></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="checkbox" th:field="*{race}"
+                                                       value="Native Hawaiian/Pacific Islander"
+                                                       th:text="#{demographics.pacific}"> &nbsp;&nbsp;Native
+                                            Hawaiian/Pacific Islander</input></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="checkbox" th:field="*{race}" value="Black/African origin"
+                                                       th:text="#{demographics.black}">
+                                            &nbsp;&nbsp;Black/African origin</input></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="checkbox" th:field="*{race}" value="White/European origin"
+                                                       th:text="#{demographics.white}">
+                                            &nbsp;&nbsp;White/European origin</input></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label> <input type="checkbox" th:field="*{race}" value="Other or Unknown"
+                                                       th:text="#{demographics.race_other}"> &nbsp;&nbsp;Other or
+                                            Unknown</input></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label class="question"><input type="checkbox" th:field="*{race}" value="555"
+                                                                       onchange="disableSection(this)"
+                                                                       th:text="#{prefer_not_to_answer}"> &nbsp;&nbsp;Prefer
+                                            not to answer</input>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.ethnicity}">What is your ethnicity?</label><br/><br/>
+                            <select
+                                    th:field="*{Ethnicity}"
+                                    required="true">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                                <option value="Hispanic or Latino" th:text="#{demographics.hispanic}">Hispanic or
+                                    Latino
+                                </option>
+                                <option value="Not Hispanic or Latino" th:text="#{demographics.not_hispanic}">Not
+                                    Hispanic or Latino
+                                </option>
+                                <option value="Unknown" th:text="#{demographics.ethnicity_unknown}">Unknown</option>
+                                <option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                            </select>
+                        </div>
+                        <br/>
+
+                        <div><label class="question" required="true"
+                                    th:field="*{Birthplace}" th:text="#{demographics.birthplace}">What is your birthplace?</label><br/>
+                            <div class="col-md-8">
+                            <textarea style="resize: none;" rows="1" cols="30" required="true" />
+                        </div>
+                            </div>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <div><label class="question" required="true"
+                                    th:field="*{Nationality}" th:text="#{demographics.nationality}">What nationality or nationalities is/are associated with your family history?</label><br/>
+                            <div class="col-md-8">
+                                <textarea style="resize: none;" rows="1" cols="30" required="true" />
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.country}"> What is your country of residence?
+                            <select
+                                required="true" class="auto-selector"
+                                placeholder="Type your country of residence"
+                                th:field="*{Country}" autofocus="autofocus"
+                                autocorrect="off" autocomplete="off">
+                            <option value="" selected="selected" th:text="#{please_select_one}">Please select one
+                            </option>
+                            <option value="United States" data-relevancy-booster="3.5"
+                                    data-alternative-spellings="US USA United States of America"
+                                    th:text="#{demographics.US}">United States
+                            </option>
+                            <option value="Afghanistan" data-alternative-spellings="AF" th:text="#{demographics.AF}">
+                                Afghanistan
+                            </option>
+                            <option value="Åland Islands" data-alternative-spellings="AX Aaland Aland"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.AX}">Åland Islands
+                            </option>
+                            <option value="Albania" data-alternative-spellings="AL" th:text="#{demographics.AL}">
+                                Albania
+                            </option>
+                            <option value="Algeria" data-alternative-spellings="DZ" th:text="#{demographics.DZ}">
+                                Algeria
+                            </option>
+                            <option value="American Samoa" data-alternative-spellings="AS"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.AS}">American Samoa
+                            </option>
+                            <option value="Andorra" data-alternative-spellings="AD" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.AD}">
+                                Andorra
+                            </option>
+                            <option value="Angola" data-alternative-spellings="AO" th:text="#{demographics.AO}">Angola
+                            </option>
+                            <option value="Anguilla" data-alternative-spellings="AI" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.AI}">
+                                Anguilla
+                            </option>
+                            <option value="Antarctica" data-alternative-spellings="AQ" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.AQ}">
+                                Antarctica
+                            </option>
+                            <option value="Antigua And Barbuda" data-alternative-spellings="AG"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.AG}">Antigua and Barbuda
+                            </option>
+                            <option value="Argentina" data-alternative-spellings="AR" th:text="#{demographics.AR}">
+                                Argentina
+                            </option>
+                            <option value="Armenia" data-alternative-spellings="AM" th:text="#{demographics.AM}">
+                                Armenia
+                            </option>
+                            <option value="Aruba" data-alternative-spellings="AW" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.AW}">
+                                Aruba
+                            </option>
+                            <option value="Australia" data-alternative-spellings="AU" data-relevancy-booster="1.5"
+                                    th:text="#{demographics.AU}">
+                                Australia
+                            </option>
+                            <option value="Austria"
+                                    data-alternative-spellings="AT Österreich Osterreich Oesterreich "
+                                    th:text="#{demographics.AT}">Austria
+                            </option>
+                            <option value="Azerbaijan" data-alternative-spellings="AZ" th:text="#{demographics.AZ}">
+                                Azerbaijan
+                            </option>
+                            <option value="Bahamas" data-alternative-spellings="BS" th:text="#{demographics.BS}">
+                                Bahamas
+                            </option>
+                            <option value="Bahrain" data-alternative-spellings="BH" th:text="#{demographics.BH}">
+                                Bahrain
+                            </option>
+                            <option value="Bangladesh" data-alternative-spellings="BD" data-relevancy-booster="2"
+                                    th:text="#{demographics.BD}">
+                                Bangladesh
+                            </option>
+                            <option value="Barbados" data-alternative-spellings="BB" th:text="#{demographics.BB}">
+                                Barbados
+                            </option>
+                            <option value="Belarus" data-alternative-spellings="BY" th:text="#{demographics.BY}">
+                                Belarus
+                            </option>
+                            <option value="Belgium" data-alternative-spellings="BE België Belgie Belgien Belgique"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.BE}">Belgium
+                            </option>
+                            <option value="Belize" data-alternative-spellings="BZ" th:text="#{demographics.BZ}">Belize
+                            </option>
+                            <option value="Benin" data-alternative-spellings="BJ" th:text="#{demographics.BJ}">Benin
+                            </option>
+                            <option value="Bermuda" data-alternative-spellings="BM" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.BM}">
+                                Bermuda
+                            </option>
+                            <option value="Bhutan" data-alternative-spellings="BT" th:text="#{demographics.BT}">Bhutan
+                            </option>
+                            <option value="Bolivia" data-alternative-spellings="BO" th:text="#{demographics.BO}">
+                                Bolivia
+                            </option>
+                            <option value="Bonaire, Sint Eustatius and Saba" data-alternative-spellings="BQ"
+                                    th:text="#{demographics.BQ}">
+                                Bonaire, Sint Eustatius and Saba
+                            </option>
+                            <option value="Bosnia and Herzegovina" data-alternative-spellings="BA"
+                                    th:text="#{demographics.BA}">Bosnia and
+                                Herzegovina
+                            </option>
+                            <option value="Botswana" data-alternative-spellings="BW" th:text="#{demographics.BW}">
+                                Botswana
+                            </option>
+                            <option value="Bouvet Island" data-alternative-spellings="BV" th:text="#{demographics.BV}">
+                                Bouvet Island
+                            </option>
+                            <option value="Brazil" data-alternative-spellings="BR Brasil"
+                                    data-relevancy-booster="2" th:text="#{demographics.BR}">Brazil
+                            </option>
+                            <option value="British Indian Ocean Territory" data-alternative-spellings="IO"
+                                    th:text="#{demographics.IO}">British
+                                Indian Ocean Territory
+                            </option>
+                            <option value="Brunei Darussalam" data-alternative-spellings="BN"
+                                    th:text="#{demographics.BN}">Brunei Darussalam
+                            </option>
+                            <option value="Bulgaria" data-alternative-spellings="BG" th:text="#{demographics.BG}">
+                                Bulgaria
+                            </option>
+                            <option value="Burkina Faso" data-alternative-spellings="BF" th:text="#{demographics.BF}">
+                                Burkina Faso
+                            </option>
+                            <option value="Burundi" data-alternative-spellings="BI" th:text="#{demographics.BI}">
+                                Burundi
+                            </option>
+                            <option value="Cambodia" data-alternative-spellings="KH" th:text="#{demographics.KH}">
+                                Cambodia
+                            </option>
+                            <option value="Cameroon" data-alternative-spellings="CM" th:text="#{demographics.CM}">
+                                Cameroon
+                            </option>
+                            <option value="Canada" data-alternative-spellings="CA" data-relevancy-booster="2"
+                                    th:text="#{demographics.CA}">
+                                Canada
+                            </option>
+                            <option value="Cape Verde" data-alternative-spellings="CV" th:text="#{demographics.CV}">Cape
+                                Verde
+                            </option>
+                            <option value="Cayman Islands" data-alternative-spellings="KY"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.KY}">Cayman Islands
+                            </option>
+                            <option value="Central African Republic" data-alternative-spellings="CF"
+                                    th:text="#{demographics.CF}">Central African
+                                Republic
+                            </option>
+                            <option value="Chad" data-alternative-spellings="TD" th:text="#{demographics.TD}">Chad
+                            </option>
+                            <option value="Chile" data-alternative-spellings="CL" th:text="#{demographics.CL}">Chile
+                            </option>
+                            <option value="China" data-relevancy-booster="3.5"
+                                    data-alternative-spellings="CN Zhongguo Zhonghua Peoples Republic"
+                                    th:text="#{demographics.CN}">China
+                            </option>
+                            <option value="Christmas Island" data-alternative-spellings="CX"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.CX}">Christmas Island
+                            </option>
+                            <option value="Cocos (Keeling) Islands" data-alternative-spellings="CC"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.CC}">Cocos (Keeling) Islands
+                            </option>
+                            <option value="Colombia" data-alternative-spellings="CO" th:text="#{demographics.CO}">
+                                Colombia
+                            </option>
+                            <option value="Comoros" data-alternative-spellings="KM" th:text="#{demographics.KM}">
+                                Comoros
+                            </option>
+                            <option value="Congo" data-alternative-spellings="CG" th:text="#{demographics.CG}">Congo
+                            </option>
+                            <option value="Congo, the Democratic Republic of the" data-alternative-spellings="CD"
+                                    th:text="#{demographics.CD}">
+                                Congo, Democratic Republic of the
+                            </option>
+                            <option value="Cook Islands" data-alternative-spellings="CK"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.CK}">Cook Islands
+                            </option>
+                            <option value="Costa Rica" data-alternative-spellings="CR" th:text="#{demographics.CR}">
+                                Costa Rica
+                            </option>
+                            <option value="Côte d'Ivoire" data-alternative-spellings="CI Cote dIvoire"
+                                    th:text="#{demographics.CI}">Côte
+                                d'Ivoire
+                            </option>
+                            <option value="Croatia" data-alternative-spellings="HR Hrvatska"
+                                    th:text="#{demographics.HR}">Croatia
+                            </option>
+                            <option value="Cuba" data-alternative-spellings="CU" th:text="#{demographics.CU}">Cuba
+                            </option>
+                            <option value="Curaçao" data-alternative-spellings="CW Curacao"
+                                    th:text="#{demographics.CW}">Curaçao
+                            </option>
+                            <option value="Cyprus" data-alternative-spellings="CY" th:text="#{demographics.CY}">Cyprus
+                            </option>
+                            <option value="Czech Republic" data-alternative-spellings="CZ Česká Ceska"
+                                    th:text="#{demographics.CZ}">Czech
+                                Republic
+                            </option>
+                            <option value="Denmark" data-alternative-spellings="DK Danmark"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.DK}">Denmark
+                            </option>
+                            <option value="Djibouti" data-alternative-spellings="DJ" th:text="#{demographics.DJ}">
+                                Djibouti
+                            </option>
+                            <option value="Dominica" data-alternative-spellings="DM" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.DM}">
+                                Dominica
+                            </option>
+                            <option value="Dominican Republic" data-alternative-spellings="DO"
+                                    th:text="#{demographics.DO}">Dominican Republic
+                            </option>
+                            <option value="Ecuador" data-alternative-spellings="EC" th:text="#{demographics.EC}">
+                                Ecuador
+                            </option>
+                            <option value="Egypt" data-alternative-spellings="EG" data-relevancy-booster="1.5"
+                                    th:text="#{demographics.EG}">
+                                Egypt
+                            </option>
+                            <option value="El Salvador" data-alternative-spellings="SV" th:text="#{demographics.SV}">El
+                                Salvador
+                            </option>
+                            <option value="Equatorial Guinea" data-alternative-spellings="GQ"
+                                    th:text="#{demographics.GQ}">Equatorial Guinea
+                            </option>
+                            <option value="Eritrea" data-alternative-spellings="ER" th:text="#{demographics.ER}">
+                                Eritrea
+                            </option>
+                            <option value="Estonia" data-alternative-spellings="EE Eesti" th:text="#{demographics.EE}">
+                                Estonia
+                            </option>
+                            <option value="Ethiopia" data-alternative-spellings="ET" th:text="#{demographics.ET}">
+                                Ethiopia
+                            </option>
+                            <option value="Falkland Islands (Malvinas)" data-alternative-spellings="FK"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.FK}">Falkland Islands
+                                (Malvinas)
+                            </option>
+                            <option value="Faroe Islands" data-alternative-spellings="FO Føroyar Færøerne"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.FO}">Faroe Islands
+                            </option>
+                            <option value="Fiji" data-alternative-spellings="FJ" th:text="#{demographics.FJ}">Fiji
+                            </option>
+                            <option value="Finland" data-alternative-spellings="FI Suomi" th:text="#{demographics.FI}">
+                                Finland
+                            </option>
+                            <option value="France" data-alternative-spellings="FR République française"
+                                    data-relevancy-booster="2.5" th:text="#{demographics.FR}">France
+                            </option>
+                            <option value="French Guiana" data-alternative-spellings="GF" th:text="#{demographics.GF}">
+                                French Guiana
+                            </option>
+                            <option value="French Polynesia" data-alternative-spellings="PF"
+                                    th:text="#{demographics.PF}">French Polynesia
+                            </option>
+                            <option value="French Southern Territories" data-alternative-spellings="TF"
+                                    th:text="#{demographics.TF}">French
+                                Southern Territories
+                            </option>
+                            <option value="Gabon" data-alternative-spellings="GA" th:text="#{demographics.GA}">Gabon
+                            </option>
+                            <option value="Gambia" data-alternative-spellings="GM" th:text="#{demographics.GM}">Gambia
+                            </option>
+                            <option value="Georgia" data-alternative-spellings="GE" th:text="#{demographics.GE}">
+                                Georgia
+                            </option>
+                            <option value="Germany" data-alternative-spellings="DE Bundesrepublik Deutschland"
+                                    data-relevancy-booster="3" th:text="#{demographics.DE}">Germany
+                            </option>
+                            <option value="Ghana" data-alternative-spellings="GH" th:text="#{demographics.GH}">Ghana
+                            </option>
+                            <option value="Gibraltar" data-alternative-spellings="GI" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.GI}">
+                                Gibraltar
+                            </option>
+                            <option value="Greece" data-alternative-spellings="GR" data-relevancy-booster="1.5"
+                                    th:text="#{demographics.GR}">
+                                Greece
+                            </option>
+                            <option value="Greenland" data-alternative-spellings="GL grønland"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.GL}">Greenland
+                            </option>
+                            <option value="Grenada" data-alternative-spellings="GD" th:text="#{demographics.GD}">
+                                Grenada
+                            </option>
+                            <option value="Guadeloupe" data-alternative-spellings="GP" th:text="#{demographics.GP}">
+                                Guadeloupe
+                            </option>
+                            <option value="Guam" data-alternative-spellings="GU" th:text="#{demographics.GU}">Guam
+                            </option>
+                            <option value="Guatemala" data-alternative-spellings="GT" th:text="#{demographics.GT}">
+                                Guatemala
+                            </option>
+                            <option value="Guernsey" data-alternative-spellings="GG" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.GG}">
+                                Guernsey
+                            </option>
+                            <option value="Guinea" data-alternative-spellings="GN" th:text="#{demographics.GN}">Guinea
+                            </option>
+                            <option value="Guinea-Bissau" data-alternative-spellings="GW" th:text="#{demographics.GW}">
+                                Guinea-Bissau
+                            </option>
+                            <option value="Guyana" data-alternative-spellings="GY" th:text="#{demographics.GY}">Guyana
+                            </option>
+                            <option value="Haiti" data-alternative-spellings="HT" th:text="#{demographics.HT}">Haiti
+                            </option>
+                            <option value="Heard Island and McDonald Islands" data-alternative-spellings="HM"
+                                    th:text="#{demographics.HM}">Heard
+                                Island and McDonald Islands
+                            </option>
+                            <option value="Holy See (Vatican City State)" data-alternative-spellings="VA"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.VA}">Holy See (Vatican City
+                                State)
+                            </option>
+                            <option value="Honduras" data-alternative-spellings="HN" th:text="#{demographics.HN}">
+                                Honduras
+                            </option>
+                            <option value="Hong Kong" data-alternative-spellings="HK" th:text="#{demographics.HK}">Hong
+                                Kong
+                            </option>
+                            <option value="Hungary" data-alternative-spellings="HU" th:text="#{demographics.HU}">
+                                Hungary
+                            </option>
+                            <option value="Iceland" data-alternative-spellings="IS Island" th:text="#{demographics.IS}">
+                                Iceland
+                            </option>
+                            <option value="India" data-alternative-spellings="IN" data-relevancy-booster="3"
+                                    th:text="#{demographics.IN}">India
+                            </option>
+                            <option value="Indonesia" data-alternative-spellings="ID" data-relevancy-booster="2"
+                                    th:text="#{demographics.ID}">
+                                Indonesia
+                            </option>
+                            <option value="Iran, Islamic Republic of" data-alternative-spellings="IR"
+                                    th:text="#{demographics.IR}">Iran, Islamic
+                                Republic of
+                            </option>
+                            <option value="Iraq" data-alternative-spellings="IQ" th:text="#{demographics.IQ}">Iraq
+                            </option>
+                            <option value="Ireland" data-alternative-spellings="IE Éire"
+                                    data-relevancy-booster="1.2" th:text="#{demographics.IE}">Ireland
+                            </option>
+                            <option value="Isle of Man" data-alternative-spellings="IM"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.IM}">Isle of Man
+                            </option>
+                            <option value="Israel" data-alternative-spellings="IL" th:text="#{demographics.IL}">Israel
+                            </option>
+                            <option value="Italy" data-alternative-spellings="IT Italia" data-relevancy-booster="2"
+                                    th:text="#{demographics.IT}">
+                                Italy
+                            </option>
+                            <option value="Jamaica" data-alternative-spellings="JM" th:text="#{demographics.JM}">
+                                Jamaica
+                            </option>
+                            <option value="Japan" data-alternative-spellings="JP Nippon Nihon"
+                                    data-relevancy-booster="2.5" th:text="#{demographics.JP}">Japan
+                            </option>
+                            <option value="Jersey" data-alternative-spellings="JE" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.JE}">
+                                Jersey
+                            </option>
+                            <option value="Jordan" data-alternative-spellings="JO" th:text="#{demographics.JO}">Jordan
+                            </option>
+                            <option value="Kazakhstan" data-alternative-spellings="KZ" th:text="#{demographics.KZ}">
+                                Kazakhstan
+                            </option>
+                            <option value="Kenya" data-alternative-spellings="KE" th:text="#{demographics.KE}">Kenya
+                            </option>
+                            <option value="Kiribati" data-alternative-spellings="KI" th:text="#{demographics.KI}">
+                                Kiribati
+                            </option>
+                            <option value="Korea, Democratic People's Republic of"
+                                    data-alternative-spellings="KP North Korea" th:text="#{demographics.KP}">Korea,
+                                Democratic People's Republic
+                                of
+                            </option>
+                            <option value="Korea, Republic of" data-alternative-spellings="KR South Korea"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.KR}">Korea, Republic of
+                            </option>
+                            <option value="Kuwait" data-alternative-spellings="KW" th:text="#{demographics.KW}">Kuwait
+                            </option>
+                            <option value="Kyrgyzstan" data-alternative-spellings="KG" th:text="#{demographics.KG}">
+                                Kyrgyzstan
+                            </option>
+                            <option value="Lao People's Democratic Republic" data-alternative-spellings="LA"
+                                    th:text="#{demographics.LA}">Lao
+                                People's Democratic Republic
+                            </option>
+                            <option value="Latvia" data-alternative-spellings="LV" th:text="#{demographics.LV}">Latvia
+                            </option>
+                            <option value="Lebanon" data-alternative-spellings="LB" th:text="#{demographics.LB}">
+                                Lebanon
+                            </option>
+                            <option value="Lesotho" data-alternative-spellings="LS" th:text="#{demographics.LS}">
+                                Lesotho
+                            </option>
+                            <option value="Liberia" data-alternative-spellings="LR" th:text="#{demographics.LR}">
+                                Liberia
+                            </option>
+                            <option value="Libyan Arab Jamahiriya" data-alternative-spellings="LY"
+                                    th:text="#{demographics.LY}">Libyan Arab
+                                Jamahiriya
+                            </option>
+                            <option value="Liechtenstein" data-alternative-spellings="LI" th:text="#{demographics.LI}">
+                                Liechtenstein
+                            </option>
+                            <option value="Lithuania" data-alternative-spellings="LT" th:text="#{demographics.LT}">
+                                Lithuania
+                            </option>
+                            <option value="Luxembourg" data-alternative-spellings="LU" th:text="#{demographics.LU}">
+                                Luxembourg
+                            </option>
+                            <option value="Macao" data-alternative-spellings="MO" th:text="#{demographics.MO}">Macao
+                            </option>
+                            <option value="Macedonia, The Former Yugoslav Republic Of"
+                                    data-alternative-spellings="MK" th:text="#{demographics.MK}">Macedonia, Former
+                                Yugoslav Republic Of
+                            </option>
+                            <option value="Madagascar" data-alternative-spellings="MG" th:text="#{demographics.MG}">
+                                Madagascar
+                            </option>
+                            <option value="Malawi" data-alternative-spellings="MW" th:text="#{demographics.MW}">Malawi
+                            </option>
+                            <option value="Malaysia" data-alternative-spellings="MY" th:text="#{demographics.MY}">
+                                Malaysia
+                            </option>
+                            <option value="Maldives" data-alternative-spellings="MV" th:text="#{demographics.MV}">
+                                Maldives
+                            </option>
+                            <option value="Mali" data-alternative-spellings="ML" th:text="#{demographics.ML}">Mali
+                            </option>
+                            <option value="Malta" data-alternative-spellings="MT" th:text="#{demographics.MT}">Malta
+                            </option>
+                            <option value="Marshall Islands" data-alternative-spellings="MH"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.MH}">Marshall Islands
+                            </option>
+                            <option value="Martinique" data-alternative-spellings="MQ" th:text="#{demographics.MQ}">
+                                Martinique
+                            </option>
+                            <option value="Mauritania" data-alternative-spellings="MR" th:text="#{demographics.MR}">
+                                Mauritania
+                            </option>
+                            <option value="Mauritius" data-alternative-spellings="MU" th:text="#{demographics.MU}">
+                                Mauritius
+                            </option>
+                            <option value="Mayotte" data-alternative-spellings="YT" th:text="#{demographics.YT}">
+                                Mayotte
+                            </option>
+                            <option value="Mexico" data-alternative-spellings="MX Mexicanos"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.MX}">Mexico
+                            </option>
+                            <option value="Micronesia, Federated States of" data-alternative-spellings="FM"
+                                    th:text="#{demographics.FM}">
+                                Micronesia, Federated States of
+                            </option>
+                            <option value="Moldova, Republic of" data-alternative-spellings="MD"
+                                    th:text="#{demographics.MD}">Moldova, Republic
+                                of
+                            </option>
+                            <option value="Monaco" data-alternative-spellings="MC" th:text="#{demographics.MC}">Monaco
+                            </option>
+                            <option value="Mongolia" data-alternative-spellings="MN" th:text="#{demographics.MN}">
+                                Mongolia
+                            </option>
+                            <option value="Montenegro" data-alternative-spellings="ME" th:text="#{demographics.ME}">
+                                Montenegro
+                            </option>
+                            <option value="Montserrat" data-alternative-spellings="MS" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.MS}">
+                                Montserrat
+                            </option>
+                            <option value="Morocco" data-alternative-spellings="MA" th:text="#{demographics.MA}">
+                                Morocco
+                            </option>
+                            <option value="Mozambique" data-alternative-spellings="MZ" th:text="#{demographics.MZ}">
+                                Mozambique
+                            </option>
+                            <option value="Myanmar" data-alternative-spellings="MM" th:text="#{demographics.MM}">
+                                Myanmar
+                            </option>
+                            <option value="Namibia" data-alternative-spellings="NA" th:text="#{demographics.NA}">
+                                Namibia
+                            </option>
+                            <option value="Nauru" data-alternative-spellings="NR" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.NR}">
+                                Nauru
+                            </option>
+                            <option value="Nepal" data-alternative-spellings="NP" th:text="#{demographics.NP}">Nepal
+                            </option>
+                            <option value="Netherlands" data-alternative-spellings="NL Holland Nederland"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.NL}">Netherlands
+                            </option>
+                            <option value="New Caledonia" data-alternative-spellings="NC"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.NC}">New Caledonia
+                            </option>
+                            <option value="New Zealand" data-alternative-spellings="NZ" th:text="#{demographics.NZ}">New
+                                Zealand
+                            </option>
+                            <option value="Nicaragua" data-alternative-spellings="NI" th:text="#{demographics.NI}">
+                                Nicaragua
+                            </option>
+                            <option value="Niger" data-alternative-spellings="NE" th:text="#{demographics.NE}">Niger
+                            </option>
+                            <option value="Nigeria" data-alternative-spellings="NG" data-relevancy-booster="1.5"
+                                    th:text="#{demographics.NG}">
+                                Nigeria
+                            </option>
+                            <option value="Niue" data-alternative-spellings="NU" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.NU}">Niue
+                            </option>
+                            <option value="Norfolk Island" data-alternative-spellings="NF"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.NF}">Norfolk Island
+                            </option>
+                            <option value="Northern Mariana Islands" data-alternative-spellings="MP"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.MP}">Northern Mariana Islands
+                            </option>
+                            <option value="Norway" data-alternative-spellings="NO Norge Noreg"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.NO}">Norway
+                            </option>
+                            <option value="Oman" data-alternative-spellings="OM" th:text="#{demographics.OM}">Oman
+                            </option>
+                            <option value="Pakistan" data-alternative-spellings="PK" data-relevancy-booster="2"
+                                    th:text="#{demographics.PK}">
+                                Pakistan
+                            </option>
+                            <option value="Palau" data-alternative-spellings="PW" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.PW}">
+                                Palau
+                            </option>
+                            <option value="Palestinian Territory, Occupied" data-alternative-spellings="PS"
+                                    th:text="#{demographics.PS}">
+                                Palestinian Territory, Occupied
+                            </option>
+                            <option value="Panama" data-alternative-spellings="PA" th:text="#{demographics.PA}">Panama
+                            </option>
+                            <option value="Papua New Guinea" data-alternative-spellings="PG"
+                                    th:text="#{demographics.PG}">Papua New Guinea
+                            </option>
+                            <option value="Paraguay" data-alternative-spellings="PY" th:text="#{demographics.PY}">
+                                Paraguay
+                            </option>
+                            <option value="Peru" data-alternative-spellings="PE" th:text="#{demographics.PE}">Peru
+                            </option>
+                            <option value="Philippines" data-alternative-spellings="PH"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.PH}">Philippines
+                            </option>
+                            <option value="Pitcairn" data-alternative-spellings="PN" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.PN}">
+                                Pitcairn
+                            </option>
+                            <option value="Poland" data-alternative-spellings="PL" data-relevancy-booster="1.25"
+                                    th:text="#{demographics.PL}">
+                                Poland
+                            </option>
+                            <option value="Portugal" data-alternative-spellings="PT" data-relevancy-booster="1.5"
+                                    th:text="#{demographics.PT}">
+                                Portugal
+                            </option>
+                            <option value="Puerto Rico" data-alternative-spellings="PR" th:text="#{demographics.PR}">
+                                Puerto Rico
+                            </option>
+                            <option value="Qatar" data-alternative-spellings="QA" th:text="#{demographics.QA}">Qatar
+                            </option>
+                            <option value="Réunion" data-alternative-spellings="RE Reunion"
+                                    th:text="#{demographics.RE}">Réunion
+                            </option>
+                            <option value="Romania" data-alternative-spellings="RO" th:text="#{demographics.RO}">
+                                Romania
+                            </option>
+                            <option value="Russian Federation" data-alternative-spellings="RU Russia Rossiya"
+                                    data-relevancy-booster="2.5" th:text="#{demographics.RU}">Russian Federation
+                            </option>
+                            <option value="Rwanda" data-alternative-spellings="RW" th:text="#{demographics.RW}">Rwanda
+                            </option>
+                            <option value="Saint Barthélemy" data-alternative-spellings="BL"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.BL}">Saint Barthélemy
+                            </option>
+                            <option value="Saint Helena" data-alternative-spellings="SH"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.SH}">Saint Helena
+                            </option>
+                            <option value="Saint Kitts and Nevis" data-alternative-spellings="KN"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.KN}">Saint Kitts and Nevis
+                            </option>
+                            <option value="Saint Lucia" data-alternative-spellings="LC"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.LC}">Saint Lucia
+                            </option>
+                            <option value="Saint Martin (French Part)" data-alternative-spellings="MF"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.MF}">Saint Martin (French Part)
+                            </option>
+                            <option value="Saint Pierre and Miquelon" data-alternative-spellings="PM"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.PM}">Saint Pierre and Miquelon
+                            </option>
+                            <option value="Saint Vincent and the Grenadines" data-alternative-spellings="VC"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.VC}">Saint Vincent and the
+                                Grenadines
+                            </option>
+                            <option value="Samoa" data-alternative-spellings="WS" th:text="#{demographics.WS}">Samoa
+                            </option>
+                            <option value="San Marino" data-alternative-spellings="SM" th:text="#{demographics.SM}">San
+                                Marino
+                            </option>
+                            <option value="Sao Tome and Principe" data-alternative-spellings="ST"
+                                    th:text="#{demographics.ST}">Sao Tome and
+                                Principe
+                            </option>
+                            <option value="Saudi Arabia" data-alternative-spellings="SA" th:text="#{demographics.SA}">
+                                Saudi Arabia
+                            </option>
+                            <option value="Senegal" data-alternative-spellings="SN" th:text="#{demographics.SN}">
+                                Senegal
+                            </option>
+                            <option value="Serbia" data-alternative-spellings="RS" th:text="#{demographics.RS}">Serbia
+                            </option>
+                            <option value="Seychelles" data-alternative-spellings="SC" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.SC}">
+                                Seychelles
+                            </option>
+                            <option value="Sierra Leone" data-alternative-spellings="SL" th:text="#{demographics.SL}">
+                                Sierra Leone
+                            </option>
+                            <option value="Singapore" data-alternative-spellings="SG" th:text="#{demographics.SG}">
+                                Singapore
+                            </option>
+                            <option value="Sint Maarten (Dutch Part)" data-alternative-spellings="SX"
+                                    th:text="#{demographics.SX}">Sint Maarten
+                                (Dutch Part)
+                            </option>
+                            <option value="Slovakia" data-alternative-spellings="SK" th:text="#{demographics.SK}">
+                                Slovakia
+                            </option>
+                            <option value="Slovenia" data-alternative-spellings="SI" th:text="#{demographics.SI}">
+                                Slovenia
+                            </option>
+                            <option value="Solomon Islands" data-alternative-spellings="SB"
+                                    th:text="#{demographics.SB}">Solomon Islands
+                            </option>
+                            <option value="Somalia" data-alternative-spellings="SO" th:text="#{demographics.SO}">
+                                Somalia
+                            </option>
+                            <option value="South Africa" data-alternative-spellings="ZA" th:text="#{demographics.ZA}">
+                                South Africa
+                            </option>
+                            <option value="South Georgia and the South Sandwich Islands"
+                                    data-alternative-spellings="GS" th:text="#{demographics.GS}">South Georgia and the
+                                South Sandwich Islands
+                            </option>
+                            <option value="South Sudan" data-alternative-spellings="SS" th:text="#{demographics.SS}">
+                                South Sudan
+                            </option>
+                            <option value="Spain" data-alternative-spellings="ES España" data-relevancy-booster="2"
+                                    th:text="#{demographics.ES}">
+                                Spain
+                            </option>
+                            <option value="Sri Lanka" data-alternative-spellings="LK" th:text="#{demographics.LK}">Sri
+                                Lanka
+                            </option>
+                            <option value="Sudan" data-alternative-spellings="SD" th:text="#{demographics.SD}">Sudan
+                            </option>
+                            <option value="Suriname" data-alternative-spellings="SR" th:text="#{demographics.SR}">
+                                Suriname
+                            </option>
+                            <option value="Svalbard and Jan Mayen" data-alternative-spellings="SJ"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.SJ}">Svalbard and Jan Mayen
+                            </option>
+                            <option value="Swaziland" data-alternative-spellings="SZ" th:text="#{demographics.SZ}">
+                                Swaziland
+                            </option>
+                            <option value="Sweden" data-alternative-spellings="SE Sverige"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.SE}">Sweden
+                            </option>
+                            <option value="Switzerland"
+                                    data-alternative-spellings="CH Swiss Confederation Schweiz Suisse Svizzera Svizra"
+                                    data-relevancy-booster="1.5" th:text="#{demographics.CH}">Switzerland
+                            </option>
+                            <option value="Syrian Arab Republic" data-alternative-spellings="SY Syria"
+                                    th:text="#{demographics.SY}">Syrian Arab
+                                Republic
+                            </option>
+                            <option value="Taiwan, Province of China" data-alternative-spellings="TW"
+                                    th:text="#{demographics.TW}">Taiwan,
+                                Province of China
+                            </option>
+                            <option value="Tajikistan" data-alternative-spellings="TJ" th:text="#{demographics.TJ}">
+                                Tajikistan
+                            </option>
+                            <option value="Tanzania, United Republic of" data-alternative-spellings="TZ"
+                                    th:text="#{demographics.TZ}">Tanzania,
+                                United Republic of
+                            </option>
+                            <option value="Thailand" data-alternative-spellings="TH" th:text="#{demographics.TH}">
+                                Thailand
+                            </option>
+                            <option value="Timor-Leste" data-alternative-spellings="TL" th:text="#{demographics.TL}">
+                                Timor-Leste
+                            </option>
+                            <option value="Togo" data-alternative-spellings="TG" th:text="#{demographics.TG}">Togo
+                            </option>
+                            <option value="Tokelau" data-alternative-spellings="TK" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.TK}">
+                                Tokelau
+                            </option>
+                            <option value="Tonga" data-alternative-spellings="TO" th:text="#{demographics.TO}">Tonga
+                            </option>
+                            <option value="Trinidad and Tobago" data-alternative-spellings="TT"
+                                    th:text="#{demographics.TT}">Trinidad and
+                                Tobago
+                            </option>
+                            <option value="Tunisia" data-alternative-spellings="TN" th:text="#{demographics.TN}">
+                                Tunisia
+                            </option>
+                            <option value="Turkey" data-alternative-spellings="TR Türkiye Turkiye"
+                                    th:text="#{demographics.TR}">Turkey
+                            </option>
+                            <option value="Turkmenistan" data-alternative-spellings="TM" th:text="#{demographics.TM}">
+                                Turkmenistan
+                            </option>
+                            <option value="Turks and Caicos Islands" data-alternative-spellings="TC"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.TC}">Turks and Caicos Islands
+                            </option>
+                            <option value="Tuvalu" data-alternative-spellings="TV" data-relevancy-booster="0.5"
+                                    th:text="#{demographics.TV}">
+                                Tuvalu
+                            </option>
+                            <option value="Uganda" data-alternative-spellings="UG" th:text="#{demographics.UG}">Uganda
+                            </option>
+                            <option value="Ukraine" data-alternative-spellings="UA Ukrayina"
+                                    th:text="#{demographics.UA}">Ukraine
+                            </option>
+                            <option value="United Arab Emirates" data-alternative-spellings="AE UAE Emirates"
+                                    th:text="#{demographics.AE}">United
+                                Arab Emirates
+                            </option>
+                            <option value="United Kingdom"
+                                    data-alternative-spellings="GB Great Britain England UK Wales Scotland Northern Ireland"
+                                    data-relevancy-booster="2.5" th:text="#{demographics.GB}">United Kingdom
+                            </option>
+                            <option value="United States Minor Outlying Islands" data-alternative-spellings="UM"
+                                    th:text="#{demographics.UM}">
+                                United States Minor Outlying Islands
+                            </option>
+                            <option value="Uruguay" data-alternative-spellings="UY" th:text="#{demographics.UY}">
+                                Uruguay
+                            </option>
+                            <option value="Uzbekistan" data-alternative-spellings="UZ" th:text="#{demographics.UZ}">
+                                Uzbekistan
+                            </option>
+                            <option value="Vanuatu" data-alternative-spellings="VU" th:text="#{demographics.VU}">
+                                Vanuatu
+                            </option>
+                            <option value="Venezuela" data-alternative-spellings="VE" th:text="#{demographics.VE}">
+                                Venezuela
+                            </option>
+                            <option value="Vietnam" data-alternative-spellings="VN" data-relevancy-booster="1.5"
+                                    th:text="#{demographics.VN}">
+                                Vietnam
+                            </option>
+                            <option value="Virgin Islands, British" data-alternative-spellings="VG"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.VG}">Virgin Islands, British
+                            </option>
+                            <option value="Virgin Islands, U.S." data-alternative-spellings="VI"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.VI}">Virgin Islands, U.S.
+                            </option>
+                            <option value="Wallis and Futuna" data-alternative-spellings="WF"
+                                    data-relevancy-booster="0.5" th:text="#{demographics.WF}">Wallis and Futuna
+                            </option>
+                            <option value="Western Sahara" data-alternative-spellings="EH" th:text="#{demographics.EH}">
+                                Western Sahara
+                            </option>
+                            <option value="Yemen" data-alternative-spellings="YE" th:text="#{demographics.YE}">Yemen
+                            </option>
+                            <option value="Zambia" data-alternative-spellings="ZM" th:text="#{demographics.ZM}">Zambia
+                            </option>
+                            <option value="Zimbabwe" data-alternative-spellings="ZW" th:text="#{demographics.ZW}">
+                                Zimbabwe
+                            </option>
+                            <option value="NoAnswer" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                        </select> </label>
+                        </div>
+
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.highest_ed}">What is your highest
+                            educational attainment?</label><br/><br/>
+                            <select required="true" th:field="*{Education}">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                                <option value="Elementary School" th:text="#{demographics.elementary}">Elementary
+                                    School
+                                </option>
+                                <option value="Junior High" th:text="#{demographics.junior_high}">Junior High</option>
+                                <option value="Some High School" th:text="#{demographics.some_high_school}">Some High
+                                    School
+                                </option>
+                                <option value="High School Graduate" th:text="#{demographics.high_school}">High School
+                                    Graduate
+                                </option>
+                                <option value="Some College" th:text="#{demographics.some_college}">Some College
+                                </option>
+                                <option value="Associate's Degree" th:text="#{demographics.associate}">Associate's
+                                    Degree
+                                </option>
+                                <option value="Bachelor's Degree" th:text="#{demographics.bachelor}">Bachelor's Degree
+                                </option>
+                                <option value="Some Graduate School" th:text="#{demographics.some_graduate}">Some
+                                    Graduate School
+                                </option>
+                                <option value="Master's Degree" th:text="#{demographics.master}">Master's Degree
+                                </option>
+                                <option value="M.B.A." th:text="#{demographics.mba}">M.B.A.</option>
+                                <option value="J.D." th:text="#{demographics.jd}">J.D.</option>
+                                <option value="M.D." th:text="#{demographics.md}">M.D.</option>
+                                <option value="Ph.D." th:text="#{demographics.phd}">Ph.D.</option>
+                                <option value="Other Advanced Degree" th:text="#{demographics.other_advanced}">Other
+                                    Advanced Degree
+                                </option>
+                                <option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                            </select>
+                        </div>
+
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.relationship_status}"> What is your
+                            relationship status?</label><br/><br/>
+                            <select th:field="*{MaritalStat}" required="true">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                                <option value="Single" th:text="#{demographics.single}">Single</option>
+                                <option value="Single,dating" th:text="#{demographics.single_casual}">Single, but
+                                    casually dating
+                                </option>
+                                <option value="Single,engaged" th:text="#{demographics.single_engaged}">Single, but
+                                    currently engaged to be married
+                                </option>
+                                <option value="Single,marriagelike" th:text="#{demographics.single_married}">Single, but
+                                    currently living with someone in a
+                                    marriage-like relationship
+                                </option>
+                                <option value="Married" th:text="#{demographics.married}">Married</option>
+                                <option value="civilunion" th:text="#{demographics.union}">In a domestic or civil
+                                    union
+                                </option>
+                                <option value="Separated" th:text="#{demographics.separated}">Separated</option>
+                                <option value="Divorced" th:text="#{demographics.divorced}">Divorced</option>
+                                <option value="Widow/widower" th:text="#{demographics.widow}">Widow/widower</option>
+                                <option value="Other" th:text="#{other}">Other</option>
+                                <option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                            </select>
+                        </div>
+
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.employment_status}"> What is your
+                            employment status?</label><br/><br/>
+                            <select th:field="*{EmploymentStat}" required="true">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                                <option value="Working full-time" th:text="#{demographics.full_time}">Working
+                                    full-time
+                                </option>
+                                <option value="Working part-time" th:text="#{demographics.part_time}">Working
+                                    part-time
+                                </option>
+                                <option value="Unemployed or laid off" th:text="#{demographics.unemployed}">Unemployed
+                                    or laid off
+                                </option>
+                                <option value="Looking for work" th:text="#{demographics.looking}">Looking for work
+                                </option>
+                                <option value="Homemaker/keeping house or raising children full-time"
+                                        th:text="#{demographics.homemaker}">Homemaker/keeping
+                                    house or raising children full-time
+                                </option>
+                                <option value="Retired" th:text="#{demographics.retired}">Retired</option>
+                                <option value="Student" th:text="#{demographics.student}">Student</option>
+                                <option value="Other" th:text="#{other}">Other</option>
+                                <option value="Unknown" th:text="#{demographics.employment_unknown}">Unknown</option>
+                                <option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                            </select>
+                        </div>
+
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.annual_income}"> What is your household
+                            annual income, before taxes and other
+                            deductions (in US dollars or equivalent)?</label><br/><br/>
+                            <select th:field="*{Income}" required="true">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                                <option value="Less than $5,000" th:text="#{demographics_less5}">Less than $5,000
+                                </option>
+                                <option value="$5,000 through $11,999" th:text="#{demographics_5to12}">$5,000 through
+                                    $11,999
+                                </option>
+                                <option value="$12,000 through $15,999" th:text="#{demographics_12to16}">$12,000 through
+                                    $15,999
+                                </option>
+                                <option value="$16,000 through $24,999" th:text="#{demographics_16to25}">$16,000 through
+                                    $24,999
+                                </option>
+                                <option value="$25,000 through $34,999" th:text="#{demographics_25to35}">$25,000 through
+                                    $34,999
+                                </option>
+                                <option value="$35,000 through $49,999" th:text="#{demographics_35to50}">$35,000 through
+                                    $49,999
+                                </option>
+                                <option value="$50,000 through $74,999" th:text="#{demographics_50to75}">$50,000 through
+                                    $74,999
+                                </option>
+                                <option value="$75,000 through $99,999" th:text="#{demographics_75to100}">$75,000
+                                    through $99,999
+                                </option>
+                                <option value="$100,000 through $149,999" th:text="#{demographics_100to150}">$100,000
+                                    through $149,999
+                                </option>
+                                <option value="$150,000 through $199,999" th:text="#{demographics_150to200}">$150,000
+                                    through $199,999
+                                </option>
+                                <option value="$200,000 through $249,999" th:text="#{demographics_200to250}">$200,000
+                                    through $249,999
+                                </option>
+                                <option value="$250,000 or greater" th:text="#{demographics_more250}">$250,000 or
+                                    greater
+                                </option>
+                                <option value="Don't know" th:text="#{demographics.income_unknown}">Don't know</option>
+                                <option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                            </select>
+                        </div>
+
+                        <br/>
+
+                        <div><label class="question" th:text="#{demographics.how_learn}"> How did you learn about Calm
+                            Thinking and/or The MindTrails Project?</label><br/><br/>
+                            <select th:field="*{PtpReason}" required="true">
+                                <option value="" th:text="#{please_select_one}">Please select one</option>
+                                <option value="Project Implicit Mental Health site front page"
+                                        th:text="#{demographics.implicit_front_page}">Project Implicit Mental
+                                    Health site front page
+                                </option>
+                                <option value="At the Project Implicit Mental Health site, after completing a study about my anxiety symptoms"
+                                        th:text="#{demographics.implicit_study}">
+                                    At the Project Implicit Mental Health site, after completing a study about my
+                                    anxiety symptoms
+                                </option>
+                                <option value="A friend or family member" th:text="#{demographics.friend_fam}">A friend
+                                    or family member
+                                </option>
+                                <option value="Press coverage" th:text="#{demographics.press}">Press coverage</option>
+                                <option value="Internet search for mental health info"
+                                        th:text="#{demographics.internet}">Internet search for mental health
+                                    info
+                                </option>
+                                <option value="Mental health professional recommended it"
+                                        th:text="#{demographics.professional_rec}">Mental health professional
+                                    recommended it
+                                </option>
+                                <option value="Link from another mental health site"
+                                        th:text="#{demographics.mental_link}">Link from another mental health
+                                    site
+                                </option>
+                                <option value="Other" th:text="#{other}">Other</option>
+                                <option value="555" th:text="#{prefer_not_to_answer}">Prefer not to answer</option>
+                            </select>
+                        </div>
+
+                        <div id="PtpReasonOther">
+                            <span th:text="#{demographics.please_specify}">Please specify:&nbsp;&nbsp;</span>
+                            <label>
+                                <input id="PtpReasonOtherInput" th:field="*{PtpReasonOther}" type="text"
+                                       placeholder=""
+                                       size="50"/>
+                            </label>
+                        </div>
+
+
+                        <script>
+                            $('#PtpReasonOther').hide();
+                            $('select[name=PtpReason]').change(function () {
+                                if ($(this).val() == 'Other') {
+                                    $('#PtpReasonOther').show();
+                                    $("#PtpReasonOtherInput").prop('required', true);
+                                } else {
+                                    $('#PtpReasonOther').hide();
+                                    $("#PtpReasonOtherInput").prop('required', false);
+                                }
+                            });
+
+
+                            $(document).ready(function () {
+                                $('#form').validate({
+                                    rules: {
+                                        'race': {required: true, minlength: 1}
+                                    }
+                                });
+                            });
+
+                            /**
+                             * Disables all other input boxes in the same section as the input
+                             * selected.
+                             * @param input
+                             */
+                            function disableSection(input) {
+                                if (input.checked) {
+                                    $(input).closest('.section').find("input").not(input).prop('checked', false);
+                                    $(input).closest('.section').find("option").prop('selected', false);
+                                    $(input).closest('.section').find("select").prop('required', false);
+                                    $(input).closest('.section').find("input").attr("disabled", true);
+                                    $(input).removeAttr("disabled");
+                                } else {
+                                    $(input).closest('.section').find("input").removeAttr("disabled");
+                                }
+                            }
+                        </script>
+
+
+                        <div style="text-align:center"><br/><br/>
+                            <button type="submit" th:text="#{next}"> Next</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

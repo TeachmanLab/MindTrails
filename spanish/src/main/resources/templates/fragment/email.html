@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="headerFragment" th:fragment="headerFragment">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The MindTrails Project</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,700italic,600' rel='stylesheet' type='text/css'/>
+</head>
+<body style="font-family: 'Source Sans Pro', sans-serif; font-size:20px; box-sizing:border-box; background-color: #f6f5ea"
+      alink="#FF0000" link="#FF0000" bgcolor="#000000" text="#FFFFFF" yahoo="fix">
+
+    <table cellpadding="0" cellspacing="0" width="400" align="center" style="margin-top:20px" th:fragment="logoFragment">
+        <tr>
+            <td width="300"></td>
+            <td width="100">
+                <a th:href="${url}" target="_blank" >
+                <img src="/images/email_logo.png"  th:src="${url} + '/images/email_logo.png'"
+                     alt="The MindTrails Project" title="MindTrails" style="display:block"  border="0"/>
+               </a>
+            </td>
+        </tr>
+    </table>
+
+    <div id="footer" class="clearfix" th:fragment="footerFragment">
+        <p style="margin-top:30px">Best,</p>
+        <img style="border: none; margin-top: 40px;" th:src="${url} + '/images/bethany_sig.png'" alt="" border="none"/>
+        <p style="margin:0 0 0 0; font-weight: bold;">Bethany Teachman, Ph.D.</p>
+        <p style="margin:2px 0 0 0; font-style: italic">Project Director</p>
+        <p style="margin:10px 0 0 0; ">and the MindTrails team</p>
+
+        <p th:if="${giftCards}" style="margin-top:40px">
+            <img style="float:left; padding: 10px;" th:src="${url} + '/images/gift_card_sm.png'" alt="" border="none"/>
+            P.S. As a reminder, there are five training sessions total, and each one is a little different.
+            You will receive an $5 electronic gift card for completing each of the first three assessments: the initial assessment,
+            and the assessments following Training Sessions 3 and 5. You will receive a bonus $10 electronic gift card for completing the follow-up assessment.
+        </p>
+
+        <p style="margin-top:20px; font-size:.9em; text-align:left; padding-top: 4px" >
+            To make sure you receive our emails, please add our email address (<span th:text="${respondTo}"></span>)
+            to your list of contacts. By adding us to your contacts, you ensure all our emails don't end up in your spam folder.</p>
+
+        <p style="margin-top:40px; font-size:.9em; text-align:left; border-top: 1px solid black; padding-top: 4px" >
+            Please note that email is not a secure form of communication and should not be used to discuss any
+            confidential matters, including personal health information, given that its confidentiality cannot be assured.</p>
+
+        <p style="margin-top:20px; font-size:.9em; text-align:left; padding-top: 4px" >You received this email because you signed up to participate in the MindTrails study. You
+            can manage your contact preferences, or exit the study at any time by visiting your
+            <a th:href="${url} + '/account'">Account Settings.</a></p>
+    </div>
+
+
+</body>
+</html>

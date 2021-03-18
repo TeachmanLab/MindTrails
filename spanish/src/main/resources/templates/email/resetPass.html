@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:include="fragment/email :: headerFragment"/>
+
+<body style="font-family: 'Source Sans Pro', sans-serif; font-size:20px; box-sizing:border-box; background-color: #FFF">
+
+<div id="body_style" style="padding:15px">
+
+    <table cellpadding="0" cellspacing="0" width="600" align="center" th:include="fragment/email :: logoFragment"/>
+
+    <table cellpadding="0" cellspacing="0" width="600" align="center" style="margin-top:20px">
+        <tr>
+            <td width="400">
+                <p th:text="#{reset.p1}" th:text="'Hi ' +  ${participant.fullName} + ','" style="margin-top:0; margin-bottom:10px">
+                    Hi Fred,
+                </p>
+                <p th:text="#{reset.p2}" style="margin-top:5px">We recently received a request to reset your password.</p>
+
+                <p th:text="#{reset.p3}" style="margin-top:5px">If you made this request, just follow this link to create a new password: </p>
+
+                <p style="margin-top:5px"><a th:text="#{reset.link}" href="/login" th:href="${url} + '/resetPassStep2/' + ${token}"
+                                             th:text="${url} + '/resetPassStep2/' + ${token}"
+                                             style="color: #637580ff; text-decoration: none; font-weight: bold"/></p>
+
+                <p th:text="#{reset.p4}" style="margin-top:5px">If you did not request a password reset, you can ignore this email.</p>
+
+                <div id="footer" th:include="fragment/email :: footerFragment"/>
+
+            </td>
+        </tr>
+    </table>
+    <p style="margin-top:0"></p>
+</div>
+</body>
+</html>
+

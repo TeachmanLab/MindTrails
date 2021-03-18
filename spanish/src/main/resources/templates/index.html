@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment"/>
+<body>
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment"/>
+
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1><b>Welcome to MindTrails</b></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <p> In this study, we are going to focus on the way you think, and how that may affect your anxiety.
+                    Specifically, we will focus on the way you interpret everyday events.</p>
+
+                <p> It’s not always clear why anxiety persists over time, but one reason appears to be the way people
+                    think about the things they are anxious about.</p>
+                <b>For example:</b>
+                <ul style="padding-right: 10px">
+                    <li>People may think they are more likely to be negatively judged by others than they actually are.</li>
+                    <li>People may think that they will not be able to cope with being in scary situations.</li></ul>
+                <p>Past studies have shown that changing the way we think can affect our anxiety. In fact, studies have
+                    shown that practice thinking about things in new ways may reduce anxiety symptoms.</p>
+
+                <p>In our MindTrails program, you will complete an online training that will describe different
+                    situations and encourage you to think about how those situations will turn out. This program is new
+                    but is based on similar programs that have shown positive effects in changing anxious thinking.</p>
+
+                <p>We have people trying different versions of the computer program for this study to see
+                    which version works best – we think some of these computer programs will reduce anxiety by
+                    changing the way people interpret situations.</p>
+
+
+            </div>            <div class="col-md-4">
+                <h4><b>Let's get started!</b></h4>
+                <p><a th:href="@{/account/create}"><button>Am I Eligible?</button> </a></p>
+            </div>
+        </div>
+     </div>
+</section>
+
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer"/>
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright"/>
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

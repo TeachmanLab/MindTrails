@@ -11,14 +11,14 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='Mood and Drinking Patterns')"/>
+<section th:replace="fragment/common :: titleBar (title=#{comorbid.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate"/>
 <section id="content" class="clearfix">
 
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <p>The following questions ask about mood and drinking patterns.
+            <p th:text="#{comorbid.instructions}">The following questions ask about mood and drinking patterns.
                 For each question, select the number for the answer that best describes your experience.
             </p>
         </div>
@@ -29,7 +29,7 @@
     <!-- Add timer -->
     <section th:replace="fragment/forms :: radioOptions(${model})" />
     <div class="col-md-12" style="text-align:center">
-        <button type="submit">Next</button>
+        <button type="submit" th:text="#{next}">Next</button>
     </div>
 </form>
 

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en">
+<!--<![endif]-->
+
+
+
+<head th:fragment="googleAnalytics">
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-77944674-5"></script>
+
+    <script th:unless="${participant}" th:inline="javascript">
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-77944674-5');
+    </script>
+
+    <script th:if="${participant}" th:inline="javascript">
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('set', { 'user_id': '[[${participant.id}]]' });
+        gtag('config', 'UA-77944674-5');
+    </script>
+</head>
+
+
+<head id="headerFragment" th:fragment="headerFragment">
+    <meta charset="utf-8" />
+    <meta name="description" content="MindTrails" />
+    <meta name="keywords" content="anxiety virginia psychology implicit mindtrails cognitive behavioral" />
+    <meta name="author" content="virginia.edu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>MindTrails</title>
+
+
+    <link rel="icon" type="image/png" th:href="@{/favicon.ico}" />
+
+    <!-- JavaScript -->
+    <script type="text/javascript" th:src="@{/bower/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bower/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bower/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/log4javascript.js}"></script>
+    <script type="text/javascript" th:src="@{/js/firstQuestionSlider.js}"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script type="text/javascript" th:src="@{/bower/timeme.js/timeme.js}"></script>
+    <script type="text/javascript" th:src="@{/bower/jquery-validate/dist/jquery.validate.js}"></script>
+
+    <!--Google Font-->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,700italic,600'
+        rel='stylesheet' type='text/css' />
+
+    <!--style sheets-->
+    <link rel="stylesheet" media="screen" th:href="@{/bower/bootstrap/dist/css/bootstrap.css}"
+        href="../../static/bower/bootstrap/dist/css/bootstrap.css" /> <!-- Themed bootstream -->
+    <link rel="stylesheet" media="screen"
+        th:href="@{/bower/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css}" />
+    <link rel="stylesheet" media="screen" th:href="@{/css/mindtrails.css}" />
+    <link rel="stylesheet" media="screen" th:href="@{/css/mobile.css}" />
+    <link rel="stylesheet" media="print" th:href="@{/css/print.css}" href="../../static/css/print.css" />
+
+    <!-- Timer here -->
+    <script type="text/javascript">
+        TimeMe.initialize({
+            currentPageName: "${title}", // current page
+            idleTimeoutInSeconds: 30 // seconds
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-77944674-5"></script>
+
+    <script th:unless="${participant}" th:inline="javascript">
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-77944674-5');
+    </script>
+
+    <script th:if="${participant}" th:inline="javascript">
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('set', { 'user_id': '[[${participant.id}]]' });
+        gtag('config', 'UA-77944674-5');
+    </script>
+
+    <!-- Themes -->
+    <script type="text/javascript" th:if="${participant}" th:inline="javascript">
+        $(document).ready(function () {
+            $("body").addClass("user-theme-" + /*[[${participant.theme}]]*/)
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <!-- This is the template for asking a series of statements that all have the same
+     possible radio options as answers.  It uses the Mustache framework to populate
+      the answers. -->
+    <textarea style="display: none" id="template" th:fragment="questionTemplate">
+    <div class="row header">
+        <div class="col-md-6"><p class="tableOptions"></p></div>
+    {{#options}}
+        <div class="col-md-1"><p class="tableOptions">{{title}}</p></div>
+    {{/options}}
+        <div class="col-md-1"><p class="tableOptions">Prefer not to answer</p></div>
+    </div>
+
+    {{#questions}}
+     <div class="row">
+                <div class="col-md-6 statement"><p>{{desc}}</p></div>
+                {{#options}}
+                <div class="col-md-1">
+                    <label class="radio-inline option">
+                        <input type="radio" name="{{name}}" value="{{value}}"/>
+                        <span class="shortDesc">{{value}}</span> <span class="fullDesc">{{title}}</span></label>
+                </div>
+                {{/options}}
+                <div class="col-md-1">
+                    <label class="radio-inline option">
+                        <input type="radio" name="{{name}}" value="555"/>
+                        <span class="shortDesc">&nbsp;&nbsp;</span> <span
+                            class="fullDesc">Prefer not to answer</span></label>
+                </div>
+    </div>
+    {{/questions}}
+
+
+</textarea>
+
+
+    <textarea style="display: none" id="template2" th:fragment="questionTemplate2">
+
+    <div class="row header">
+        <div class="col-md-4"><p class="tableOptions"></p></div>
+    {{#options}}
+        <div class="col-md-2"><p class="tableOptions">{{title}}</p></div>
+    {{/options}}
+
+    </div>
+
+    {{#questions}}
+     <div class="row">
+                <div class="col-md-4 statement"><p>{{desc}}</p></div>
+                {{#options}}
+                <div class="col-md-2">
+                    <label class="radio-inline option">
+                        <input type="radio" name="{{name}}" value="{{value}}" required="true"/>
+                        <span class="shortDesc">{{value}}</span> <span class="fullDesc">{{title}}</span></label>
+                </div>
+                {{/options}}
+                </div>
+    {{/questions}}
+
+</textarea>
+
+
+    <textarea style="display: none" id="template3" th:fragment="questionTemplate3">
+
+    {{#reasons}}
+     <div class="row">
+                <div class="col-md-1 statement"><p>rating</p></div>
+
+                <div class="col-md-1">
+                     <input type="number" min="0" max="8" name="{{name}}" class="form-control"/>
+                </div>
+                <div class="col-md-10">
+                     <p>{{desc}}</p>
+                </div>
+     </div>
+    {{/reasons}}
+
+</textarea>
+
+    <textarea style="display: none" id="template4" th:fragment="questionTemplate4">
+
+    {{#questions}}
+     <div class="row">
+         <div class="col-md-10">
+             <p> {{desc}} </p>
+             <p> Check all that apply. </p>
+         </div>
+     </div>
+    <div class="row">
+        <div class="col-md-6 side-border">
+                {{#options}}
+                        <div class="radio">
+                            <label class="question"> <input type="checkbox" name="{{name}}" value="{{value}}"/>
+                                {{opt_desc}} </label>
+                        </div>
+
+                {{/options}}
+                        <div class="radio">
+                            <label class="question"> <input type="checkbox" name="{{name}}" value="other"/>
+                                 Other, please specify: <input type="text" name="reasons"/></label>
+                        </div>
+
+
+                         <br/>
+                        <div class="radio">
+                            <label class="question"> <input id="{{id}}" onchange="spec('{{id}}')" type="checkbox"
+                                                            name="{{name}}"
+                                                            value="Other"/> Other (Please specify) <input
+                                    id="Q2_15_spec" type="text"
+                                    name="Other_DescNo" value="N/A"/></label>
+                        </div>
+              </div>
+    </div>
+
+    {{/questions}}
+
+</textarea>
+
+
+    <textarea style="display: none" id="template5" th:fragment="questionTemplate5">
+
+
+    {{#questions}}
+     <div class="row header">
+         <div class="col-md-8 statement"><p><b>{{desc}}</b></p></div>
+     </div>
+
+    <div class="row">
+      <div class="col-md-8 side-border">
+                {{#options}}
+
+        <div class="radio">
+            <label class="question"> <input type="radio" name="{{name}}" value="{{value}}" required="true"/>
+                {{title}}</label>
+        </div>
+
+                {{/options}}
+      </div>
+
+                <div class="col-md-4">
+                    <br/>
+                    <br/>
+                    <div class="radio">
+                        <label class="question"><input type="radio" name="{{name}}" value="555"/> Prefer not to answer </label>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+
+     </div>
+
+
+    {{/questions}}
+
+</textarea>
+
+
+    <textarea style="display: none" id="template6" th:fragment="questionTemplate6">
+    <div class="row header">
+        <div class="col-md-4"><p class="tableOptions"></p></div>
+    {{#options}}
+        <div class="col-md-1"><p class="tableOptions">{{title}}</p></div>
+    {{/options}}
+        <div class="col-md-1"><p class="tableOptions">Prefer not to answer</p></div>
+    </div>
+
+    {{#questions}}
+     <div class="row">
+                <div class="col-md-4 "><p>{{desc}}</p></div>
+                {{#options}}
+                <div class="col-md-1">
+                    <label class="radio-inline option">
+                        <input type="radio" name="{{name}}" value="{{value}}" required="true"/>
+                        <span class="shortDesc">{{value}}</span> <span class="fullDesc">{{title}}</span></label>
+                </div>
+                {{/options}}
+                <div class="col-md-1">
+                    <label class="radio-inline option">
+                        <input type="radio" name="{{name}}" value="555" required="true"/>
+                        <span class="shortDesc">&nbsp;</span> <span class="fullDesc">Prefer not to answer</span></label>
+                </div>
+    </div>
+    {{/questions}}
+</textarea>
+
+
+    <section id="header" class="clearfix" th:fragment="topFragment">
+
+        <nav class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a th:href="@{/}">
+                    <img alt="MindTrails" class="header-logo" th:src="@{/images/logo.png}" />
+                </a>
+            </div>
+
+
+            <div class="import" th:if="${@environment.getProperty('import.mode') == 'import'}">This is a Data Collection
+                System. Importing Data from another Instance.
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="main-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:text="#{home.title}" th:href="@{/public/landing}">Home</a></li>
+                    <li><a th:text="#{about.title}" th:href="@{/public/about}">About</a></li>
+                    <li><a th:text="#{faq.shortTitle}" th:href="@{/public/faq}">FAQ</a></li>
+                    <li><a th:text="#{researchSupport.title}" th:href="@{/public/researchSupport}">The&nbsp;Science&nbsp;of&nbsp;MindTrails</a></li>
+                    <li><a th:text="#{resources.title}" th:href="@{/public/resources}">Mental&nbsp;Health&nbsp;Resources</a>
+                    </li>
+                    <li><a th:text="#{contact.title}" th:href="@{/public/contact}">Contact&nbsp;Us</a></li>
+                    <li><a th:text="#{team.title}" th:href="@{/public/team}">Meet&nbsp;the&nbsp;Team</a></li>
+                    <li th:if="${participant} and ${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">My Account<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/session/overview}">Progress</a></li>
+                            <li><a th:href="@{/account}">Account Settings</a></li>
+                            <li><a th:href="@{/account/changePass}">Change Password</a></li>
+                            <li><a th:href="@{/account/exitStudyConfirm}">Exit the Study</a></li>
+                            <li><a th:href="@{/logout}">Logout</a></li>
+                        </ul>
+                    </li>
+
+                    <br/>
+
+                    <div class="login"
+                         th:unless="${#authorization != null} AND ${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                        Already Participating? <a th:href="@{/login}">
+                        <button>Log In</button>
+                    </a>
+                    </div>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+    </nav>
+    <div class="account-bar navbar-default" th:if="${participant} and ${#authorization.expression('hasRole(''ROLE_USER'')')}">
+        <div>
+            <a class="nav-progress" th:href="@{/session/overview}">
+                <button>My Progress</button>
+            </a>
+            <div class="nav-user">Logged in as <span th:text="${participant.fullName}"/>
+                <br/><span class="nav-level" th:text="${participant.study.currentSession.displayName}"/></div>
+        </div>
+    </div>
+</section>
+
+<section id="title" class="clearfix" th:fragment="titleBar">
+    <div class="container title">
+        <div class="row">
+            <div class="col-md-8">
+                <img class="icon-small-bg" th:src="@{/images/map-arrow-orange.png}" alt=""/>
+                <h2 class="page-title heading-icon clearfix" th:text="${title}">
+                </h2>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section id="content" class="clearfix">
+    <div class="container">
+
+
+        <!--spacer here-->
+        <div class="spacer-30px"></div>
+
+        <!--features starts-->
+        <div class="row">
+            <div class="col-md-8">
+                <h1>This is a Template:</h1>
+                <ul class="list-3col">
+                    <li>
+                        <h4>Welcome</h4>
+                        <p>Please see home.html for an example of how to grab poritions of this template to use within a
+                            page.</p></li>
+                </ul>
+            </div>
+        </div>
+        <!--features ends-->
+
+        <!--divider here-->
+        <div class="spacer-40px"></div>
+
+
+        <!--spacer here-->
+        <div class="spacer-30px"></div>
+
+        <!--box starts-->
+        <div class="row">
+            <div class="span12">
+                <div class="dark-box">
+                    <h1>And that's it <span class="color">folks</span>! </h1>
+                    <p>but I hope to have more to show soon.</p>
+                </div>
+            </div>
+        </div>
+        <!--box ends-->
+
+    </div>
+</section>
+
+<!-- footer starts
+================================================== -->
+<footer id="footer" th:fragment="footerFragment">
+    <div class="container">
+
+        <div class="row">
+            <div class="footer-links">
+                <a th:text="#{about.title}" th:href="@{/public/about}">About</a>
+                <a th:text="#{faq.shortTitle}" th:href="@{/public/faq}">FAQ</a>
+                <a th:text="#{researchSupport.title}" th:href="@{/public/researchSupport}">The Science of MindTrails</a>
+                <a th:text="#{resources.title}" th:href="@{/public/resources}">Mental Health Resources</a>
+                <a th:text="#{contact.title}" th:href="@{/public/contact}">Contact Us</a>
+                <a th:text="#{team.title}" th:href="@{/public/team}">Meet the Team</a>
+            </div>
+            <div class="clear-both"></div>
+        </div>
+
+        <div class="row">
+            <div class="footer-links">
+                <a th:text="#{privacy.title}" th:href="@{/public/privacy}">Privacy Policy</a>
+                <a th:text="#{terms.title}" th:href="@{/public/disclaimer}">Terms and Conditions</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="footer-bottom">&copy; Copyright 2021 by MindTrails Project &bull; All rights reserved</div>
+        </div>
+
+    </div>
+
+    <div class="adminTools container" sec:authorize="hasRole('ROLE_ADMIN')">
+        <h5>Administration Tools</h5>
+
+        <p>This section is only visible to you because you have been granted administrative access.</p>
+        <ul class="list-info">
+            <li><a th:href="@{/admin}">User Administration</a>: provides a way to view all accounts created on the
+                system.
+            </li>
+            <li><a th:href="@{/admin/listEmails}">Email Messages</a>: allows you to send yourself a copy of all email
+                messages
+                coming from the system.
+            </li>
+            <li><a th:href="@{/admin/listSessions}">Sessions</a>: allows you to view all available sessions, and jump
+                into any
+                content within a session.
+            </li>
+            <li><a th:href="@{/admin/tango}">Gift Cards Account</a>: allows you to check information about the gift card
+                account for your study.
+            </li>
+            <li><a th:href="@{/admin/errors}">Errors</a>: View a list of all errors that surfaced to participants. This
+                might
+                not include internal errors that were never seen by a participant.
+            </li>
+            <li><a th:href="@{/admin/export}">Exports</a>: allows you to view the status of exports from the system, or
+                export
+                data directly if this feature is enabled.
+            </li>
+            <li><a th:href="@{/admin/userstats}">User statistics information</a>: allows you to check users statistics
+                information.
+            </li>
+            <li><a th:href="@{/coach}">Coach Administration</a>: View a list of all coaches and eligible participants.
+            </li>
+        </ul>
+    </div>
+
+    <!--column two starts-->
+    <div class="adminTools container" sec:authorize="hasRole('ROLE_COACH')">
+        <h5>Coaching Tools</h5>
+        <p>This section is only visible to you because you have been granted coach level access.</p>
+        <ul class="list-info">
+            <li><a th:href="@{/coach}">Coach Overview</a>: View a list of all coaches and eligible participants.
+            </li>
+            <li><a th:href="@{/coach/me}">My Participants</a>: provides a list of the participants assigned to you for
+                coaching
+            </li>
+        </ul>
+    </div>
+
+</footer>
+
+
+<!--If you need to include javascript at the end of the page.  -->
+<div id="scripts" th:fragment="scripts">
+    <script  th:inline="javascript">
+        $(document).ready(function () {
+
+            // Use Jquery-Validate plugin to validate all forms.
+            $("form").validate({
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    var template_statement = element.parents(".row").first().children(".statement")
+                    var after_slider = element.parents(".after_slider").first()
+                    if (template_statement.length > 0) {
+                        error.appendTo(template_statement);
+                    } else if (after_slider.length > 0) {
+                        error.addClass("label-error");
+                        error.appendTo(after_slider);
+                    } else {
+                        error.addClass("label-error");
+                        var label = element.parent("label");
+                        error.appendTo(label);
+                    }
+
+                }
+            });
+
+
+            // Tracking time spent on page
+            $("form").each(function () {
+                $(this).submit(function () {
+                    $(this).find("#timeOnPage").val(TimeMe.getTimeOnCurrentPageInSeconds());
+                });
+            });
+
+            // Coaching opt-in page display
+            // For radio buttons, Thymeleaf has appended a "1" to the first selection option's id, which is why we
+            // specify "#wantsCoaching1" here.
+            $('#wantsCoaching1').click(function () {
+                console.log('wants coaching');
+                $('#wantsCoachingStatement').show();
+            });
+
+            $('#wantsCoaching2').click(function () {
+                $('#wantsCoachingStatement').hide();
+            });
+        });
+    </script>
+</div>
+
+</body>
+</html>

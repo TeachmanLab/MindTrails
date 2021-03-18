@@ -11,7 +11,7 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:replace="fragment/common :: titleBar (title='How I Respond')"/>
+<section th:replace="fragment/common :: titleBar (title=#{mechanisms.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate6"/>
 <section id="content" class="clearfix">
 
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-8">
 
-                    <p>Below, a number of statements related to thoughts and beliefs are presented. For each
+                    <p th:text="#{mechanisms.instructions}">Below, a number of statements related to thoughts and beliefs are presented. For each
                         statement, select the number for the answer that best describes your own perspective.</p>
                 </div>
             </div>
@@ -32,41 +32,41 @@
         <input id="timeOnPage" name="timeOnPage" type="hidden"/>
         <div class="container section compactQuestion">
             <div id="section1"></div>
-            <script>
+            <script th:inline="javascript">
                 var data = {
                     "options": [
-                        {"value": 1, "title": "Strongly disagree"},
-                        {"value": 2, "title": "Disagree"},
-                        {"value": 3, "title": "Somewhat disagree"},
-                        {"value": 4, "title": "Neutral"},
-                        {"value": 5, "title": "Somewhat agree"},
-                        {"value": 6, "title": "Agree"},
-                        {"value": 7, "title": "Strongly agree"}
+                        {"value": 1, "title": /*[[#{mechanisms.strongly_disagree}]]*/"Strongly disagree", "opt_desc": "Strongly disagree"},
+                        {"value": 2, "title": /*[[#{mechanisms.disagree}]]*/"Disagree", "opt_desc": "Disagree"},
+                        {"value": 3, "title": /*[[#{mechanisms.somewhat_disagree}]]*/"Somewhat disagree", "opt_desc": "Somewhat disagree"},
+                        {"value": 4, "title": /*[[#{mechanisms.neutral}]]*/"Neutral", "opt_desc": "Neutral"},
+                        {"value": 5, "title": /*[[#{mechanisms.somewhat_agree}]]*/"Somewhat agree", "opt_desc": "Somewhat agree"},
+                        {"value": 6, "title": /*[[#{mechanisms.agree}]]*/"Agree", "opt_desc": "Agree"},
+                        {"value": 7, "title": /*[[#{mechanisms.strongly_agree}]]*/"Strongly agree", "opt_desc": "Strongly agree"}
                     ],
                     "questions": [
                         {
                             "name": "cfiViewpoints",
-                            "desc": "I often look at a situation from different viewpoints."
+                            "desc": /*[[#{mechanisms.viewpoints}]]*/"I often look at a situation from different viewpoints."
                         },
                         {
                             "name": "compActWilling",
-                            "desc": "I am willing to fully experience whatever thoughts, feelings, and sensations come up for me, without trying to change them."
+                            "desc": /*[[#{mechanisms.willing}]]*/"I am willing to fully experience whatever thoughts, feelings, and sensations come up for me, without trying to change them."
                         },
                         {
                             "name": "erqPositive",
-                            "desc": "When I want to feel more positive emotion, I change the way I’m thinking about the situation."
+                            "desc": /*[[#{mechanisms.positive_change}]]*/"When I want to feel more positive emotion, I change the way I’m thinking about the situation."
                         },
                         {
                             "name": "erqNegative",
-                            "desc": "When I want to feel less negative emotion, I change the way I’m thinking about the situation."
+                            "desc": /*[[#{mechanisms.negative_change}]]*/"When I want to feel less negative emotion, I change the way I’m thinking about the situation."
                         },
                         {
                             "name": "iusUnexpected",
-                            "desc": "Unexpected events upset me greatly."
+                            "desc": /*[[#{mechanisms.unexpected}]]*/"Unexpected events upset me greatly."
                         },
                         {
                             "name": "iusUncertain",
-                            "desc": "When I am uncertain, I can’t function very well."
+                            "desc": /*[[#{mechanisms.uncertain}]]*/"When I am uncertain, I can’t function very well."
                         }
                 ]
                 }
@@ -76,7 +76,7 @@
 
 
         <div class="col-md-12" style="text-align:center">
-            <button type="submit">Next</button>
+            <button type="submit" th:text="#{next}">Next</button>
         </div>
 
     </form>

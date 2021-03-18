@@ -21,6 +21,19 @@ import java.util.TreeMap;
  * risk that it would get exported between the time it is completed and the
  * moment when we determine eligibility.  Field names in the database are
  * obscured for this reason.
+ *
+ *
+ *  A Note on Translations:  For questionnaires like the DASS21 where the content for
+ *  the page is loaded from the Measure Field annotations, you will need to create
+ *  entires in the message.properties file that is named specifically after the class
+ *  name and the field name (DASS21_AS.dryness=....) These translations should be picked
+ *  up automatically without needing to make translations here.
+ *  The Scale and Group Descriptions should contain translation keys instead of text.
+ *  If you look blow the scale values look like "a_lot_of_the_time" rather than
+ *  "A lot of the time".  These are now looked up in the message.properties file. So
+ *  that part remains a little manual.
+ *
+ *
  */
 @Entity
 @Table(name="DASS21_AS")
@@ -74,17 +87,17 @@ public class DASS21_AS extends LinkedQuestionnaireData {
     @Override
     public Map<Integer, String> getScale(String scale) {
         Map<Integer, String> tmpScale = new TreeMap<>();
-        tmpScale.put(0, "Not at all");
-        tmpScale.put(1, "Sometimes");
-        tmpScale.put(2, "A lot of the time");
-        tmpScale.put(3, "Most of the time");
+        tmpScale.put(0, "not_at_all");
+        tmpScale.put(1, "sometimes");
+        tmpScale.put(2, "a_lot_of_the_time");
+        tmpScale.put(3, "most_of_the_time");
         return Collections.unmodifiableMap(tmpScale);
     }
 
     @Override
     public Map<String, String> getGroupDescriptions() {
         Map<String, String> desc = new TreeMap<>();
-        desc.put("", "Over the last week, how often have you been bothered by any of the following problems?");
+        desc.put("", "DASS21_AS_desc_over_last_week");
         return Collections.unmodifiableMap(desc);
     }
 

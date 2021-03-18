@@ -1,0 +1,395 @@
+<html>
+<body>
+
+<form name="f" class="form-horizontal" th:action="@{/account/create}" method="post" th:object="${participantForm}"
+      th:fragment="create">
+        <ul>
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}" class="alert-error">
+                Input is incorrect
+            </li>
+        </ul>
+        <div class="spacer-20px"></div>
+
+    <div th:fragment="editable">
+
+        <script th:src="@{/js/jstz.min.js}"></script>
+        <script th:src="@{/js/password.js}"></script>
+
+        <input type="hidden" name="timezone" id="timezone" value="undetected"/>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            $("#timezone").val(jstz.determine().name());
+            /*]]>*/
+        </script>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="fullName">Nickname</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" id="fullName" name="fullName" th:errorclass="error"
+                       th:field="*{fullName}"/>
+            </div>
+            <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name Error</span>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="email">Email</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="email" id="email" name="email" th:errorclass="error"
+                       th:field="*{email}"/>
+            </div>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+            </div>
+            <div class="custom-control col-sm-10">
+                <label class="col-sm-10 inline-checkbox">
+                    <input class="inline-checkbox" type="checkbox" id="emailReminders" name="emailReminders"
+                           th:errorclass="error" th:field="*{emailReminders}"/>
+                    I would like to receive email reminders when it is time to start the next session.
+                    <span class="note">
+                        Please note that even if you do not want reminders for each session,
+                        you will still receive a few messages from us as you enter
+                        new phases in the study or if you are inactive for an extended period.
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="phone">Phone</label>
+            <div class="col-sm-10">
+                <!-- <input type="tel" id="phone"> -->
+                <!--
+                <input class="form-control" type="tel" id="phone" name="phone" th:errorclass="error"
+                       th:field="*{phone}"/>
+                -->
+                <div id="result">
+                    <input type="hidden" name="phone" id="hidden_phone" th:field="*{phone}" th:errorclass="error" th:readonly="${verified}" required="true"/>
+
+                <input   name="phone_control" id="phone" type="tel" th:readonly="${verified}" required="true"/>
+                    <br/>
+                    <span class="note" th:if="${verified}">
+                       Your phone number has been verified &mdash; please <a href="mailto:studyteam@mindtrails.org">contact the study team</a> if you wish to change your phone number.
+                   </span>
+                    <span id="valid-msg" class="note hide">✓ Valid</span>
+                    <span id="error-msg" class="error hide"></span>
+                </div>
+
+                <link rel="stylesheet" type="text/css" th:href="@{/bower/intl-tel-input/build/css/intlTelInput.css}"/>
+                <script th:src="@{/bower/intl-tel-input/build/js/intlTelInput.js}"></script>
+
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    $( document ).ready(function() {
+                        // initialise plugin
+                        let input = document.querySelector("#phone");
+                        let hidden_input = document.querySelector("#hidden_phone");
+
+                        input.value = hidden_input.value;
+
+                        var iti = window.intlTelInput(input, {
+                                utilsScript:/*[[@{/bower/intl-tel-input/build/js/utils.js}]]*/ "path/to/util.js",
+                        });
+                        console.log("Utility Script:" + iti.utilsScript)
+                        window.intlTelInputGlobals.loadUtils(/*[[@{/bower/intl-tel-input/build/js/utils.js}]]*/ );
+                        console.log("Utility Script:" + iti.utilsScript)
+
+                        // here, the index maps to the error code returned from getValidationError - see readme
+                        var errorMap = [ "Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+                        var errorMsg = document.querySelector("#error-msg"),
+                            validMsg = document.querySelector("#valid-msg");
+                        var reset = function() {
+                            input.classList.remove("error");
+                            errorMsg.innerHTML = "";
+                            errorMsg.classList.add("hide");
+                            validMsg.classList.add("hide");
+                        };
+
+                        // on keyup / change flag: reset
+                        input.addEventListener('change', reset);
+                        input.addEventListener('keyup', reset);
+
+                        // on blur: validate
+                        input.addEventListener('blur', function() {
+                            reset();
+                            if (input.value.trim()) {
+                                if (iti.isValidNumber()) {
+                                    validMsg.classList.remove("hide");
+                                    hidden_input.value = iti.getNumber()
+                                } else {
+                                    input.classList.add("error");
+                                    var errorCode = iti.getValidationError();
+                                    errorMsg.innerHTML = errorMap[errorCode];
+                                    errorMsg.classList.remove("hide");
+                                }
+                            }
+                        });
+                    });
+                    /*]]>*/
+                </script>
+
+            </div>
+            <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</span>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+            </div>
+            <div class="custom-control col-sm-10">
+                <label class="col-sm-10 inline-checkbox" >
+                    <input class="inline-checkbox" type="checkbox" id="textMessages" name="canTextMessage"
+                           th:errorclass="error" th:field="*{canTextMessage}"/>
+                    <span>I can receive text messages at this number.</span>
+                </label>
+                <script>
+                    $(document).ready(function() {
+                        //set initial state.
+                        $('#textMessages').change(function() {
+                            var phoneReminders = $("#phoneReminders");
+                            var giftCards = $("#receiveGiftCards");
+                            if(!this.checked) {
+                                phoneReminders.prop('checked', false);
+                                phoneReminders.prop('disabled', true);
+
+                                giftCards.prop('checked', false);
+                                giftCards.prop('disabled', true);
+                            } else {
+                                phoneReminders.prop('disabled', false);
+                                phoneReminders.prop('checked', true);
+                                giftCards.prop('disabled', false);
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+            </div>
+            <div class="custom-control col-sm-10">
+                <label class="col-sm-10 inline-checkbox" >
+                    <input class="inline-checkbox" type="checkbox" id="phoneReminders" name="phoneReminders"
+                           th:errorclass="error" th:field="*{phoneReminders}"/>
+                    <span class="note">I would like to receive text reminders to this phone when it is time to start the next session.</span>
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <div th:fragment="password">
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="password">Password</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="password" id="password" name="password" th:field="*{password}"
+                       th:errorclass="error"/>
+                <div id="pswd_info">
+                    <h4>Password must meet the following requirements:</h4>
+                    <ul>
+                        <li id="letter" class="invalid">At least <strong>one letter</strong></li>
+                        <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
+                        <li id="number" class="invalid">At least <strong>one number</strong></li>
+                        <li id="symbol" class="invalid">At least <strong>one symbol</strong><br/>( ! # $ @ _ ' + , ? [ ]
+                            . - and
+                            space)
+                        </li>
+                        <li id="length" class="invalid">At least <strong>8 characters</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="passwordAgain">Confirm Password</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="password" id="passwordAgain"
+                       name="passwordAgain"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col-sm-2" for="over18">Over 18</label>
+        <div class="custom-control col-sm-10">
+            <label class="col-sm-10  inline-checkbox">
+                <input class="inline-checkbox" type="checkbox" id="over18" name="over18" th:errorclass="error"
+                       th:field="*{over18}"/>I am over 18
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2"></div>
+        <div class="custom-control col-sm-10" id="g-recaptcha"></div>
+    </div>
+
+    <input type="hidden" th:field="*{recaptchaResponse}" name="recaptchaResponse" id="recaptchaResponse"/>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var siteKey = /*[[${recaptchaSiteKey}]]*/;
+        var onloadCallback = function () {
+            grecaptcha.render('g-recaptcha', {
+                'sitekey': siteKey,
+                'callback': function (response) {
+                    document.getElementById('recaptchaResponse').value = response;
+                },
+                'theme': 'light'
+            });
+        }
+        /*]]>*/
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit" async="true"
+            defer="true"></script>
+    <br></br>
+
+    <p><b>By clicking the 'Give Consent and Create Account' button below...</b></p>
+
+    <p style="margin-left:50px"> I have read the above and am satisfied with my understanding of the study, its possible benefits, risks, and alternatives.
+        My questions about the study have been answered. I hereby voluntarily consent to participate in the research study as described.
+        I will be given a copy of this consent form, which includes the Authorization To Use and Disclose Protected Health
+        Information and of the attached "Research Participants' Bill of Rights."</p>
+
+    <p style="margin-left:50px"> I have read the above and am satisfied with my understanding of the study, its possible benefits, risks, and alternatives.
+        My questions about the study have been answered. I hereby voluntarily consent to participate in the research study as described.
+        I will be given a copy of this consent form, which includes the Authorization To Use and Disclose Protected Health
+        Information and of the attached "Research Participants' Bill of Rights."</p>
+
+    <p style="margin-left:50px"> By electronically clicking 'Give Consent and Create Account', I am giving my permission to allow the use and
+        disclosure of my PHI for the research study as described above.</p>
+    <br></br>
+
+    <div style="text-align: center;">
+        <button>Give Consent and Create Account</button>
+    </div>
+</form>
+
+<section id="themeSelection" class="clearfix" th:fragment="themeSelection">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2><font color="#00ACE4"><b>Select Your Theme</b></font></h2>
+                <p>To customize the appearance of MindTrails, select one of the options below. You can change your
+                    theme at any time by clicking "My Account" and then "Account Settings" in the menu bar above. </p>
+            </div>
+        </div>
+        <div class="row">
+            <label>
+                <div class="themeSection blue">
+                    <div class="col-md-1">
+                        <input type="radio" th:field="*{theme}" value="blue" required="true"/>
+                        Blue
+                    </div>
+                    <div class="col-md-11">
+                        <div class="themeOption">
+                            <div class="hidden-xs hidden-sm">
+                                <img th:src="@{/images/settings-blue.png}" alt="Blue Theme"/>
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <img th:src="@{/images/settings-blue-sm.png}" alt="Blue Theme"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="row">
+            <label>
+                <div class="themeSection orange">
+                    <div class="col-md-1">
+                        <input type="radio" th:field="*{theme}" value="orange" required="true"/>
+                        Orange
+                    </div>
+                    <div class="col-md-11">
+                        <div class="themeOption">
+                            <div class="hidden-xs hidden-sm">
+                                <img th:src="@{/images/settings-orange.png}" alt="Orange Theme"/>
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <img th:src="@{/images/settings-orange-sm.png}" alt="Orange Theme"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="row">
+            <label>
+                <div class="themeSection green">
+                    <div class="col-md-1">
+                        <input type="radio" th:field="*{theme}" value="green" required="true"/>
+                        Green
+                    </div>
+                    <div class="col-md-11">
+                        <div class="themeOption">
+                            <div class="hidden-xs hidden-sm">
+                                <img th:src="@{/images/settings-green.png}" alt="Green Theme"/>
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <img th:src="@{/images/settings-green-sm.png}" alt="Green Theme"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="row">
+            <label>
+                <div class="themeSection purple">
+                    <div class="col-md-1">
+                        <input type="radio" th:field="*{theme}" value="purple" required="true"/>
+                        Purple
+                    </div>
+                    <div class="col-md-11">
+                        <div class="themeOption">
+                            <div class="hidden-xs hidden-sm">
+                                <img th:src="@{/images/settings-purple.png}" alt="purple Theme"/>
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <img th:src="@{/images/settings-purple-sm.png}" alt="purple Theme"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class="row">
+            <label>
+                <div class="themeSection gold">
+                    <div class="col-md-1">
+                        <input type="radio" th:field="*{theme}" value="gold" required="true"/>
+                        Gold
+                    </div>
+                    <div class="col-md-11">
+                        <div class="themeOption">
+                            <div class="hidden-xs hidden-sm">
+                                <img th:src="@{/images/settings-gold.png}" alt="gold Theme"/>
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <img th:src="@{/images/settings-gold-sm.png}" alt="gold Theme"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <button>Update</button>
+    </div>
+</section>
+<script type="text/javascript">
+    function Verify(){
+        if (document.getElementById("receiveGiftCards").checked) {
+
+
+        }
+
+    }
+</script>
+
+</body>
+</html>

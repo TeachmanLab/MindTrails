@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<section th:replace="fragment/common :: titleBar (title=#{oa.title})"/>
+<textArea th:replace="fragment/common :: questionTemplate5"/>
+
+
+<!-- <section id="header-btm" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <h2 class="page-title heading-icon clearfix" style="padding-left: 15px"> <img th:src="@{/images/map-arrow-orange.png}" alt="icon" class="icon-small-bg" />
+                <br/>
+                <span th:text="${eligibility}? 'Eligibility Questionnaire, Part 1' : 'Mood Assessment'" />
+            </h2>
+        </div>
+    </div>
+</section> -->
+
+<section id="content1" class="clearfix">
+    <div class="container">
+        <div class="row"  th:if="${eligibility}">
+            <div class="col-md-8" style="padding-left: 15px">
+                <p th:text="#{oa.eligibility1}">Please note that in order to participate in the MindTrails study, regular access to a laptop/desktop
+                    computer, tablet, and/or smartphone with Internet connection is required.</p>
+                <p th:text="#{oa.eligibility2}">This is part one in a two-step questionnaire.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10" style="padding-left: 15px">
+                <span th:text="#{oa.instructions}">The following questions ask about anxiety and fear.
+                    For each question, select the answer that best describes your experience over the past week.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="clearfix">
+    <form th:action="${eligibility}? @{/public/eligibilityCheck} : @{/questions/OA}"
+            th:object="${model}" method="POST">
+
+        <!-- Add timer -->
+        <input id="timeOnPage" name="timeOnPage" type="hidden"/>
+        <div class="container">
+            <div class="section">
+            <div id="section1"></div>
+            <script th:inline="javascript">
+                var data = {
+                    "options": [
+                        {"value": 0, "title": [[#{oa.no_anxiety}]], "opt_desc":"No anxiety in the past week."},
+                        {"value": 1, "title": [[#{oa.infrequent_anxiety}]], "opt_desc":"Felt anxious a few times."},
+                        {"value": 2, "title": [[#{oa.occasional_anxiety}]], "opt_desc":"Felt anxious as much of hte time as not. It was hard to relax."},
+                        {"value": 3, "title": [[#{oa.frequent_anxiety}]], "opt_desc":"Felt anxious most of the time. It was very difficult to relax."},
+                        {"value": 4, "title": [[#{oa.constant_anxiety}]], "opt_desc":"Felt anxious all of the time and never really relaxed."}
+                    ],
+                    "questions": [
+                        {
+                            "name": "anxious_freq",
+                            "desc": [[#{oa.anxiety_frequency}]], "opt_desc":"In the past week, how often have you felt anxious?"
+                        }
+
+
+                    ]
+                }
+                $('#section1').html(Mustache.render($('#template5').val(), data));
+            </script>
+        </div>
+
+            <div class="section">
+                <div id="section2"></div>
+                <script th:inline="javascript">
+                    var data = {
+                        "options": [
+                            {"value": 0, "title": [[#{oa.little_or_none}]], "opt_desc": "Anxiety was absent or barely noticeable."},
+                            {"value": 1, "title": [[#{oa.mild}]], "opt_desc": "Anxiety was at a low level. It was possible to relax when I tried. Physical symptoms were only slightly uncomfortable."},
+                            {"value": 2, "title": [[#{oa.moderate}]], "opt_desc": "Anxiety was distressing at times. It was hard to relax or concentrate, but I could do it if I tried."},
+                            {"value": 3, "title": [[#{oa.severe}]], "opt_desc": "Anxiety was intense much of the time. It was very difficult to relax or focus on anything else. Physical symptoms were extremely uncomfortable."},
+                            {"value": 4, "title": [[#{oa.extreme}]], "opt_desc": "Anxiety was overwhelming. It was impossible to relax at all. Physical symptoms were unbearable."}
+                        ],
+                        "questions": [
+                            {
+                                "name": "anxious_sev",
+                                "desc": [[#{oa.anxiety_intensity}]], "opt_desc" :"In the past week, when you have felt anxious, how intense or severe was your anxiety?"
+                            }
+
+
+                        ]
+                    }
+                    $('#section2').html(Mustache.render($('#template5').val(), data));
+                </script>
+            </div>
+
+
+
+            <div class="section">
+                <div id="section3"></div>
+                <script th:inline="javascript">
+                    var data = {
+                        "options": [
+                            {"value": 0, "title": [[#{oa.never}]], "opt_desc": "I do not avoid places, situations, activities, or things because of fear."},
+                            {"value": 1, "title": [[#{oa.infrequently}]], "opt_desc": "I avoid something once in a while, but will usually face the situation or confront the object. My lifestyle is not affected."},
+                            {"value": 2, "title": [[#{oa.occasionally}]], "opt_desc": "I have some fear of certain situations, places, or objects, but it is still manageable. My lifestyle has only changed in minor ways. I always or almost always avoid the things I fear when I’m alone, but can handle them if someone comes with me."},
+                            {"value": 3, "title": [[#{oa.frequently}]], "opt_desc": "I have considerable fear and really try to avoid the things that frighten me. I have made significant changes in my lifestyle to avoid the object, situation, activity, or place."},
+                            {"value": 4, "title": [[#{oa.all_the_time}]], "opt_desc": "Avoiding objects, situations, activities, or places has taken over my life. My lifestyle has been extensively affected and I no longer do things that I used to enjoy."}
+                        ],
+                        "questions": [
+                            {
+                                "name": "avoid",
+                                "desc": [[#{oa.avoid}]], "opt_desc" :"In the past week, how often did you avoid situations, places, objects, or activities because of anxiety or fear?"
+                            }
+
+
+                        ]
+                    }
+                    $('#section3').html(Mustache.render($('#template5').val(), data));
+                </script>
+            </div>
+
+
+            <div class="section">
+                <div id="section4"></div>
+                <script th:inline="javascript">
+                    var data = {
+                        "options": [
+                            {"value": 0, "title": [[#{oa.not_at_all}]], "opt_desc": "No interference at work/home/school from anxiety"},
+                            {"value": 1, "title": [[#{oa.mildly}]], "opt_desc": "My anxiety has caused some interference at work/home/school. Things are more difficult, but everything that needs to be done is still getting done."},
+                            {"value": 2, "title": [[#{oa.moderately}]], "opt_desc": "My anxiety definitely interferes with tasks. Most things are still getting done, but few things are being done as well as in the past."},
+                            {"value": 3, "title": [[#{oa.severely}]], "opt_desc": "My anxiety has really changed my ability to get things done. Some tasks are still being done, but many things are not. My performance has definitely suffered."},
+                            {"value": 4, "title": [[#{oa.extremely}]], "opt_desc": "My anxiety has become incapacitating. I am unable to complete tasks and have had to leave school, have quit or been fired from my job, or have been unable to complete tasks at home and have faced consequences like bill collectors, eviction, etc."}
+                        ],
+                        "questions": [
+                            {
+                                "name": "interfere",
+                                "desc": [[#{oa.interfere_work}]], "opt_desc" :"In the past week, how much did your anxiety interfere with your ability to do the things you needed to do at work, at school, or at home?"
+                            }
+
+
+                        ]
+                    }
+                    $('#section4').html(Mustache.render($('#template5').val(), data));
+                </script>
+            </div>
+
+
+            <div class="section">
+                <div id="section5"></div>
+                <script th:inline="javascript">
+                    var data = {
+                        "options": [
+                            {"value": 0, "title": [[#{oa.not_at_all}]], "opt_desc": "My anxiety doesn’t affect my relationships."},
+                            {"value": 1, "title": [[#{oa.mildly}]], "opt_desc": "My anxiety slightly interferes with my relationships. Some of my friendships and other relationships have suffered, but, overall, my social life is still fulfilling."},
+                            {"value": 2, "title": [[#{oa.moderately}]], "opt_desc": "I have experienced some interference with my social life, but I still have a few close relationships. I don’t spend as much time with others as in the past, but I still socialize sometimes."},
+                            {"value": 3, "title": [[#{oa.severely}]], "opt_desc": " My friendships and other relationships have suffered a lot because of anxiety. I do not enjoy social activities. I socialize very little."},
+                            {"value": 4, "title": [[#{oa.extremely}]], "opt_desc": "My anxiety has completely disrupted my social activities. All of my relationships have suffered or ended. My family life is extremely strained."}
+                        ],
+                        "questions": [
+                            {
+                                "name": "interfere_social",
+                                "desc": [[#{oa.interfere_social}]], "opt_desc" :"In the past week, how much has anxiety interfered with your social life and relationships?"
+                            }
+
+
+                        ]
+                    }
+                    $('#section5').html(Mustache.render($('#template5').val(), data));
+                </script>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12" style="text-align:center">
+            <button type="submit" th:text="#{next}">Next</button>
+        </div>
+
+    </form>
+
+
+</section>
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+<div th:include="fragment/action_log :: scripts-action-log"/>
+
+</body>
+</html>

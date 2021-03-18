@@ -20,17 +20,16 @@
                 <br/>
                 <span th:text="${eligibility}? 'Eligibility Questionnaire, Part 2' : 'Mood Assessment'"/>
             </h2>
-
         </div>
     </div>
 </section>
 
-<section id="content" class="clearfix"  th:if="${eligibility}">
+<section id="content" class="clearfix" th:if="${eligibility}">
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="padding-left: 15px">
-                <p>This is part two in a two-step questionnaire.</p>
-                <p>Please read each statement below. Then, select the number that best shows how much the statement
+                <p th:text="#{dass21_as.intro1}">This is part two in a two-step questionnaire.</p>
+                <p th:text="#{dass21_as.intro2}">Please read each statement below. Then, select the number that best shows how much the statement
                     applied to you over the past week. There are no right or wrong answers. Do not spend too much time
                     on any statement.
                 </p>
@@ -51,14 +50,14 @@
                 </div>
                 <div class="col-sm-10">
                     <label class="col-sm-10">
-                        <input class="inline-checkbox" type="checkbox" id="over18" name="over18" value="true"/>
-                        I am at least age 18*<br/>
-                        (* If based in Nebraska, I am at least age 19; if based in Puerto Rico, I am at least age 21.<br/> See
-                         <a th:href="@{/public/disclaimer#item8}">Terms and Conditions > Age of Consent</a>.)
+                        <input class="inline-checkbox" type="checkbox" id="over18" name="over18" value="true" th:text="#{dass21_as.over18}">
+                        I am at least age 18*</input><br/>
+                        <span th:text="#{dass21_as.nebraska_pr1}">(* If based in Nebraska, I am at least age 19; if based in Puerto Rico, I am at least age 21.</span><br/> <span th:text="#{dass21_as.nebraska_pr2}">See</span>
+                         <a th:href="@{/public/disclaimer#item8}" th:text="#{dass21_as.nebraska_pr3}">Terms and Conditions > Age of Consent</a>.)
                     </label>
                 </div>
             </div>
-            <button th:text="${eligibility}? 'Submit' : 'Next'"/>
+            <button type="submit" th:text="#{next}">Next</button>
         </div>
     </form>
 </section>

@@ -11,7 +11,7 @@
 <head th:replace="fragment/common :: headerFragment"/>
 <body>
 <section th:replace="fragment/common :: topFragment"/>
-<section th:include="fragment/common :: titleBar (title= 'How Does MindTrails Work?')"/>
+<section th:include="fragment/common :: titleBar (title= #{credibility.title})"/>
 <textArea th:replace="fragment/common :: questionTemplate"/>
 
 <section id="content" class="clearfix">
@@ -19,18 +19,18 @@
         <div class="row">
             <div class="col-md-8">
 
-            <p> In our program, we are helping you change the way you think about common but potentially stressful
+            <p th:text="#{credibility.text1}"> In our program, we are helping you change the way you think about common but potentially stressful
                 situations in order to reduce your anxiety. During each session, you will be asked either to read
                 information about anxiety problems and their treatment and then answer questions; or to read brief stories
                 and then complete word fragments by filling in one or more missing letters in a word. These tasks are not
                 meant to be tricky or too difficult.</p>
 
-            <p> The exercises are designed to help you change the way you make sense of events that may cause anxiety.
-                The program can feel a little repetitive, but <u>the repetition is important so you develop a more balanced thinking
-                style.</u> Don’t worry if you don’t use smartphones or computers much — the tasks are not designed to be
-                difficult, and you can always email questions to the team at <a>studyteam@mindtrails.org</a>.</p>
+            <p><span th:text="#{credibility.text2}">The exercises are designed to help you change the way you make sense of events which may cause anxiety.
+                The program can feel a little repetitive, but</span> <u th:text="#{credibility.text3}"> the repetition is important so you develop a more balanced thinking
+                style.</u> <span th:text="#{credibility.text4}">Don’t worry if you don’t use smartphones or computers much — the tasks are not designed to be
+                difficult, and you can always email questions to the team at </span> <a th:text="#{credibility.text5}">studyteam@mindtrails.org</a>.</p>
 
-            <p>This is an experimental program that is still in the testing phase, but prior research suggests this
+            <p th:text="#{credibility.text6}">This is an experimental program that is still in the testing phase, but prior research suggests this
                 program may be able to reduce anxious thinking as effectively as therapy for some people. We want to determine
                 if it can be helpful for you. If you would like to learn more about the science behind MindTrails,
                 take a look at the "The Science of MindTrails" button at the top of the page.</p>
@@ -45,7 +45,7 @@
     <form th:action="@{/questions/Credibility}" method="POST" th:object="${model}">
         <section th:replace="fragment/forms :: radioOptions(${model})"/>
         <div class="col-md-12" style="text-align:center">
-            <button type="submit">Next</button>
+            <button type="submit" th:text="#{next}">Next</button>
         </div>
 
     </form>

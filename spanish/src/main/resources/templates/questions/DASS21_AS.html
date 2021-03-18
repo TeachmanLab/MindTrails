@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+
+<head th:replace="fragment/common :: headerFragment"/>
+<body>
+<section th:replace="fragment/common :: topFragment"/>
+<textArea th:replace="fragment/common :: questionTemplate"/>
+
+<section id="header-btm" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <h2 class="page-title heading-icon clearfix" style="padding-left: 15px"> <img th:src="@{/images/map-arrow-orange.png}" alt="icon" class="icon-small-bg"/>
+                <br/>
+                <span th:text="${eligibility}? 'Eligibility Questionnaire, Part 2' : 'Mood Assessment, Part 2'"/>
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="clearfix" th:if="${eligibility}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="padding-left: 15px">
+                <p th:text="#{dass21_as.intro1}">This is part two in a two-step questionnaire.</p>
+                <p th:text="#{dass21_as.intro2}">Please read each statement below. Then, select the number that best shows how much the statement
+                    applied to you over the past week. There are no right or wrong answers. Do not spend too much time
+                    on any statement.
+                </p>
+                <p class="alert-error" th:text="${error}"></p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contentTest" class="clearfix" style="padding-left: 30px">
+    <form th:action="${eligibility}? @{/public/eligibilityCheckStep2} : @{/questions/DASS21_AS}"
+            th:object="${model}" method="POST">
+        <section th:replace="fragment/forms :: radioOptions(${model})"/>
+        <div class="col-md-12" style="text-align:center">
+            <div th:if="${eligibility}" class="form-group row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-10">
+                    <label class="col-sm-10">
+                        <input class="inline-checkbox" type="checkbox" id="over18" name="over18" value="true" th:text="#{dass21_as.over18}">
+                        I am at least age 18*</input><br/>
+                        <span th:text="#{dass21_as.nebraska_pr1}">(* If based in Nebraska, I am at least age 19; if based in Puerto Rico, I am at least age 21.</span><br/> <span th:text="#{dass21_as.nebraska_pr2}">See</span>
+                         <a th:href="@{/public/disclaimer#item8}" th:text="#{dass21_as.nebraska_pr3}">Terms and Conditions > Age of Consent</a>.)
+                    </label>
+                </div>
+            </div>
+            <button type="submit" th:text="#{next}">Next</button>
+        </div>
+    </form>
+</section>
+<footer th:replace="fragment/common :: footer"/>
+<div th:include="fragment/common :: scripts"/>
+<div th:unless="${eligibility}" th:include="fragment/action_log :: scripts-action-log"/>
+
+</body>
+</html>

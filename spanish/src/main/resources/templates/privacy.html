@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment" />
+<body>
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment" />
+<section th:include="fragment/common :: titleBar (title=#{privacy.title})"/>
+
+<!-- content starts
+================================================== -->
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                <br></br>
+
+                <ul><li><u><a th:text="#{privacy.heading1}" href="#item1">Our Commitment to Privacy</a></u></li></ul>
+                <ul><li><u><a th:text="#{privacy.heading2}" href="#item2">Notice About the Information We Collect</a></u></li></ul>
+                <ul><li><u><a th:text="#{privacy.heading3}" href="#item3">Automatically Collected Access Information</a></u></li></ul>
+                <ul><li><u><a th:text="#{privacy.heading4}" href="#item4">The Way We Use Information</a></u></li></ul>
+                <ul><li><u><a th:text="#{privacy.heading5}" href="#item5">Use of Cookies</a></u></li></ul>
+                <ul><li><u><a th:text="#{privacy.heading6}" href="#item6">Data Sharing</a></u></li></ul>
+                <ul><li><u><a th:text="#{privacy.heading7}" href="#item7">Our Commitment to Data Security</a></u></li></ul>
+
+                <br></br>
+
+                <p><h3 th:text="#{privacy.heading1}" id="item1"><b>OUR COMMITMENT TO PRIVACY</b></h3></p>
+
+                    <p th:text="#{privacy.p1a}">The MindTrails team and The University of Virginia are strongly committed to maintaining the privacy
+                    and security of confidential personal information and other highly sensitive data that it collects.
+                    Our privacy and public records obligations are governed by applicable Virginia statutes, including,
+                    but not limited to, the Virginia Privacy Protection Act of 1976, the Virginia Freedom of Information
+                    Act and by any applicable U.S. federal laws.</p>
+
+                    <p th:text="#{privacy.p1b}">This study site has implemented stringent protections to safeguard participants’ confidentiality.
+                    All communication between project servers and participants’ computers is routed through Secure
+                    Sockets Layer (SSL) encryption technology, the gold standard for protecting data transfer from
+                    unauthorized access. This is the same secure hypertext transfer protocol (HTTPS), that banks and
+                    other commercial websites use to transfer credit card information in an encrypted format.</p>
+
+                    <p th:text="#{privacy.p1c}">Participants’ email addresses or phone numbers will not be shared with third parties.</p>
+
+                    <p th:text="#{privacy.p1d}">Any information participants provide on the site will be stored on a secured database.
+                    Information collected will be associated with a unique ID and not with the participant’s
+                    email address. When data are used for analysis, no personally identifying information will
+                    be associated with the data.</p>
+
+                <br></br>
+                    <p><h3 th:text="#{privacy.heading2}" id="item2"><b>NOTICE ABOUT THE INFORMATION WE COLLECT</b></h3></p>
+
+                    <p th:text="#{privacy.p2a}">This notice applies to all information collected by the MindTrails website. The following information
+                    explains the Internet privacy policy and practices that MindTrails has adopted, and complies with the
+                    broader Privacy Policy for the University of Virginia. This notice should not be construed as a
+                    contractual promise, and we reserve the right to amend it at any time without notice.</p>
+
+                    <p th:text="#{privacy.p2b}">When you access our web pages, the client information and the essential and nonessential
+                        technical information listed below is automatically collected — we refer to those categories
+                        collectively as "access information.” No other information is collected through our official
+                        website except “optional information” sent to us by email or online forms.</p>
+                <br></br>
+                                <br></br>
+
+                                <p><h3 th:text="#{privacy.heading3}" id="item3"><b>AUTOMATICALLY COLLECTED ACCESS INFORMATION</b></h3></p>
+
+                                <ul>
+                                    <li><b>Client information:</b> the Internet domain and Internet address of the computer you are using.</li>
+                                    <li><b>Essential technical information:</b> identification of the page or service you are requesting, type of browser and operating system you are using and the date and time of access.</li>
+                                    <li><b>Nonessential technical information:</b> the Internet address of the website from which you linked directly to our website and the "cookie information" described below.</li>
+                                    <li><b>Form data:</b> when you complete online forms, all the data you choose to fill in or confirm.</li></ul>
+
+                                <p>Some of the information we collect is highly sensitive in nature. We comply the University of Virginia’s
+                                guidelines for the management of this information. You can read more about our policies
+                                <a href="http://security.virginia.edu/university-use-highly-sensitive-data-standard">here</a>.</p>
+
+                                <br></br>
+                                <p><h3 th:text="#{privacy.heading4}" id="item4"><b>THE WAY WE USE INFORMATION</b></h3></p>
+
+                                <p th:text="#{privacy.p4a}">Client information is used to route the requested Web page to your computer for viewing.
+                                    In theory, the requested Web page and the routing information could be discerned by other entities
+                                    nvolved in transmitting the requested page to you. We do not control the privacy practices of those
+                                    entities. Essential and nonessential technical information helps us respond to your request in an
+                                    appropriate format (or in a personalized manner) and helps us plan website improvements.</p>
+
+                                <p th:text="#{privacy.p4b}">We may use non-identifying and aggregate information to better design our website. For example,
+                                    we may report that X number of individuals visited a certain area on our website or that Y number
+                                    of men and Z number of women filled out our registration form, but we would not disclose anything
+                                    that could be used to identify those individuals.</p>
+
+                                <p th:text="#{privacy.p4c}">We will keep client information from our systems indefinitely after the webpage is transmitted,
+                                    but we do not try to obtain any information to link it to the individuals who browse our website.
+                                    However, on rare occasions when a "hacker" attempts to breach computer security, logs of access
+                                    information are retained to permit a security investigation and in such cases may be forwarded
+                                    together with any other relevant information in our possession to law enforcement agencies.</p>
+
+                                <p th:text="#{privacy.p4d}">Under the Virginia Freedom of Information Act, any records in our possession at the time of a
+                                    Freedom of Information Request might be subject to being inspected by or disclosed to members of
+                                    the public for any purpose they may desire. As indicated above, client information may be retained
+                                    after transmission of the requested webpage and might be available for inspection.</p>
+
+                                <p th:text="#{privacy.p4e}">Finally, we never use or share the personally identifiable information provided to us online in ways
+                                    unrelated to the ones described above without clear notice and the opportunity to opt-out or
+                                    otherwise prohibit such uses.</p>
+
+
+                                <br></br>
+                                <p><h3 th:text="#{privacy.heading5}" id="item5"><b>USE OF COOKIES</b></h3></p>
+
+                                <p th:text="#{privacy.p5}">MindTrails uses "cookies". We use a cookie to identify users as they make progress through a study.
+                                    For this kind of cookie, the information stored in that cookie might include the following
+                                    (formatted for legibility):</p>
+
+                                    <p><b><i>Name: JSessionID<br />
+                                    UVA_cookie Session: 973016679.175537<br />
+                                    Timestamp: 973021258<br />
+                                    Portal: 0<br />
+                                    Expires: Tue, 01-May-2001 19:40:58 GMT<br />
+                                    Domain: mindtrails.virginia.edu<br />
+                                        Path: /</i></b></p>
+
+
+                                <br></br>
+                                <p><h3 th:text="#{privacy.heading6}" id="item6"><b>DATA SHARING</b></h3></p>
+
+                                <p><u>Google Analytics</u></p>
+
+                                <p th:text="#{privacy.p6a}">MindTrails uses Google Analytics, a web analytics service by Google that tracks and reports website
+                                traffic. MindTrails uses this service to track device usage, navigation patterns, and referrals.
+                                While MindTrails can connect this data to other information you provide, we will not share any of
+                                your personal information with Google. The information that Google collects is anonymous in nature,
+                                and will not be personally identifiable. By participating in any MindTrails study, you consent to
+                                this information being collected by Google Analytics.</p>
+
+                                <br></br>
+                                <p><u>National Institute of Mental Health Data Archive</u></p>
+
+                                <p>Data from this study may be submitted to the National Institute of Mental Health Data Archive (NDA).
+                                    The NDA is a data repository run by the National Institute of Mental Health (NIMH) that allows
+                                    esearchers studying mental health and substance use to collect and share deidentified information
+                                    with each other. A data repository is a large database where information from many studies is stored
+                                    and managed. Deidentified information means that all personal information about research participants
+                                    such as name, address, and phone number is removed and replaced with a code number. With an easier
+                                    way to share, researchers hope to learn new and important things about mental illnesses more quickly
+                                    than before.</p>
+
+                                <p>During and after the study, the researchers will send deidentified information about your
+                                    health and behavior and in some cases, your genetic information, to NDA. Other
+                                    researchers nationwide can then file an application with NIMH to obtain access to
+                                    your deidentified study data for research purposes. Experts at NIMH who know how to
+                                    protect health and science information will look at every request carefully to minimize
+                                    risks to your privacy. </p>
+
+                                <p>You may not benefit directly from allowing your information to be shared with NDA.
+                                    The information provided to NDA may help researchers find better treatments.
+                                    NIMH will also report to Congress and on its web site about the different studies
+                                    that researchers are conducting using NDA data. However, you will not be contacted directly
+                                    about the data you contributed to NDA. </p>
+
+                                <p>You may decide now or later that you do not want to share your information using NDA. If so,
+                                    contact the MindTrails team <a href="studyteam@mindtrails.org">here</a> and we will tell NDA, which can stop sharing the research
+                                    information. Please note that NDA cannot take back information that was shared before you
+                                    changed your mind. If you would like more information about NDA, this is available at: <a href="http://data-archive.nimh.nih.gov">http://data-archive.nimh.nih.gov</a>.</p>
+
+
+                                    <br></br>
+                                <p><h3 th:text="#{privacy.heading7}" id="item7"><b>OUR COMMITMENT TO DATA SECURITY</b></h3></p>
+
+                                <p th:text="#{privacy.p7}">To prevent unauthorized access, maintain data accuracy and ensure the correct use of information,
+                                    we have put in place appropriate physical, electronic and managerial procedures to safeguard and
+                                    secure the information we collect online, consistent with the policies of the University and with
+                                    the laws and regulations of the Commonwealth of Virginia.</p>
+                                <br/>
+
+                                <br></br>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <!-- footer starts
+                ================================================== -->
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer" />
+
+<!-- copyright starts
+================================================== -->
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright" />
+
+<!--Javascript
+================================================== -->
+<div th:include="fragment/common :: scripts" />
+
+</body>
+</html>

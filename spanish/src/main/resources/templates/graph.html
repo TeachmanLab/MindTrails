@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head th:include="fragment/common :: headerFragment"/>
+
+<body th:class="|user-theme-${participant.theme}|">
+<script type="text/javascript" th:src="@{/bower/jquery-flot/jquery.flot.js}"></script>
+<script type="text/javascript" th:src="@{/bower/jquery-flot/jquery.flot.categories.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.flot.axislabels.js}"></script>
+
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment"/>
+
+<section th:replace="fragment/common :: titleBar (title='Graph of Progress')"/>
+
+<!-- content starts
+================================================== -->
+<section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p>You completed a questionnaire after each training session about how your anxiety had been since your
+                    last session. This allowed us to track your progress over the course of the MindTrails
+                    study.</p>
+                <p>The graph below shows the changes in your score on the anxiety questionnaire, which is called the
+                    <i>Overall Anxiety Severity and Impairment Scale</i> (Norman, Cissell, Means-Christensen, &amp;
+                    Stein, 2006). On this scale, the higher the score, the
+                    more difficulties with anxiety you reported at that point in time.</p>
+                <p>The <b>orange line</b> shows your specific scores on each day. The <b>blue line</b> shows your
+                    overall change pattern, taking into account the variation that occurred across sessions.</p>
+                <br/>
+                <div class="longSection">
+                    <div id="graph"/>
+                </div>
+                <br/>
+                <h3><b>What do my scores indicate?</b></h3>
+                <p th:if="${status == 'lot'}">
+                    Your change in scores suggests that <i>you improved a lot over the course of the study</i>.
+                    Congratulations on making such great progress!
+                </p>
+
+                <p th:if="${status == 'little'}">
+                    Your change in scores suggests that <i>you experienced some improvement over the course of the
+                    study, but may still have some remaining anxiety symptoms</i>. Congratulations on the progress that
+                    you have made thus far, and we encourage you to keep working on managing your anxiety to
+                    experience further improvement!
+                </p>
+
+                <p th:if="${status == 'same'}">
+                    Your change in scores suggests that <i>your anxiety did not change a lot over the course of the
+                    study</i>. This could have occurred for many reasons &mdash; for example, the program is not a great
+                    match for your needs; or you were not in a study group that was expected to be the most effective (see
+                    below); or this may be an unusually difficult or stressful time for you. We are sorry that the
+                    program was not more helpful for you and that you are still experiencing significant anxiety
+                    symptoms. We strongly encourage you to keep working on managing your anxiety because there
+                    are many different treatment options that can be helpful, and we hope you will find a program
+                    that is a good match for you.</p>
+
+                <p th:if="${status == 'worse'}">
+                    Your change in scores suggests that <i>your anxiety became somewhat worse over the course of the
+                    study</i>. This could have occurred for many reasons &mdash; for example, the program is not a great
+                    match for your needs; or you were not in a study group that was expected to be the most effective (see
+                    below); or this may be an unusually difficult or stressful time for you, etc.</p>
+                <p>We are sorry that the
+                    program was not more helpful for you and that you are still experiencing significant anxiety
+                    symptoms. We strongly encourage you to keep working on managing your anxiety because there
+                    are many different treatment options that can be helpful, and we hope you will find a program
+                    that is a good match for you.
+                </p>
+
+                <div th:if="${participant.study.conditioning == 'CONTROL'}">
+                    <h3><b>You were in a control group.</b></h3>
+                    <p>When reviewing this graph, we'd like to let you know that you were in a control group, and <i>did
+                        not receive the training sessions that we expect would best improve your anxiety</i>.</p>
+                    <p>If you would like, you may now complete the training that we expect will
+                        be most helpful. <b>Please send an email to <a href="mailto:studyteam@mindtrails.org">
+                            studyteam@mindtrails.org</a> with the subject line "Control group" to get started.</b></p>
+
+                    <p> In addition, if you wish to seek further care for your anxiety difficulties, we strongly encourage you to review the <a
+                                href="https://mindtrails.virginia.edu/calm/public/resources">Mental Health Resources</a>
+                        page, which can help you find other independent (e.g., books, computer, or mobile app) or
+                        therapist-guided treatment options.
+                    </p>
+                </div>
+
+                <div th:if="${participant.study.conditioning == 'TRAINING' or participant.study.conditioning == 'LR_TRAINING' or participant.study.conditioning == 'HR_COACH' or participant.study.conditioning == 'HR_NO_COACH' or
+                participant.study.conditioning == 'TRAINING_ORIG' or participant.study.conditioning == 'TRAINING_CREATE' or participant.study.conditioning == 'TRAINING_30' or participant.study.conditioning == 'TRAINING_ED' }">
+                    <h3><b>You were in the active training group.</b></h3>
+                    <p>When reviewing this graph, we'd like to let you know that you were in an active training group (rather than a control group, which we did not
+                        expect to be as effective). However, if you’re not happy with your progress and/or wish to seek further
+                        care for your anxiety difficulties, we strongly encourage you to review the <a href="https://mindtrails.virginia.edu/calm/public/resources">Mental Health Resources</a>
+                        page, which can help you find other independent (e.g., books, computer, or mobile app) or therapist-guided treatment options.</p>
+                </div>
+
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    $(function () {
+
+                        var actualPoints = /*[[${points}]]*/ null;
+                        var regression = /*[[${regressionPoints}]]*/ [["Initial Assessment", 2.6], ["2 Months Post Training", 1]];
+
+                        $.plot("#graph", [actualPoints, regression], {
+                            axisLabels: {show: true},
+                            series: {
+                                lines: {show: true},
+                                points: {show: true}
+                            },
+                            xaxis: {
+                                mode: "categories",
+                                tickLength: 0
+                            },
+                            yaxis: {
+                                axisLabel: 'Overall Anxiety Severity and Impairment Scale Score'
+                            }
+                        });
+
+
+                    });
+                    /*]]>*/
+                </script>
+            </div>
+            <br/>
+            <br/>
+        </div>
+    </div>
+</section>
+
+
+<!-- footer starts
+================================================== -->
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer"/>
+
+<!-- copyright starts
+================================================== -->
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright"/>
+
+<!--Javascript
+================================================== -->
+<div th:include="fragment/common :: scripts"/>
+
+</body>
+</html>

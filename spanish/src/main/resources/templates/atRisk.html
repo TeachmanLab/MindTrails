@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="not-ie" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+
+<head th:include="fragment/common :: headerFragment"/>
+<body>
+<div th:class="|user-theme-${participant.theme}|">
+<section id="header" class="clearfix" th:include="fragment/common :: topFragment"/>
+
+
+<!-- content starts
+================================================== -->
+    <section th:replace="fragment/common :: titleBar (title='Rising Score During the Study')"/>
+
+    <section id="content" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                <br/>
+                <p>Dear <span th:text="${participant.fullName}"/>,</p>
+
+        <p>We want to let you know that your score on
+            the anxiety symptom measure that you complete each session is
+            showing an increase in symptoms, compared to your score when
+            you started the MindTrails program.</p>
+
+        <p>We are sorry that you are experiencing increased anxiety
+            and like to make sure our study participants are aware if their
+            scores increase by 50% or more and know how to access
+            other resources if they wish.</p>
+
+        <p>You are very welcome to continue your participation in our program, and we also want to
+            direct you to the following list of
+            <a th:href="@{https://mindtrails.virginia.edu/calm/public/resources}">Mental Health Resources</a>.
+            Further, while we do not endorse any particular organization or provider (see our
+            <a th:href="@{https://mindtrails.virginia.edu/calm/public/disclaimer}">Terms and Conditions</a>), you may
+            contact us via email at <a href="mailto:studyteam@mindtrails.org">studyteam@mindtrails.org</a>,
+            if you want help in determining how to find nearby referrals for in-person treatment should such treatment be available.</p>
+
+        <p style="margin-top:5px">Thank you for your participation in the study and we hope you’re
+            having a good week.  Please click the 'Continue' button below to resume the current
+            session, if you choose to do so. </p>
+                <br/>
+                <p><a th:href="@{/session}"><button>Continue</button></a></p>
+    </div>
+        </div>
+</div>
+</section>
+</div>
+    <br/>
+    <br/>
+
+<!-- footer starts
+================================================== -->
+<footer id="footer" class="clearfix" th:include="fragment/common :: footer"/>
+
+<!-- copyright starts
+================================================== -->
+<section id="copyright" class="clearfix" th:include="fragment/common :: copyright"/>
+
+<!--Javascript
+================================================== -->
+<div th:include="fragment/common :: scripts"/>
+</body>
+</html>

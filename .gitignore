@@ -1,4 +1,4 @@
-*.properties
+*application*.properties
 .idea
 target
 pi-server.iml
